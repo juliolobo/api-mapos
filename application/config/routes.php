@@ -44,8 +44,14 @@ $route['default_controller'] = "mapos";
 $route['404_override'] = '';
 
 // Rotas API
-$route['api'] = 'api/ApiController/index';
-$route['api/login'] = 'api/ApiController/login';
+$route['api/login']    = 'api/ApiController/login';
+// $route['api']       = 'api/ApiController/index';
+$route['api']          = 'api/ApiController/index';
+$route['api/clientes'] = 'api/ClientesController';
+$route['api/produtos'] = 'api/ProdutosController';
+$route['api/servicos'] = 'api/ServicosController';
+$route['api/usuarios'] = 'api/UsuariosController';
+$route['api/os']       = 'api/OsController';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
