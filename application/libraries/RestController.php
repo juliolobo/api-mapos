@@ -2035,4 +2035,20 @@ class RestController extends CI_Controller
             exit;
         }
     }
+
+    public function verify_permissons()
+    {
+        $this->load->model('Apikeys_model');
+        $this->load->model('Permissoes_model');
+
+        $api_key_variable = $this->config->item('rest_key_name');
+        
+        $key_name = 'HTTP_'.strtoupper(str_replace('-', '_', $api_key_variable));
+
+        $key = isset($this->_args[$api_key_variable]) ? $this->_args[$api_key_variable] : $this->input->server($key_name);
+        
+        $this->user = $this->Apikeys_model->getByKey($key);
+
+        return $this->user;
+    }
 }
