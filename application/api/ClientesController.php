@@ -43,7 +43,7 @@ class ClientesController extends RestController
     }
     
     public function index_post()
-    {        
+    {
         if (!$this->permission->checkPermission($this->logged_user()->level, 'aCliente')) {
             $this->response([
                 'status' => false,
@@ -97,5 +97,54 @@ class ClientesController extends RestController
     }
 
     public function index_put($id)
-    {}
+    {
+        if (!$this->permission->checkPermission($this->logged_user()->level, 'eCliente')) {
+            $this->response([
+                'status' => false,
+                'message' => 'Você não está autorizado a Visualizar Clientes'
+            ], RestController::HTTP_UNAUTHORIZED);
+        }
+
+        $this->load->library('form_validation');
+        if ($this->form_validation->run('clientes') == false) {
+            $this->response([
+                'status' => false,
+                'message' => 'Os dados fornecidos estão incorretos, corrija e tente novamente!'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
+
+        $data = [
+            'nomeCliente' => $this->input->post('nomeCliente'),
+            'contato' => $this->input->post('contato'),
+            'documento' => $this->input->post('documento'),
+            'telefone' => $this->input->post('telefone'),
+            'celular' => $this->input->post('celular'),
+            'email' => $this->input->post('email'),
+            'rua' => $this->input->post('rua'),
+            'numero' => $this->input->post('numero'),
+            'complemento' => $this->input->post('complemento'),
+            'bairro' => $this->input->post('bairro'),
+            'cidade' => $this->input->post('cidade'),
+            'estado' => $this->input->post('estado'),
+            'cep' => $this->input->post('cep'),
+            'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
+        ];
+
+        if($this->input->post('senha')) {
+            $data['senha'] = password_hash($this->input->post('senha'), PASSWORD_DEFAULT);
+        }
+
+        if ($this->clientes_model->edit('clientes', $data, 'idClientes', $id) == true) {
+            $this->response([
+                'status' => true,
+                'message' => 'Cliente editado com sucesso',
+                'result' => $this->clientes_model->getById($id)
+            ], RestController::HTTP_OK);
+        }
+
+        $this->response([
+            'status' => false,
+            'message' => 'Não foi possível editar o Cliente. Avise ao Administrador.'
+        ], RestController::HTTP_INTERNAL_SERVER_ERROR);
+    }
 }
