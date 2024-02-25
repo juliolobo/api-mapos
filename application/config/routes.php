@@ -45,7 +45,6 @@ $route['404_override'] = '';
 
 // Rotas API
 $route['api/login']    = 'api/ApiController/login';
-// $route['api']       = 'api/ApiController/index';
 $route['api']          = 'api/ApiController/index';
 $route['api/clientes'] = 'api/ClientesController';
 $route['api/produtos'] = 'api/ProdutosController';
