@@ -50,45 +50,56 @@ class ClientesController extends RestController
                 'message' => 'Você não está autorizado a Adicionar Clientes!'
             ], RestController::HTTP_UNAUTHORIZED);
         }
-
-        $this->load->library('form_validation');
-        if ($this->form_validation->run('clientes') == false) {
+        
+        $this->load->helper('validation_helper');
+        if(!verific_cpf_cnpj($this->input->post('documento'))) {
             $this->response([
                 'status' => false,
-                'message' => 'Os dados fornecidos estão incorretos, corrija e tente novamente!'
+                'message' => 'CPF/CNPJ inválido. Verifique o número do documento e tente novamente.'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
+
+        $this->load->model('clientes_model');
+        $userExist = $this->clientes_model->get('clientes', '*', "documento = '{$this->input->post('documento')}'", 1, 0, true);
+
+        if($userExist) {
+            $this->response([
+                'status' => false,
+                'message' => 'Já existe um usuário com esse documento!'
             ], RestController::HTTP_BAD_REQUEST);
         }
         
         $this->load->model('clientes_model');
 
-        $senhaCliente = $this->input->post('senha') ?  $this->input->post('senha') : preg_replace('/[^\p{L}\p{N}\s]/', '', set_value('documento'));
-        $cpf_cnpj     = preg_replace('/[^\p{L}\p{N}\s]/', '', set_value('documento'));
+        $senhaCliente = $this->input->post('senha') ?  $this->input->post('senha') : preg_replace('/[^\p{L}\p{N}\s]/', '', $this->input->post('documento'));
+        $cpf_cnpj     = preg_replace('/[^\p{L}\p{N}\s]/', '', $this->input->post('documento'));
         $pessoaFisica = strlen($cpf_cnpj) == 11 ? true : false;
 
         $data = [
-            'nomeCliente' => set_value('nomeCliente'),
-            'contato' => set_value('contato'),
+            'nomeCliente' => $this->input->post('nomeCliente'),
+            'contato' => $this->input->post('contato'),
             'pessoa_fisica' => $pessoaFisica,
-            'documento' => set_value('documento'),
-            'telefone' => set_value('telefone'),
-            'celular' => set_value('celular'),
-            'email' => set_value('email'),
+            'documento' => $this->input->post('documento'),
+            'telefone' => $this->input->post('telefone'),
+            'celular' => $this->input->post('celular'),
+            'email' => $this->input->post('email'),
             'senha' => password_hash($senhaCliente, PASSWORD_DEFAULT),
-            'rua' => set_value('rua'),
-            'numero' => set_value('numero'),
-            'complemento' => set_value('complemento'),
-            'bairro' => set_value('bairro'),
-            'cidade' => set_value('cidade'),
-            'estado' => set_value('estado'),
-            'cep' => set_value('cep'),
+            'rua' => $this->input->post('rua'),
+            'numero' => $this->input->post('numero'),
+            'complemento' => $this->input->post('complemento'),
+            'bairro' => $this->input->post('bairro'),
+            'cidade' => $this->input->post('cidade'),
+            'estado' => $this->input->post('estado'),
+            'cep' => $this->input->post('cep'),
             'dataCadastro' => date('Y-m-d'),
-            'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
+            'fornecedor' => ($this->input->post('fornecedor') == true ? 1 : 0),
         ];
 
         if ($this->clientes_model->add('clientes', $data) == true) {
             $this->response([
                 'status' => true,
-                'message' => 'Cliente adicionado com sucesso!'
+                'message' => 'Cliente adicionado com sucesso!',
+                'result' => $this->clientes_model->get('clientes', '*', "documento = '{$data['documento']}'", 1, 0, true)
             ], RestController::HTTP_OK);
         }
         
@@ -106,36 +117,28 @@ class ClientesController extends RestController
                 'message' => 'Você não está autorizado a Editar Clientes!'
             ], RestController::HTTP_UNAUTHORIZED);
         }
-
-        $this->load->library('form_validation');
-        if ($this->form_validation->run('clientes') == false) {
-            $this->response([
-                'status' => false,
-                'message' => 'Os dados fornecidos estão incorretos, corrija e tente novamente!'
-            ], RestController::HTTP_BAD_REQUEST);
-        }
         
         $this->load->model('clientes_model');
 
         $data = [
-            'nomeCliente' => $this->input->post('nomeCliente'),
-            'contato' => $this->input->post('contato'),
-            'documento' => $this->input->post('documento'),
-            'telefone' => $this->input->post('telefone'),
-            'celular' => $this->input->post('celular'),
-            'email' => $this->input->post('email'),
-            'rua' => $this->input->post('rua'),
-            'numero' => $this->input->post('numero'),
-            'complemento' => $this->input->post('complemento'),
-            'bairro' => $this->input->post('bairro'),
-            'cidade' => $this->input->post('cidade'),
-            'estado' => $this->input->post('estado'),
-            'cep' => $this->input->post('cep'),
-            'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
+            'nomeCliente' => $this->put('nomeCliente'),
+            'contato' => $this->put('contato'),
+            'documento' => $this->put('documento'),
+            'telefone' => $this->put('telefone'),
+            'celular' => $this->put('celular'),
+            'email' => $this->put('email'),
+            'rua' => $this->put('rua'),
+            'numero' => $this->put('numero'),
+            'complemento' => $this->put('complemento'),
+            'bairro' => $this->put('bairro'),
+            'cidade' => $this->put('cidade'),
+            'estado' => $this->put('estado'),
+            'cep' => $this->put('cep'),
+            'fornecedor' => ($this->put('fornecedor') == true ? 1 : 0),
         ];
 
-        if($this->input->post('senha')) {
-            $data['senha'] = password_hash($this->input->post('senha'), PASSWORD_DEFAULT);
+        if($this->put('senha')) {
+            $data['senha'] = password_hash($this->put('senha'), PASSWORD_DEFAULT);
         }
 
         if ($this->clientes_model->edit('clientes', $data, 'idClientes', $id) == true) {
