@@ -47,7 +47,7 @@ class ClientesController extends RestController
         if (!$this->permission->checkPermission($this->logged_user()->level, 'aCliente')) {
             $this->response([
                 'status' => false,
-                'message' => 'Você não está autorizado a Visualizar Clientes'
+                'message' => 'Você não está autorizado a Adicionar Clientes!'
             ], RestController::HTTP_UNAUTHORIZED);
         }
 
@@ -58,6 +58,8 @@ class ClientesController extends RestController
                 'message' => 'Os dados fornecidos estão incorretos, corrija e tente novamente!'
             ], RestController::HTTP_BAD_REQUEST);
         }
+        
+        $this->load->model('clientes_model');
 
         $senhaCliente = $this->input->post('senha') ?  $this->input->post('senha') : preg_replace('/[^\p{L}\p{N}\s]/', '', set_value('documento'));
         $cpf_cnpj     = preg_replace('/[^\p{L}\p{N}\s]/', '', set_value('documento'));
@@ -86,7 +88,7 @@ class ClientesController extends RestController
         if ($this->clientes_model->add('clientes', $data) == true) {
             $this->response([
                 'status' => true,
-                'message' => 'Cliente adicionado com sucesso'
+                'message' => 'Cliente adicionado com sucesso!'
             ], RestController::HTTP_OK);
         }
         
@@ -101,7 +103,7 @@ class ClientesController extends RestController
         if (!$this->permission->checkPermission($this->logged_user()->level, 'eCliente')) {
             $this->response([
                 'status' => false,
-                'message' => 'Você não está autorizado a Visualizar Clientes'
+                'message' => 'Você não está autorizado a Editar Clientes!'
             ], RestController::HTTP_UNAUTHORIZED);
         }
 
@@ -112,6 +114,8 @@ class ClientesController extends RestController
                 'message' => 'Os dados fornecidos estão incorretos, corrija e tente novamente!'
             ], RestController::HTTP_BAD_REQUEST);
         }
+        
+        $this->load->model('clientes_model');
 
         $data = [
             'nomeCliente' => $this->input->post('nomeCliente'),
@@ -137,7 +141,7 @@ class ClientesController extends RestController
         if ($this->clientes_model->edit('clientes', $data, 'idClientes', $id) == true) {
             $this->response([
                 'status' => true,
-                'message' => 'Cliente editado com sucesso',
+                'message' => 'Cliente editado com sucesso!',
                 'result' => $this->clientes_model->getById($id)
             ], RestController::HTTP_OK);
         }
@@ -145,6 +149,48 @@ class ClientesController extends RestController
         $this->response([
             'status' => false,
             'message' => 'Não foi possível editar o Cliente. Avise ao Administrador.'
+        ], RestController::HTTP_INTERNAL_SERVER_ERROR);
+    }
+
+    public function index_delete($id)
+    {
+        if (!$this->permission->checkPermission($this->logged_user()->level, 'dCliente')) {
+            $this->response([
+                'status' => false,
+                'message' => 'Você não está autorizado a Apagar Clientes!'
+            ], RestController::HTTP_UNAUTHORIZED);
+        }
+
+        if(!$id) {
+            $this->response([
+                'status' => false,
+                'message' => 'Informe o ID do cliente!'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
+        
+        $this->load->model('clientes_model');
+
+        $os = $this->clientes_model->getAllOsByClient($id);
+        if ($os != null) {
+            $this->clientes_model->removeClientOs($os);
+        }
+
+        $vendas = $this->clientes_model->getAllVendasByClient($id);
+        if ($vendas != null) {
+            $this->clientes_model->removeClientVendas($vendas);
+        }
+
+        if ($this->clientes_model->delete('clientes', 'idClientes', $id) == true) {
+            log_info('Removeu um cliente. ID' . $id);
+            $this->response([
+                'status' => true,
+                'message' => 'Cliente excluído com sucesso!'
+            ], RestController::HTTP_OK);
+        }
+
+        $this->response([
+            'status' => false,
+            'message' => 'Não foi possível excluir o Cliente. Avise ao Administrador.'
         ], RestController::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
