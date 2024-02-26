@@ -21,4 +21,11 @@ class Apikeys_model extends CI_Model
         
         return false;
     }
+
+    public function getByKey($ci_key)
+    {
+        $this->db->where('ci_key', $ci_key);
+        $this->db->limit(1);
+        return $this->db->get('apikeys')->row();
+    }
 }
