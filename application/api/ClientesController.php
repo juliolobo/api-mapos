@@ -102,13 +102,13 @@ class ClientesController extends RestController
                 'status' => true,
                 'message' => 'Cliente adicionado com sucesso!',
                 'result' => $this->clientes_model->get('clientes', '*', "documento = '{$data['documento']}'", 1, 0, true)
-            ], RestController::HTTP_OK);
+            ], RestController::HTTP_CREATED);
         }
         
         $this->response([
             'status' => false,
             'message' => 'Não foi possível adicionar o Cliente. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_SERVER_ERROR);
+        ], RestController::HTTP_INTERNAL_ERROR);
     }
 
     public function index_put($id)
@@ -159,7 +159,7 @@ class ClientesController extends RestController
         $this->response([
             'status' => false,
             'message' => 'Não foi possível editar o Cliente. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_SERVER_ERROR);
+        ], RestController::HTTP_INTERNAL_ERROR);
     }
 
     public function index_delete($id)
@@ -199,6 +199,6 @@ class ClientesController extends RestController
         $this->response([
             'status' => false,
             'message' => 'Não foi possível excluir o Cliente. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_SERVER_ERROR);
+        ], RestController::HTTP_INTERNAL_ERROR);
     }
 }
