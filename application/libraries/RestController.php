@@ -2036,7 +2036,7 @@ class RestController extends CI_Controller
         }
     }
 
-    public function verify_permissons()
+    public function logged_user()
     {
         $this->load->model('Apikeys_model');
         $this->load->model('Permissoes_model');
