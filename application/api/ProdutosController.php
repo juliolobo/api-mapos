@@ -21,7 +21,7 @@ class ProdutosController extends RestController
         if (!$this->permission->checkPermission($this->logged_user()->level, 'vProduto')) {
             $this->response([
                 'status' => false,
-                'message' => 'Você não está autorizado a Visualizar Clientes'
+                'message' => 'Você não está autorizado a Visualizar Produtos'
             ], RestController::HTTP_UNAUTHORIZED);
         }
 
@@ -100,10 +100,10 @@ class ProdutosController extends RestController
 
     public function index_put($id)
     {
-        if (!$this->permission->checkPermission($this->logged_user()->level, 'eCliente')) {
+        if (!$this->permission->checkPermission($this->logged_user()->level, 'eProduto')) {
             $this->response([
                 'status' => false,
-                'message' => 'Você não está autorizado a Editar Clientes!'
+                'message' => 'Você não está autorizado a Editar Produtos!'
             ], RestController::HTTP_UNAUTHORIZED);
         }
 
