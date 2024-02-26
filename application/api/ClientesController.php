@@ -56,8 +56,15 @@ class ClientesController extends RestController
                 'message' => 'Você não está autorizado a Adicionar Clientes!'
             ], RestController::HTTP_UNAUTHORIZED);
         }
+
+        if(!$this->input->post('nomeCliente')){
+            $this->response([
+                'status' => false,
+                'message' => 'Preencha todos os campos obrigatórios!'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
         
-        if(!verific_cpf_cnpj($this->input->post('documento'))) {
+        if($this->input->post('documento') && !verific_cpf_cnpj($this->input->post('documento'))) {
             $this->response([
                 'status' => false,
                 'message' => 'CPF/CNPJ inválido. Verifique o número do documento e tente novamente.'
