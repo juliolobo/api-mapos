@@ -8,6 +8,14 @@ require APPPATH . 'libraries/RestController.php';
 
 class ClientesController extends RestController
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('clientes_model');
+        $this->load->helper('validation_helper');
+    }
+
     public function index_get($id = '')
     {        
         if (!$this->permission->checkPermission($this->logged_user()->level, 'vCliente')) {
@@ -16,8 +24,6 @@ class ClientesController extends RestController
                 'message' => 'Você não está autorizado a Visualizar Clientes'
             ], RestController::HTTP_UNAUTHORIZED);
         }
-
-        $this->load->model('clientes_model');
 
         if(!$id){
             $perPage = 20;
@@ -51,7 +57,6 @@ class ClientesController extends RestController
             ], RestController::HTTP_UNAUTHORIZED);
         }
         
-        $this->load->helper('validation_helper');
         if(!verific_cpf_cnpj($this->input->post('documento'))) {
             $this->response([
                 'status' => false,
@@ -59,7 +64,6 @@ class ClientesController extends RestController
             ], RestController::HTTP_BAD_REQUEST);
         }
 
-        $this->load->model('clientes_model');
         $userExist = $this->clientes_model->get('clientes', '*', "documento = '{$this->input->post('documento')}'", 1, 0, true);
 
         if($userExist) {
@@ -68,10 +72,8 @@ class ClientesController extends RestController
                 'message' => 'Já existe um usuário com esse documento!'
             ], RestController::HTTP_BAD_REQUEST);
         }
-        
-        $this->load->model('clientes_model');
 
-        $senhaCliente = $this->input->post('senha') ?  $this->input->post('senha') : preg_replace('/[^\p{L}\p{N}\s]/', '', $this->input->post('documento'));
+        $senhaCliente = $this->input->post('senha') ? $this->input->post('senha') : preg_replace('/[^\p{L}\p{N}\s]/', '', $this->input->post('documento'));
         $cpf_cnpj     = preg_replace('/[^\p{L}\p{N}\s]/', '', $this->input->post('documento'));
         $pessoaFisica = strlen($cpf_cnpj) == 11 ? true : false;
 
@@ -118,7 +120,12 @@ class ClientesController extends RestController
             ], RestController::HTTP_UNAUTHORIZED);
         }
         
-        $this->load->model('clientes_model');
+        if(!verific_cpf_cnpj($this->input->post('documento'))) {
+            $this->response([
+                'status' => false,
+                'message' => 'CPF/CNPJ inválido. Verifique o número do documento e tente novamente.'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
 
         $data = [
             'nomeCliente' => $this->put('nomeCliente'),
@@ -170,8 +177,6 @@ class ClientesController extends RestController
                 'message' => 'Informe o ID do cliente!'
             ], RestController::HTTP_BAD_REQUEST);
         }
-        
-        $this->load->model('clientes_model');
 
         $os = $this->clientes_model->getAllOsByClient($id);
         if ($os != null) {
