@@ -89,13 +89,13 @@ class ProdutosController extends RestController
                 'status' => true,
                 'message' => 'Produto adicionado com sucesso!',
                 'result' => $this->produtos_model->get('produtos', '*', "descricao = '{$data['descricao']}'", 1, 0, true)
-            ], RestController::HTTP_OK);
+            ], RestController::HTTP_CREATED);
         }
         
         $this->response([
             'status' => false,
             'message' => 'Não foi possível adicionar o Produto. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_SERVER_ERROR);
+        ], RestController::HTTP_INTERNAL_ERROR);
     }
 
     public function index_put($id)
@@ -107,31 +107,31 @@ class ProdutosController extends RestController
             ], RestController::HTTP_UNAUTHORIZED);
         }
 
-        if(!$this->input->post('descricao') || 
-        !$this->input->post('unidade') || 
-        !$this->input->post('precoCompra') || 
-        !$this->input->post('precoVenda') || 
-        !$this->input->post('estoque')) {
+        if(!$this->put('descricao') || 
+        !$this->put('unidade') || 
+        !$this->put('precoCompra') || 
+        !$this->put('precoVenda') || 
+        !$this->put('estoque')) {
             $this->response([
                 'status' => false,
                 'message' => 'Preencha todos os campos obrigatórios!'
             ], RestController::HTTP_BAD_REQUEST);
         }
 
-        $precoCompra = $this->input->post('precoCompra');
+        $precoCompra = $this->put('precoCompra');
         $precoCompra = str_replace(",", "", $precoCompra);
-        $precoVenda  = $this->input->post('precoVenda');
+        $precoVenda  = $this->put('precoVenda');
         $precoVenda  = str_replace(",", "", $precoVenda);
         $data = [
-            'codDeBarra' => $this->input->post('codDeBarra'),
-            'descricao' => $this->input->post('descricao'),
-            'unidade' => $this->input->post('unidade'),
+            'codDeBarra' => $this->put('codDeBarra'),
+            'descricao' => $this->put('descricao'),
+            'unidade' => $this->put('unidade'),
             'precoCompra' => $precoCompra,
             'precoVenda' => $precoVenda,
-            'estoque' => $this->input->post('estoque'),
-            'estoqueMinimo' => $this->input->post('estoqueMinimo'),
-            'saida' => $this->input->post('saida'),
-            'entrada' => $this->input->post('entrada'),
+            'estoque' => $this->put('estoque'),
+            'estoqueMinimo' => $this->put('estoqueMinimo'),
+            'saida' => $this->put('saida'),
+            'entrada' => $this->put('entrada'),
         ];
 
         if ($this->produtos_model->edit('produtos', $data, 'idProdutos', $id) == true) {
@@ -145,7 +145,7 @@ class ProdutosController extends RestController
         $this->response([
             'status' => false,
             'message' => 'Não foi possível editar o Produto. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_SERVER_ERROR);
+        ], RestController::HTTP_INTERNAL_ERROR);
     }
 
     public function index_delete($id)
@@ -164,19 +164,20 @@ class ProdutosController extends RestController
             ], RestController::HTTP_BAD_REQUEST);
         }
         
-        if($this->produtos_model->delete('produtos_os', 'produtos_id', $id) && $this->produtos_model->delete('itens_de_vendas', 'produtos_id', $id)) {
-            if ($this->produtos_model->delete('produtos', 'idClientes', $id) == true) {
-                log_info('Removeu um Produto. ID' . $id);
-                $this->response([
-                    'status' => true,
-                    'message' => 'Produto excluído com sucesso!'
-                ], RestController::HTTP_OK);
-            }
+        $this->produtos_model->delete('produtos_os', 'produtos_id', $id);
+        $this->produtos_model->delete('itens_de_vendas', 'produtos_id', $id);
+
+        if ($this->produtos_model->delete('produtos', 'idProdutos', $id) == true) {
+            log_info('Removeu um Produto. ID' . $id);
+            $this->response([
+                'status' => true,
+                'message' => 'Produto excluído com sucesso!'
+            ], RestController::HTTP_OK);
         }
 
         $this->response([
             'status' => false,
             'message' => 'Não foi possível excluir o Produto. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_SERVER_ERROR);
+        ], RestController::HTTP_INTERNAL_ERROR);
     }
 }
