@@ -131,7 +131,7 @@ class ClientesController extends RestController
 
         $inputData = json_decode(trim(file_get_contents('php://input')));
         
-        if(!verific_cpf_cnpj($inputData->documento)) {
+        if($inputData->documento && !verific_cpf_cnpj($inputData->documento)) {
             $this->response([
                 'status' => false,
                 'message' => 'CPF/CNPJ inválido. Verifique o número do documento e tente novamente.'
