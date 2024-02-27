@@ -56,32 +56,34 @@ class ProdutosController extends RestController
                 'message' => 'Você não está autorizado a Adicionar Produtos!'
             ], RestController::HTTP_UNAUTHORIZED);
         }
+        
+        $inputData = json_decode(trim(file_get_contents('php://input')));
 
-        if(!$this->input->post('descricao') || 
-        !$this->input->post('unidade') || 
-        !$this->input->post('precoCompra') || 
-        !$this->input->post('precoVenda') || 
-        !$this->input->post('estoque')) {
+        if(!$inputData->descricao || 
+        !$inputData->unidade || 
+        !$inputData->precoCompra || 
+        !$inputData->precoVenda || 
+        !$inputData->estoque) {
             $this->response([
                 'status' => false,
                 'message' => 'Preencha todos os campos obrigatórios!'
             ], RestController::HTTP_BAD_REQUEST);
         }
 
-        $precoCompra = $this->input->post('precoCompra');
+        $precoCompra = $inputData->precoCompra;
         $precoCompra = str_replace(",", "", $precoCompra);
-        $precoVenda  = $this->input->post('precoVenda');
+        $precoVenda  = $inputData->precoVenda;
         $precoVenda  = str_replace(",", "", $precoVenda);
         $data = [
-            'codDeBarra' => $this->input->post('codDeBarra'),
-            'descricao' => $this->input->post('descricao'),
-            'unidade' => $this->input->post('unidade'),
+            'codDeBarra' => $inputData->codDeBarra,
+            'descricao' => $inputData->descricao,
+            'unidade' => $inputData->unidade,
             'precoCompra' => $precoCompra,
             'precoVenda' => $precoVenda,
-            'estoque' => $this->input->post('estoque'),
-            'estoqueMinimo' => $this->input->post('estoqueMinimo'),
-            'saida' => $this->input->post('saida'),
-            'entrada' => $this->input->post('entrada'),
+            'estoque' => $inputData->estoque,
+            'estoqueMinimo' => $inputData->estoqueMinimo,
+            'saida' => $inputData->saida,
+            'entrada' => $inputData->entrada,
         ];
 
         if ($this->produtos_model->add('produtos', $data) == true) {
@@ -107,31 +109,33 @@ class ProdutosController extends RestController
             ], RestController::HTTP_UNAUTHORIZED);
         }
 
-        if(!$this->put('descricao') || 
-        !$this->put('unidade') || 
-        !$this->put('precoCompra') || 
-        !$this->put('precoVenda') || 
-        !$this->put('estoque')) {
+        $inputData = json_decode(trim(file_get_contents('php://input')));
+        
+        if(!$inputData->descricao || 
+        !$inputData->unidade || 
+        !$inputData->precoCompra || 
+        !$inputData->precoVenda || 
+        !$inputData->estoque) {
             $this->response([
                 'status' => false,
                 'message' => 'Preencha todos os campos obrigatórios!'
             ], RestController::HTTP_BAD_REQUEST);
         }
 
-        $precoCompra = $this->put('precoCompra');
+        $precoCompra = $inputData->precoCompra;
         $precoCompra = str_replace(",", "", $precoCompra);
-        $precoVenda  = $this->put('precoVenda');
+        $precoVenda  = $inputData->precoVenda;
         $precoVenda  = str_replace(",", "", $precoVenda);
         $data = [
-            'codDeBarra' => $this->put('codDeBarra'),
-            'descricao' => $this->put('descricao'),
-            'unidade' => $this->put('unidade'),
+            'codDeBarra' => $inputData->codDeBarra,
+            'descricao' => $inputData->descricao,
+            'unidade' => $inputData->unidade,
             'precoCompra' => $precoCompra,
             'precoVenda' => $precoVenda,
-            'estoque' => $this->put('estoque'),
-            'estoqueMinimo' => $this->put('estoqueMinimo'),
-            'saida' => $this->put('saida'),
-            'entrada' => $this->put('entrada'),
+            'estoque' => $inputData->estoque,
+            'estoqueMinimo' => $inputData->estoqueMinimo,
+            'saida' => $inputData->saida,
+            'entrada' => $inputData->entrada,
         ];
 
         if ($this->produtos_model->edit('produtos', $data, 'idProdutos', $id) == true) {

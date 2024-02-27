@@ -56,19 +56,21 @@ class ServicosController extends RestController
             ], RestController::HTTP_UNAUTHORIZED);
         }
 
-        if(!$this->input->post('nome') || !$this->input->post('preco')) {
+        $inputData = json_decode(trim(file_get_contents('php://input')));
+
+        if(!$inputData->nome || !$inputData->preco) {
             $this->response([
                 'status' => false,
                 'message' => 'Preencha todos os campos obrigatórios!'
             ], RestController::HTTP_BAD_REQUEST);
         }
 
-        $preco = $this->input->post('preco');
+        $preco = $inputData->preco;
         $preco = str_replace(",", "", $preco);
 
         $data = [
-            'nome' => $this->input->post('nome'),
-            'descricao' => $this->input->post('descricao'),
+            'nome' => $inputData->nome,
+            'descricao' => $inputData->descricao,
             'preco' => $preco,
         ];
 
@@ -95,19 +97,21 @@ class ServicosController extends RestController
             ], RestController::HTTP_UNAUTHORIZED);
         }
 
-        if(!$this->put('nome') || !$this->put('preco')) {
+        $inputData = json_decode(trim(file_get_contents('php://input')));
+
+        if(!$inputData->nome || !$inputData->preco) {
             $this->response([
                 'status' => false,
                 'message' => 'Preencha todos os campos obrigatórios!'
             ], RestController::HTTP_BAD_REQUEST);
         }
 
-        $preco = $this->put('preco');
+        $preco = $inputData->preco;
         $preco = str_replace(",", "", $preco);
 
         $data = [
-            'nome' => $this->put('nome'),
-            'descricao' => $this->put('descricao'),
+            'nome' => $inputData->nome,
+            'descricao' => $inputData->descricao,
             'preco' => $preco,
         ];
 

@@ -57,21 +57,23 @@ class ClientesController extends RestController
             ], RestController::HTTP_UNAUTHORIZED);
         }
 
-        if(!$this->input->post('nomeCliente')){
+        $inputData = json_decode(trim(file_get_contents('php://input')));
+
+        if(!$inputData->nomeCliente){
             $this->response([
                 'status' => false,
                 'message' => 'Preencha todos os campos obrigatórios!'
             ], RestController::HTTP_BAD_REQUEST);
         }
         
-        if($this->input->post('documento') && !verific_cpf_cnpj($this->input->post('documento'))) {
+        if($inputData->documento && !verific_cpf_cnpj($inputData->documento)) {
             $this->response([
                 'status' => false,
                 'message' => 'CPF/CNPJ inválido. Verifique o número do documento e tente novamente.'
             ], RestController::HTTP_BAD_REQUEST);
         }
 
-        $userExist = $this->clientes_model->get('clientes', '*', "documento = '{$this->input->post('documento')}'", 1, 0, true);
+        $userExist = $this->clientes_model->get('clientes', '*', "documento = '{$inputData->documento}'", 1, 0, true);
 
         if($userExist) {
             $this->response([
@@ -80,28 +82,28 @@ class ClientesController extends RestController
             ], RestController::HTTP_BAD_REQUEST);
         }
 
-        $senhaCliente = $this->input->post('senha') ? $this->input->post('senha') : preg_replace('/[^\p{L}\p{N}\s]/', '', $this->input->post('documento'));
-        $cpf_cnpj     = preg_replace('/[^\p{L}\p{N}\s]/', '', $this->input->post('documento'));
+        $senhaCliente = $inputData->senha ? $inputData->senha : preg_replace('/[^\p{L}\p{N}\s]/', '', $inputData->documento);
+        $cpf_cnpj     = preg_replace('/[^\p{L}\p{N}\s]/', '', $inputData->documento);
         $pessoaFisica = strlen($cpf_cnpj) == 11 ? true : false;
 
         $data = [
-            'nomeCliente' => $this->input->post('nomeCliente'),
-            'contato' => $this->input->post('contato'),
+            'nomeCliente' => $inputData->nomeCliente,
+            'contato' => $inputData->contato,
             'pessoa_fisica' => $pessoaFisica,
-            'documento' => $this->input->post('documento'),
-            'telefone' => $this->input->post('telefone'),
-            'celular' => $this->input->post('celular'),
-            'email' => $this->input->post('email'),
+            'documento' => $inputData->documento,
+            'telefone' => $inputData->telefone,
+            'celular' => $inputData->celular,
+            'email' => $inputData->email,
             'senha' => password_hash($senhaCliente, PASSWORD_DEFAULT),
-            'rua' => $this->input->post('rua'),
-            'numero' => $this->input->post('numero'),
-            'complemento' => $this->input->post('complemento'),
-            'bairro' => $this->input->post('bairro'),
-            'cidade' => $this->input->post('cidade'),
-            'estado' => $this->input->post('estado'),
-            'cep' => $this->input->post('cep'),
+            'rua' => $inputData->rua,
+            'numero' => $inputData->numero,
+            'complemento' => $inputData->complemento,
+            'bairro' => $inputData->bairro,
+            'cidade' => $inputData->cidade,
+            'estado' => $inputData->estado,
+            'cep' => $inputData->cep,
             'dataCadastro' => date('Y-m-d'),
-            'fornecedor' => ($this->input->post('fornecedor') == true ? 1 : 0),
+            'fornecedor' => $inputData->fornecedor == true ? 1 : 0,
         ];
 
         if ($this->clientes_model->add('clientes', $data) == true) {
@@ -126,8 +128,10 @@ class ClientesController extends RestController
                 'message' => 'Você não está autorizado a Editar Clientes!'
             ], RestController::HTTP_UNAUTHORIZED);
         }
+
+        $inputData = json_decode(trim(file_get_contents('php://input')));
         
-        if(!verific_cpf_cnpj($this->input->post('documento'))) {
+        if(!verific_cpf_cnpj($inputData->documento)) {
             $this->response([
                 'status' => false,
                 'message' => 'CPF/CNPJ inválido. Verifique o número do documento e tente novamente.'
@@ -135,20 +139,20 @@ class ClientesController extends RestController
         }
 
         $data = [
-            'nomeCliente' => $this->put('nomeCliente'),
-            'contato' => $this->put('contato'),
-            'documento' => $this->put('documento'),
-            'telefone' => $this->put('telefone'),
-            'celular' => $this->put('celular'),
-            'email' => $this->put('email'),
-            'rua' => $this->put('rua'),
-            'numero' => $this->put('numero'),
-            'complemento' => $this->put('complemento'),
-            'bairro' => $this->put('bairro'),
-            'cidade' => $this->put('cidade'),
-            'estado' => $this->put('estado'),
-            'cep' => $this->put('cep'),
-            'fornecedor' => ($this->put('fornecedor') == true ? 1 : 0),
+            'nomeCliente' => $inputData->nomeCliente,
+            'contato' => $inputData->contato,
+            'documento' => $inputData->documento,
+            'telefone' => $inputData->telefone,
+            'celular' => $inputData->celular,
+            'email' => $inputData->email,
+            'rua' => $inputData->rua,
+            'numero' => $inputData->numero,
+            'complemento' => $inputData->complemento,
+            'bairro' => $inputData->bairro,
+            'cidade' => $inputData->cidade,
+            'estado' => $inputData->estado,
+            'cep' => $inputData->cep,
+            'fornecedor' => $inputData->fornecedor == true ? 1 : 0
         ];
 
         if($this->put('senha')) {

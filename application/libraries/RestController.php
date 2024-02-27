@@ -6,6 +6,7 @@
 // use stdClass;
 
 defined('BASEPATH') or exit('No direct script access allowed');
+require APPPATH . 'libraries/Format.php';
 
 /**
  * CodeIgniter Rest Controller
@@ -356,7 +357,7 @@ class RestController extends CI_Controller
 
         // Now we know all about our request, let's try and parse the body if it exists
         if ($this->request->format && $this->request->body) {
-            $this->request->body = $this->format->factory($this->request->body, $this->request->format)->to_array();
+            $this->request->body = Format::factory($this->request->body, $this->request->format)->to_array();
 
             // Assign payload arguments to proper method container
             $this->{'_'.$this->request->method.'_args'} = $this->request->body;
