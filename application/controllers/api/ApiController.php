@@ -53,10 +53,18 @@ class ApiController extends RestController
                         'date_created' => date('Y-m-d H:i:s')
                     ];
                     if($this->Apikeys_model->add($data)) {
+                        $this->CI = &get_instance();
+                        $this->CI->load->database();
+                        $this->CI->db->select('*');
+                        $this->CI->db->where('idPermissao', $user->permissoes_id);
+                        $this->CI->db->limit(1);
+                        $array = $this->CI->db->get('permissoes')->row_array();
+                        $permissoes = unserialize($array['permissoes']);
+
                         $json = [
                             'result'      => true, 
                             'ci_key'      => $data['ci_key'],
-                            'permissions' => $this->Permissoes_model->getById($user->permissoes_id)
+                            'permissions' => [$permissoes]
                         ];
                         echo json_encode($json);
                     }
@@ -79,7 +87,4 @@ class ApiController extends RestController
 
         return $data_banco < $data_hoje;
     }
-
-    public function create_key()
-    {}
 }
