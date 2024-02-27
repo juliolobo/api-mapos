@@ -66,7 +66,7 @@ class ClientesController extends RestController
             ], RestController::HTTP_BAD_REQUEST);
         }
         
-        if($inputData->documento && !verific_cpf_cnpj($inputData->documento)) {
+        if(isset($inputData->documento) && !verific_cpf_cnpj($inputData->documento)) {
             $this->response([
                 'status' => false,
                 'message' => 'CPF/CNPJ inválido. Verifique o número do documento e tente novamente.'
