@@ -10,14 +10,22 @@ require APPPATH . 'libraries/RestController.php';
 
 class ApiController extends RestController
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('mapos_model');
+    }
+
     public function index_get()
     {
-        $result->countOs   = $this->db->count_all('os');
-        $result->clientes  = $this->db->count_all('clientes');
-        $result->produtos  = $this->db->count_all('produtos');
-        $result->servicos  = $this->db->count_all('servicos');
-        $result->garantias = $this->db->count_all('garantias');
-        $result->vendas    = $this->db->count_all('vendas');
+        $result = new stdClass;
+        $result->countOs   = $this->mapos_model->count('os');
+        $result->clientes  = $this->mapos_model->count('clientes');
+        $result->produtos  = $this->mapos_model->count('produtos');
+        $result->servicos  = $this->mapos_model->count('servicos');
+        $result->garantias = $this->mapos_model->count('garantias');
+        $result->vendas    = $this->mapos_model->count('vendas');
         
         $result->osAbertas    = $this->mapos_model->getOsAbertas();
         $result->osAndamento  = $this->mapos_model->getOsAndamento();
