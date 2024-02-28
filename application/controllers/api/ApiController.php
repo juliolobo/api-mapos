@@ -103,6 +103,22 @@ class ApiController extends RestController
         die();
     }
 
+    public function emitente_get()
+    {
+        $this->CI = &get_instance();
+        $this->CI->load->database();
+
+        $result = new stdClass;
+        $result->appName  = $this->CI->db->get_where('configuracoes', ['config' => 'app_name'])->row_object()->valor;
+        $result->emitente = $this->mapos_model->getEmitente();
+
+        $this->response([
+            'status' => true,
+            'message' => 'Dados do Map-OS',
+            'result' => $result,
+        ], RestController::HTTP_OK);
+    }
+
     private function chk_date($data_banco)
     {
         $data_banco = new DateTime($data_banco);

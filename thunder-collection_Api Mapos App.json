@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Api Mapos App",
-    "dateExported": "2024-02-28T06:48:56.279Z",
+    "dateExported": "2024-02-28T08:46:46.946Z",
     "version": "1.1",
     "folders": [
         {
@@ -76,11 +76,31 @@
             "method": "GET",
             "sortNum": 30000,
             "created": "2024-02-25T13:09:29.009Z",
-            "modified": "2024-02-28T06:22:16.960Z",
+            "modified": "2024-02-28T07:18:34.799Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{url_api}}"
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9dc87ca0-5a1d-4ed4-bd4a-704bd652394f",
+            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
+            "containerId": "",
+            "name": "Emitente",
+            "url": "{{url_api}}/emitente",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-02-28T08:38:30.471Z",
+            "modified": "2024-02-28T08:45:01.745Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}",
+                    "isDisabled": true
                 }
             ],
             "params": [],
