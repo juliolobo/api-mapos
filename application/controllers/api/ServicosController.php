@@ -25,11 +25,14 @@ class ServicosController extends RestController
         }
 
         if(!$id){
-            $perPage = 20;
-            $page    = $this->input->get('page') ?: 1;
-            $start   = $page != 1 ? (($perPage * ($page - 1)) + 1) : 0;
+            $search   = $this->input->get('search');
+            $where    = $search ? "nome LIKE '%{$search}%' OR descricao LIKE '%{$search}%'" : '';
 
-            $servicos = $this->servicos_model->get('servicos', '*', '', $perPage, $start);
+            $perPage  = 20;
+            $page     = $this->input->get('page') ?: 0;
+            $start    = $page ? (($perPage * $page) + 1) : 0;
+
+            $servicos = $this->servicos_model->get('servicos', '*', $where, $perPage, $start);
 
             $this->response([
                 'status' => true,
@@ -38,12 +41,20 @@ class ServicosController extends RestController
             ], RestController::HTTP_OK);
         }
 
-        $servico = $this->servicos_model->getById($id);
-        
+        if($id && is_numeric($id)) {
+            $servico = $this->servicos_model->getById($id);
+            
+            $this->response([
+                'status' => true,
+                'message' => 'Detalhes do Serviço',
+                'result' => $servico,
+            ], RestController::HTTP_OK);
+        }
+
         $this->response([
-            'status' => true,
-            'message' => 'Detalhes do Serviço',
-            'result' => $servico,
+            'status' => false,
+            'message' => 'Nenhum Produto localizado.',
+            'result' => null,
         ], RestController::HTTP_OK);
     }
     

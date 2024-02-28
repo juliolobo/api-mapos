@@ -16,7 +16,7 @@ class ClientesController extends RestController
         $this->load->helper('validation_helper');
     }
 
-    public function index_get($var = '')
+    public function index_get($id = '')
     {
         if (!$this->permission->checkPermission($this->logged_user()->level, 'vCliente')) {
             $this->response([
@@ -25,44 +25,13 @@ class ClientesController extends RestController
             ], RestController::HTTP_UNAUTHORIZED);
         }
 
-        if(!$var){
-            $perPage = 20;
-            $page    = $this->input->get('page') ?: 1;
-            $start   = $page != 1 ? (($perPage * ($page - 1)) + 1) : 0;
+        if(!$id){
+            $search   = $this->input->get('search');
+            $where    = $search ? "nomeCliente LIKE '%{$search}%' OR documento LIKE '%{$search}%' OR telefone LIKE '%{$search}%' OR celular LIKE '%{$search}%' OR email LIKE '%{$search}%' OR contato LIKE '%{$search}%'" : '';
 
-            $clientes = $this->clientes_model->get('clientes', '*', '', $perPage, $start);
-
-            $this->response([
-                'status' => true,
-                'message' => 'Lista de Clientes',
-                'result' => $clientes,
-            ], RestController::HTTP_OK);
-        }
-
-        if($var && is_int($var)) {
-            $cliente = $this->clientes_model->getById($var);
-            
-            if($cliente) {
-                $this->response([
-                    'status' => true,
-                    'message' => 'Detalhes do Cliente',
-                    'result' => $cliente,
-                ], RestController::HTTP_OK);
-            }
-            
-            $this->response([
-                'status' => false,
-                'message' => 'Nenhum cliente localizado com esse ID.',
-                'result' => null,
-            ], RestController::HTTP_OK);
-            
-        }
-
-        if($var && !is_int($var)) {
-            $perPage = 20;
-            $page    = $this->input->get('page') ?: 1;
-            $start   = $page != 1 ? (($perPage * ($page - 1)) + 1) : 0;
-            $where   = "nomeCliente LIKE '%{$var}%' OR documento LIKE '%{$var}%' OR telefone LIKE '%{$var}%' OR celular LIKE '%{$var}%' OR email LIKE '%{$var}%' OR contato LIKE '%{$var}%'";
+            $perPage  = 20;
+            $page     = $this->input->get('page') ?: 0;
+            $start    = $page ? (($perPage * $page) + 1) : 0;
 
             $clientes = $this->clientes_model->get('clientes', '*', $where, $perPage, $start);
 
@@ -81,6 +50,29 @@ class ClientesController extends RestController
             ], RestController::HTTP_OK);
         }
 
+        if($id && is_numeric($id)) {
+            $cliente = $this->clientes_model->getById($id);
+            
+            if($cliente) {
+                $this->response([
+                    'status' => true,
+                    'message' => 'Detalhes do Cliente',
+                    'result' => $cliente,
+                ], RestController::HTTP_OK);
+            }
+            
+            $this->response([
+                'status' => false,
+                'message' => 'Nenhum cliente localizado com esse ID.',
+                'result' => null,
+            ], RestController::HTTP_OK);
+        }
+
+        $this->response([
+            'status' => false,
+            'message' => 'Nenhum cliente localizado.',
+            'result' => null,
+        ], RestController::HTTP_OK);
     }
     
     public function index_post()

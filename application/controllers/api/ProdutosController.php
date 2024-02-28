@@ -26,11 +26,14 @@ class ProdutosController extends RestController
         }
 
         if(!$id){
-            $perPage = 20;
-            $page    = $this->input->get('page') ?: 1;
-            $start   = $page != 1 ? (($perPage * ($page - 1)) + 1) : 0;
+            $search   = $this->input->get('search');
+            $where    = $search ? "codDeBarra LIKE '%{$search}%' OR descricao LIKE '%{$search}%'" : '';
 
-            $produtos = $this->produtos_model->get('produtos', '*', '', $perPage, $start);
+            $perPage  = 20;
+            $page     = $this->input->get('page') ?: 0;
+            $start    = $page ? (($perPage * $page) + 1) : 0;
+
+            $produtos = $this->produtos_model->get('produtos', '*', $where, $perPage, $start);
 
             $this->response([
                 'status' => true,
@@ -39,12 +42,20 @@ class ProdutosController extends RestController
             ], RestController::HTTP_OK);
         }
 
-        $produto = $this->produtos_model->getById($id);
-        
+        if($id && is_numeric($id)) {
+            $produto = $this->produtos_model->getById($id);
+            
+            $this->response([
+                'status' => true,
+                'message' => 'Detalhes do Produto',
+                'result' => $produto,
+            ], RestController::HTTP_OK);
+        }
+
         $this->response([
-            'status' => true,
-            'message' => 'Detalhes do Produto',
-            'result' => $produto,
+            'status' => false,
+            'message' => 'Nenhum Produto localizado.',
+            'result' => null,
         ], RestController::HTTP_OK);
     }
     
