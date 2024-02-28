@@ -78,6 +78,7 @@ class OsController extends RestController
         $oss->anexos    = $this->os_model->getAnexos($id);
         $oss->anotacoes = $this->os_model->getAnotacoes($id);
         $oss->calcTotal = $this->calcTotal($id);
+        unset($oss->senha);
         
         $this->response([
             'status' => true,
