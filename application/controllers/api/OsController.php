@@ -51,7 +51,7 @@ class OsController extends RestController
         }
 
         if(!$id){
-            $perPage = 20;
+            $perPage = $this->input->get('perPage') ?: 20;
             $page    = $this->input->get('page') ?: 0;
             $start   = $page ? (($perPage * $page) + 1) : 0;
 
@@ -77,6 +77,7 @@ class OsController extends RestController
         $oss->servicos  = $this->os_model->getServicos($id);
         $oss->anexos    = $this->os_model->getAnexos($id);
         $oss->anotacoes = $this->os_model->getAnotacoes($id);
+        $oss->calcTotal = $this->calcTotal($id);
         
         $this->response([
             'status' => true,
@@ -149,5 +150,31 @@ class OsController extends RestController
             'status' => false,
             'message' => 'Não foi possível excluir a O.S. Avise ao Administrador.'
         ], RestController::HTTP_INTERNAL_ERROR);
+    }
+
+    private function calcTotal($id)
+    {  
+        $ordem    = $this->os_model->getById($id);
+        $produtos = $this->os_model->getProdutos($ordem->idOs);
+        $servicos = $this->os_model->getServicos($ordem->idOs);
+
+        $totalProdutos = 0;
+        $totalServicos = 0;
+        
+        foreach ($produtos as $p) {
+            $totalProdutos = $totalProdutos + $p->subTotal;
+        }
+            
+        foreach ($servicos as $s) {
+            $preco = $s->preco ?: $s->precoVenda;
+            $subtotal = $preco * ($s->quantidade ?: 1);
+            $totalServicos = $totalServicos + $subtotal;       
+        }
+
+        if($totalProdutos != 0 || $totalServicos != 0 ){
+            return $ordem->valor_desconto != 0 ? $ordem->valor_desconto : ($totalProdutos + $totalServicos);
+        }
+        
+        return 0;
     }
 }

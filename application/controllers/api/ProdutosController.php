@@ -26,10 +26,10 @@ class ProdutosController extends RestController
         }
 
         if(!$id){
-            $search   = $this->input->get('search');
+            $search   = trim($this->input->get('search'));
             $where    = $search ? "codDeBarra LIKE '%{$search}%' OR descricao LIKE '%{$search}%'" : '';
 
-            $perPage  = 20;
+            $perPage  = $this->input->get('perPage') ?: 20;
             $page     = $this->input->get('page') ?: 0;
             $start    = $page ? (($perPage * $page) + 1) : 0;
 
