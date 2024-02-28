@@ -26,10 +26,10 @@ class OsController extends RestController
 
         $where_array = [];
 
-        $pesquisa = $this->input->get('pesquisa');
+        $pesquisa = trim($this->input->get('search'));
         $status   = $this->input->get('status');
-        $de       = $this->input->get('data');
-        $ate      = $this->input->get('data2');
+        $de       = $this->input->get('from');
+        $ate      = $this->input->get('to');
 
         if ($pesquisa) {
             $where_array['pesquisa'] = $pesquisa;
