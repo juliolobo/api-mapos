@@ -12,7 +12,22 @@ class ApiController extends RestController
 {
     public function index_get()
     {
-        echo 'Olá mundo!';
+        $result->countOs   = $this->db->count_all('os');
+        $result->clientes  = $this->db->count_all('clientes');
+        $result->produtos  = $this->db->count_all('produtos');
+        $result->servicos  = $this->db->count_all('servicos');
+        $result->garantias = $this->db->count_all('garantias');
+        $result->vendas    = $this->db->count_all('vendas');
+        
+        $result->osAbertas    = $this->mapos_model->getOsAbertas();
+        $result->osAndamento  = $this->mapos_model->getOsAndamento();
+        $result->estoqueBaixo = $this->mapos_model->getProdutosMinimo();
+
+        $this->response([
+            'status' => true,
+            'message' => 'Dashboard',
+            'result' => $result,
+        ], RestController::HTTP_OK);
     }
 
     public function login_post()
