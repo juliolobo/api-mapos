@@ -110,7 +110,7 @@ class ApiController extends RestController
 
         $result = new stdClass;
         $result->appName  = $this->CI->db->get_where('configuracoes', ['config' => 'app_name'])->row_object()->valor;
-        $result->emitente = $this->mapos_model->getEmitente();
+        $result->emitente = $this->mapos_model->getEmitente() ?: false;
 
         $this->response([
             'status' => true,
