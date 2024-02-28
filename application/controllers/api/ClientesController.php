@@ -39,7 +39,7 @@ class ClientesController extends RestController
             ], RestController::HTTP_OK);
         }
 
-        if($var && is_numeric($var)) {
+        if($var && is_int($var)) {
             $cliente = $this->clientes_model->getById($var);
             
             if($cliente) {
