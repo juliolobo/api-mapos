@@ -183,7 +183,7 @@ class ProdutosController extends RestController
         $this->produtos_model->delete('itens_de_vendas', 'produtos_id', $id);
 
         if ($this->produtos_model->delete('produtos', 'idProdutos', $id) == true) {
-            log_info('Removeu um Produto. ID' . $id);
+            $this->log_app('Removeu um Produto. ID' . $id);
             $this->response([
                 'status' => true,
                 'message' => 'Produto excluído com sucesso!'

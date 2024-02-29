@@ -64,12 +64,13 @@ class ApiController extends RestController
                 if (password_verify($password, $user->senha)) {
                     $session_admin_data = ['nome_admin' => $user->nome, 'email_admin' => $user->email, 'url_image_user_admin' => $user->url_image_user, 'id_admin' => $user->idUsuarios, 'permissao' => $user->permissoes_id, 'logado' => true];
                     $this->session->set_userdata($session_admin_data);
-                    log_info('Efetuou login no app');
+                    $this->log_app('Efetuou login no app');
                     
                     $this->load->model('Apikeys_model');
                     $this->load->model('Permissoes_model');
                     $data = [
                         'user_id'      => $user->idUsuarios,
+                        'user_name'    => $user->nome,
                         'ci_key'       => md5(time()),
                         'level'        => $user->permissoes_id,
                         'ip_addresses' => $this->input->ip_address(),
@@ -103,6 +104,14 @@ class ApiController extends RestController
         die();
     }
 
+    private function chk_date($data_banco)
+    {
+        $data_banco = new DateTime($data_banco);
+        $data_hoje = new DateTime("now");
+
+        return $data_banco < $data_hoje;
+    }
+
     public function emitente_get()
     {
         $this->CI = &get_instance();
@@ -117,13 +126,5 @@ class ApiController extends RestController
             'message' => 'Dados do Map-OS',
             'result' => $result,
         ], RestController::HTTP_OK);
-    }
-
-    private function chk_date($data_banco)
-    {
-        $data_banco = new DateTime($data_banco);
-        $data_hoje = new DateTime("now");
-
-        return $data_banco < $data_hoje;
     }
 }

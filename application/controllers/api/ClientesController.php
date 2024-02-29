@@ -137,7 +137,7 @@ class ClientesController extends RestController
             $this->response([
                 'status' => true,
                 'message' => 'Cliente adicionado com sucesso!',
-                'result' => $this->clientes_model->get('clientes', '*', "documento = '{$data['documento']}'", 1, 0, true)
+                'result' => $this->clientes_model->get('clientes', '*', "telefone = '{$data['telefone']}'", 1, 0, true)
             ], RestController::HTTP_CREATED);
         }
         
@@ -227,7 +227,7 @@ class ClientesController extends RestController
         }
 
         if ($this->clientes_model->delete('clientes', 'idClientes', $id) == true) {
-            log_info('Removeu um cliente. ID' . $id);
+            $this->log_app('Removeu um cliente. ID' . $id);
             $this->response([
                 'status' => true,
                 'message' => 'Cliente excluído com sucesso!'

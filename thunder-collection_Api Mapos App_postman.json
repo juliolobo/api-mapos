@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "d4739db3-bcf2-4af5-a37c-b43193cf4c82",
+        "_postman_id": "42e1daa0-552c-4c95-86c5-cf57c2248d6f",
         "name": "Api Mapos App",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -577,14 +577,16 @@
                     }
                 },
                 {
-                    "name": "Produtos/Update",
+                    "name": "Update Produto OS",
                     "request": {
                         "method": "PUT",
                         "url": {
-                            "raw": "{{url_api}}/os/1",
+                            "raw": "{{url_api}}/os/19/produtos/14",
                             "path": [
                                 "os",
-                                "1"
+                                "19",
+                                "produtos",
+                                "14"
                             ],
                             "host": [
                                 "{{url_api}}"
@@ -603,7 +605,7 @@
                                     "language": "json"
                                 }
                             },
-                            "raw": "{\n  \"status\": true,\n  \"message\": \"Detalhes da O.S.\",\n  \"result\": {\n    \"idOs\": \"14\",\n    \"dataInicial\": \"2024-01-21\",\n    \"dataFinal\": \"2024-01-22\",\n    \"garantia\": \"\",\n    \"descricaoProduto\": \"<p>sada dgh fghfg</p>\",\n    \"defeito\": \"<p>sdferrtyrtyj tfdg</p>\",\n    \"status\": \"Faturado\",\n    \"observacoes\": \"<p>erdfgdf gdfhhj</p>\",\n    \"laudoTecnico\": \"<p>dfgdfgerger</p>\",\n    \"valorTotal\": \"565.00\",\n    \"desconto\": \"99.00\",\n    \"valor_desconto\": \"5.65\",\n    \"tipo_desconto\": \"porcento\",\n    \"clientes_id\": \"1\",\n    \"usuarios_id\": \"2\",\n    \"lancamento\": null,\n    \"faturado\": \"1\",\n    \"garantias_id\": null,\n    \"idClientes\": \"1\"\n  }\n}"
+                            "raw": "{\n  \"quantidade\": \"1\",\n  \"preco\": \"175\"\n}"
                         }
                     }
                 },
@@ -719,8 +721,65 @@
                                     "language": "json"
                                 }
                             },
-                            "raw": "{\n  \"idServico\": \"2\",\n  \"preco\": \"650\",\n  \"quantidade\": \"2\"\n}"
+                            "raw": "{\n  \"idServico\": \"2\",\n  \"preco\": \"550\",\n  \"quantidade\": \"2\"\n}"
                         }
+                    }
+                },
+                {
+                    "name": "Update Serviço OS",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url_api}}/os/19/servicos/10",
+                            "path": [
+                                "os",
+                                "19",
+                                "servicos",
+                                "10"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "X-API-KEY",
+                                "value": "{{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"quantidade\": \"1\",\n  \"preco\": \"550.00\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Excluir Serviço OS",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url_api}}/os/19/servicos/11",
+                            "path": [
+                                "os",
+                                "19",
+                                "servicos",
+                                "11"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "X-API-KEY",
+                                "value": "{{access_token}}"
+                            }
+                        ]
                     }
                 }
             ]

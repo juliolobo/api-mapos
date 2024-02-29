@@ -140,7 +140,7 @@ class OsController extends RestController
         }
 
         if ($this->os_model->delete('os', 'idOs', $id) == true) {
-            log_info('Removeu uma O.S. ID' . $id);
+            $this->log_app('Removeu uma O.S. ID' . $id);
             $this->response([
                 'status' => true,
                 'message' => 'O.S. excluída com sucesso!'
@@ -207,6 +207,9 @@ class OsController extends RestController
         }
 
         if ($this->os_model->add('produtos_os', $data) == true) {
+            $this->load->model('Apikeys_model');
+            $lastProdutoOs = $this->Apikeys_model->lastRow('produtos_os', 'idProdutos_os');
+
             $this->load->model('produtos_model');
 
             $this->CI = &get_instance();
@@ -221,14 +224,11 @@ class OsController extends RestController
             $this->db->where('idOs', $id);
             $this->db->update('os');
 
-            log_info('Adicionou produto a uma OS. ID (OS): ' . $this->input->post('idOsProduto'));
+            $this->log_app('Adicionou produto a uma OS. ID (OS): '.$id);
 
-            $result = [
-                'Produto'     => $this->produtos_model->getById($inputData->idProduto),
-                'quantidade'  => $inputData->quantidade,
-                'preco'       => $inputData->preco,
-                'subTotal'    => $inputData->preco * $inputData->quantidade,
-            ];
+            $result = $lastProdutoOs;
+            unset($result->descricao);
+            $result->produto = $this->produtos_model->getById($inputData->idProduto);
 
             $this->response([
                 'status'  => true,
@@ -240,6 +240,91 @@ class OsController extends RestController
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível adicionar o Produto. Avise ao Administrador.'
+        ], RestController::HTTP_INTERNAL_ERROR);
+    }
+    
+    public function produtos_put($id, $idProdutos_os)
+    {
+        $inputData = json_decode(trim(file_get_contents('php://input')));
+        
+        $this->load->model('Apikeys_model');
+        $ddAntigo = $this->Apikeys_model->getRowById('produtos_os', 'idProdutos_os', $idProdutos_os);
+
+        $subTotal = $inputData->preco * $inputData->quantidade;
+
+        $data = [
+            'quantidade' => $inputData->quantidade,
+            'preco'      => $inputData->preco,
+            'subTotal'   => $subTotal
+        ];
+
+        if ($this->os_model->edit('produtos_os', $data, 'idProdutos_os', $idProdutos_os) == true) {
+            $this->load->model('produtos_model');
+            $operacao = $ddAntigo->quantidade > $inputData->quantidade ? '+' : '-';
+            $diferenca = $operacao == '+' ? $ddAntigo->quantidade - $inputData->quantidade : $inputData->quantidade - $ddAntigo->quantidade;
+
+            $this->CI = &get_instance();
+            $this->CI->load->database();
+            if($this->CI->db->get_where('configuracoes', ['config' => 'control_estoque'])->row_object()->valor && $diferenca) {
+                $this->produtos_model->updateEstoque($ddAntigo->produtos_id, $diferenca, $operacao);
+            }
+
+            $this->log_app("Atualizou a quantidade do produto id <b>{$ddAntigo->produtos_id}</b> na OS id <b>{$id}</b> para <b>{$inputData->quantidade}</b>");
+
+            $data['idProdutos_os'] = $idProdutos_os;
+
+            $this->response([
+                'status'  => true,
+                'message' => 'Produto da OS editado com sucesso!',
+                'result'  => $data
+            ], RestController::HTTP_OK);
+        }
+        
+        $this->response([
+            'status'  => false,
+            'message' => 'Não foi possível editar o Produto da OS. Avise ao Administrador.'
+        ], RestController::HTTP_INTERNAL_ERROR);
+    }
+
+    public function produtos_delete($id, $idProdutos_os)
+    {
+        $os = $this->os_model->getById($id);
+        if ($os == null) {
+            $this->response([
+                'status'  => false,
+                'message' => 'Não foi possível excluir o Produto da OS.'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
+
+        if ($this->os_model->delete('produtos_os', 'idProdutos_os', $idProdutos_os) == true) {
+            $quantidade = $this->input->post('quantidade');
+            $produto = $this->input->post('produto');
+
+            $this->load->model('produtos_model');
+
+            $this->CI = &get_instance();
+            $this->CI->load->database();
+            if($this->CI->db->get_where('configuracoes', ['config' => 'control_estoque'])->row_object()->valor) {
+                $this->produtos_model->updateEstoque($produto, $quantidade, '+');
+            }
+
+            $this->db->set('desconto', 0.00);
+            $this->db->set('valor_desconto', 0.00);
+            $this->db->set('tipo_desconto', null);
+            $this->db->where('idOs', $id);
+            $this->db->update('os');
+
+            $this->log_app('Removeu produto de uma OS. ID (OS): ' . $id);
+
+            $this->response([
+                'status'  => true,
+                'message' => 'Produto da OS excluído com sucesso!'
+            ], RestController::HTTP_OK);
+        }
+        
+        $this->response([
+            'status'  => false,
+            'message' => 'Não foi possível excluir o Produto da OS. Avise ao Administrador.'
         ], RestController::HTTP_INTERNAL_ERROR);
     }
 
@@ -263,6 +348,9 @@ class OsController extends RestController
         ];
 
         if ($this->os_model->add('servicos_os', $data) == true) {
+            $this->load->model('Apikeys_model');
+            $lastServicoOs = $this->Apikeys_model->lastRow('servicos_os', 'idServicos_os');
+
             $this->load->model('servicos_model');
 
             $this->db->set('desconto', 0.00);
@@ -271,14 +359,11 @@ class OsController extends RestController
             $this->db->where('idOs', $id);
             $this->db->update('os');
 
-            log_info('Adicionou serviço a uma OS. ID (OS): ' . $id);
+            $this->log_app('Adicionou serviço a uma OS. ID (OS): '.$id);
 
-            $result = [
-                'Serviço'     => $this->servicos_model->getById($inputData->idServico),
-                'quantidade'  => $inputData->quantidade,
-                'preco'       => $inputData->preco,
-                'subTotal'    => $inputData->preco * $inputData->quantidade,
-            ];
+            $result = $lastServicoOs;
+            unset($result->servico);
+            $result->servico = $this->servicos_model->getById($inputData->idServico);
 
             $this->response([
                 'status'  => true,
@@ -290,6 +375,63 @@ class OsController extends RestController
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível adicionar o Serviço. Avise ao Administrador.'
+        ], RestController::HTTP_INTERNAL_ERROR);
+    }
+    
+    public function servicos_put($id, $idServicos_os)
+    {
+        $inputData = json_decode(trim(file_get_contents('php://input')));
+
+        $this->load->model('Apikeys_model');
+        $ddAntigo = $this->Apikeys_model->getRowById('servicos_os', 'idServicos_os', $idServicos_os);
+
+        $subTotal = $inputData->preco * $inputData->quantidade;
+
+        $data = [
+            'quantidade' => $inputData->quantidade,
+            'preco'      => $inputData->preco,
+            'subTotal'   => $subTotal
+        ];
+
+        if ($this->os_model->edit('servicos_os', $data, 'idServicos_os', $idServicos_os) == true) {
+            $this->log_app("Atualizou a quantidade do Serviço id <b>{$ddAntigo->servicos_id}</b> na OS id <b>{$id}</b> para <b>{$inputData->quantidade}</b>");
+
+            $data['idServicos_os'] = $idServicos_os;
+
+            $this->response([
+                'status'  => true,
+                'message' => 'Serviço da OS editado com sucesso!',
+                'result'  => $data
+            ], RestController::HTTP_OK);
+        }
+        
+        $this->response([
+            'status'  => false,
+            'message' => 'Não foi possível editar o Serviço da OS. Avise ao Administrador.'
+        ], RestController::HTTP_INTERNAL_ERROR);
+    }
+
+    public function servicos_delete($id, $idServicos_os)
+    {
+        if ($this->os_model->delete('servicos_os', 'idServicos_os', $idServicos_os) == true) {
+            $this->log_app('Removeu Serviço de uma OS. ID (OS): ' . $id);
+            $this->CI = &get_instance();
+            $this->CI->load->database();
+            $this->db->set('desconto', 0.00);
+            $this->db->set('valor_desconto', 0.00);
+            $this->db->set('tipo_desconto', null);
+            $this->db->where('idOs', $id);
+            $this->db->update('os');
+            
+            $this->response([
+                'status'  => true,
+                'message' => 'Serviço da OS excluído com sucesso!'
+            ], RestController::HTTP_OK);
+        }
+        
+        $this->response([
+            'status'  => false,
+            'message' => 'Não foi possível excluir o Serviço da OS. Avise ao Administrador.'
         ], RestController::HTTP_INTERNAL_ERROR);
     }
 }

@@ -159,7 +159,7 @@ class ServicosController extends RestController
         $this->servicos_model->delete('servicos_os', 'servicos_id', $id);
 
         if ($this->servicos_model->delete('servicos', 'idServicos', $id) == true) {
-            log_info('Removeu um Serviço. ID' . $id);
+            $this->log_app('Removeu um Serviço. ID' . $id);
             $this->response([
                 'status' => true,
                 'message' => 'Serviço excluído com sucesso!'

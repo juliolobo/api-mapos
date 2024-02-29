@@ -2041,6 +2041,7 @@ class RestController extends CI_Controller
     {
         $this->load->model('Apikeys_model');
         $this->load->model('Permissoes_model');
+        $this->load->model('Usuarios_model');
 
         $api_key_variable = $this->config->item('rest_key_name');
         
@@ -2050,6 +2051,24 @@ class RestController extends CI_Controller
         
         $this->user = $this->Apikeys_model->getByKey($key);
 
+        $this->user->usuario = $this->Usuarios_model->getById($this->user->user_id);
+
         return $this->user;
+    }
+
+    public function log_app($task)
+    {
+        $this->CI = &get_instance();
+        $this->CI->load->model('Audit_model');
+
+        $data = [
+            'usuario' => $this->logged_user()->usuario->nome,
+            'ip' => $this->CI->input->ip_address(),
+            'tarefa' => $task,
+            'data' => date('Y-m-d'),
+            'hora' => date('H:i:s'),
+        ];
+
+        $this->CI->Audit_model->add($data);
     }
 }
