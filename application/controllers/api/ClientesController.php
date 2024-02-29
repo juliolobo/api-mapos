@@ -52,6 +52,7 @@ class ClientesController extends RestController
 
         if($id && is_numeric($id)) {
             $cliente = $this->clientes_model->getById($id);
+            $cliente->ordensServicos = $this->clientes_model->getOsByCliente($id);
             
             if($cliente) {
                 $this->response([
