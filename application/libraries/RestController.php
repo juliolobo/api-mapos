@@ -2056,13 +2056,13 @@ class RestController extends CI_Controller
         return $this->user;
     }
 
-    public function log_app($task)
+    public function log_app($task, $nome_usuario = '')
     {
         $this->CI = &get_instance();
         $this->CI->load->model('Audit_model');
 
         $data = [
-            'usuario' => $this->logged_user()->usuario->nome,
+            'usuario' => $nome_usuario ?: $this->logged_user()->usuario->nome,
             'ip' => $this->CI->input->ip_address(),
             'tarefa' => $task,
             'data' => date('Y-m-d'),

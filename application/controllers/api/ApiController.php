@@ -64,13 +64,12 @@ class ApiController extends RestController
                 if (password_verify($password, $user->senha)) {
                     $session_admin_data = ['nome_admin' => $user->nome, 'email_admin' => $user->email, 'url_image_user_admin' => $user->url_image_user, 'id_admin' => $user->idUsuarios, 'permissao' => $user->permissoes_id, 'logado' => true];
                     $this->session->set_userdata($session_admin_data);
-                    $this->log_app('Efetuou login no app');
+                    $this->log_app('Efetuou login no app', $user->nome);
                     
                     $this->load->model('Apikeys_model');
                     $this->load->model('Permissoes_model');
                     $data = [
                         'user_id'      => $user->idUsuarios,
-                        'user_name'    => $user->nome,
                         'ci_key'       => md5(time()),
                         'level'        => $user->permissoes_id,
                         'ip_addresses' => $this->input->ip_address(),
