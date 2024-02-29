@@ -13,6 +13,7 @@ class OsController extends RestController
         parent::__construct();
 
         $this->load->model('os_model');
+        $this->load->model('Apikeys_model');
     }
 
     public function index_get($id = '')
@@ -207,7 +208,6 @@ class OsController extends RestController
         }
 
         if ($this->os_model->add('produtos_os', $data) == true) {
-            $this->load->model('Apikeys_model');
             $lastProdutoOs = $this->Apikeys_model->lastRow('produtos_os', 'idProdutos_os');
 
             $this->load->model('produtos_model');
@@ -247,7 +247,6 @@ class OsController extends RestController
     {
         $inputData = json_decode(trim(file_get_contents('php://input')));
         
-        $this->load->model('Apikeys_model');
         $ddAntigo = $this->Apikeys_model->getRowById('produtos_os', 'idProdutos_os', $idProdutos_os);
 
         $subTotal = $inputData->preco * $inputData->quantidade;
@@ -348,7 +347,6 @@ class OsController extends RestController
         ];
 
         if ($this->os_model->add('servicos_os', $data) == true) {
-            $this->load->model('Apikeys_model');
             $lastServicoOs = $this->Apikeys_model->lastRow('servicos_os', 'idServicos_os');
 
             $this->load->model('servicos_model');
@@ -382,7 +380,6 @@ class OsController extends RestController
     {
         $inputData = json_decode(trim(file_get_contents('php://input')));
 
-        $this->load->model('Apikeys_model');
         $ddAntigo = $this->Apikeys_model->getRowById('servicos_os', 'idServicos_os', $idServicos_os);
 
         $subTotal = $inputData->preco * $inputData->quantidade;
@@ -432,6 +429,62 @@ class OsController extends RestController
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível excluir o Serviço da OS. Avise ao Administrador.'
+        ], RestController::HTTP_INTERNAL_ERROR);
+    }
+
+    public function anotacoes_post($id)
+    {
+        $inputData = json_decode(trim(file_get_contents('php://input')));
+
+        if(!isset($inputData->anotacao)) {
+            $this->response([
+                'status' => false,
+                'message' => 'Preencha todos os campos obrigatórios!'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
+        
+        $data = [
+            'anotacao' => "[{$this->logged_user()->usuario->nome}] ".$inputData->anotacao,
+            'data_hora' => date('Y-m-d H:i:s'),
+            'os_id' => $id,
+        ];
+
+        if ($this->os_model->add('anotacoes_os', $data) == true) {
+            $lastAnotacao = $this->Apikeys_model->lastRow('anotacoes_os', 'idAnotacoes');
+            $this->log_app('Adicionou anotação a uma OS. ID (OS): ' . $id);
+            
+            $result = [
+                'idAnotacoes' => $lastAnotacao->idAnotacoes,
+                'anotacao'   => $inputData->anotacao
+            ];
+
+            $this->response([
+                'status'  => true,
+                'message' => 'Serviço adicinado com sucesso!',
+                'result'  => $result
+            ], RestController::HTTP_OK);
+        }
+        
+        $this->response([
+            'status'  => false,
+            'message' => 'Não foi possível adicionar Anotação. Avise ao Administrador.'
+        ], RestController::HTTP_INTERNAL_ERROR);
+    }
+
+    public function anotacoes_delete($id, $idAnotacao)
+    {
+        if ($this->os_model->delete('anotacoes_os', 'idAnotacoes', $idAnotacao) == true) {
+            $this->log_app('Removeu anotação de uma OS. ID (OS): ' . $id);
+            
+            $this->response([
+                'status'  => true,
+                'message' => 'Anotação excluída com sucesso!'
+            ], RestController::HTTP_OK);
+        }
+        
+        $this->response([
+            'status'  => false,
+            'message' => 'Não foi possível excluir a Anotação. Avise ao Administrador.'
         ], RestController::HTTP_INTERNAL_ERROR);
     }
 }
