@@ -59,7 +59,7 @@ class ApiController extends RestController
             // Verificar se acesso está expirado
             if ($this->chk_date($user->dataExpiracao)) {
                 $this->response([
-                    'status' => false,
+                    'status'  => false,
                     'message' => 'A conta do usuário está expirada, por favor entre em contato com o administrador do sistema.'
                 ], RestController::HTTP_UNAUTHORIZED);
             }
