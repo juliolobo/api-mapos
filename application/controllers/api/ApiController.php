@@ -45,7 +45,7 @@ class ApiController extends RestController
         $this->form_validation->set_rules('senha', 'Senha', 'required|trim');
         if ($this->form_validation->run() == false) {
             $this->response([
-                'status' => false,
+                'status'  => false,
                 'message' => validation_errors()
             ], RestController::HTTP_UNAUTHORIZED);
         }
@@ -92,9 +92,9 @@ class ApiController extends RestController
                     ];
 
                     $this->response([
-                        'status' => true,
+                        'status'  => true,
                         'message' => 'Login realizado com sucesso!',
-                        'result' => $result,
+                        'result'  => $result,
                     ], RestController::HTTP_OK);
                 }
             }
@@ -129,9 +129,9 @@ class ApiController extends RestController
         $result->emitente = $this->mapos_model->getEmitente() ?: false;
 
         $this->response([
-            'status' => true,
+            'status'  => true,
             'message' => 'Dados do Map-OS',
-            'result' => $result,
+            'result'  => $result,
         ], RestController::HTTP_OK);
     }
 }
