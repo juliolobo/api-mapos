@@ -30,7 +30,7 @@ class ServicosController extends RestController
 
             $perPage  = $this->input->get('perPage') ?: 20;
             $page     = $this->input->get('page') ?: 0;
-            $start    = $page ? (($perPage * $page) + 1) : 0;
+            $start    = $page ? ($perPage * $page) : 0;
 
             $servicos = $this->servicos_model->get('servicos', '*', $where, $perPage, $start);
 
