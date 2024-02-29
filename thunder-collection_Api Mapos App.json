@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Api Mapos App",
-    "dateExported": "2024-02-29T06:33:29.800Z",
+    "dateExported": "2024-02-29T10:39:39.538Z",
     "version": "1.1",
     "folders": [
         {
@@ -669,6 +669,25 @@
                 "raw": "{\n  \"quantidade\": \"1\",\n  \"preco\": \"175\"\n}",
                 "form": []
             },
+            "tests": []
+        },
+        {
+            "_id": "dea07dfb-d0a7-45e8-a4de-384c619696df",
+            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
+            "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
+            "name": "Excluir Produto OS",
+            "url": "{{url_api}}/os/19/produtos/11",
+            "method": "DELETE",
+            "sortNum": 137500,
+            "created": "2024-02-29T10:38:12.142Z",
+            "modified": "2024-02-29T10:38:54.449Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
             "tests": []
         },
         {

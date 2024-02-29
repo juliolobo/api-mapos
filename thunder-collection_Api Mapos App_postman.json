@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "42e1daa0-552c-4c95-86c5-cf57c2248d6f",
+        "_postman_id": "ee63154a-ff00-48b0-bef9-d117af2d6e80",
         "name": "Api Mapos App",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -768,6 +768,30 @@
                                 "os",
                                 "19",
                                 "servicos",
+                                "11"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "X-API-KEY",
+                                "value": "{{access_token}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Excluir Produto OS",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url_api}}/os/19/produtos/11",
+                            "path": [
+                                "os",
+                                "19",
+                                "produtos",
                                 "11"
                             ],
                             "host": [

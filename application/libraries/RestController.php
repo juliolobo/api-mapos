@@ -2064,7 +2064,7 @@ class RestController extends CI_Controller
         $data = [
             'usuario' => $nome_usuario ?: $this->logged_user()->usuario->nome,
             'ip' => $this->CI->input->ip_address(),
-            'tarefa' => $task,
+            'tarefa' => '[APP] '.$task,
             'data' => date('Y-m-d'),
             'hora' => date('H:i:s'),
         ];
