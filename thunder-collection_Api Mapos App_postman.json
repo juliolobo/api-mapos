@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "5e77afdc-6983-4c37-8046-45147120ca12",
+        "_postman_id": "d4739db3-bcf2-4af5-a37c-b43193cf4c82",
         "name": "Api Mapos App",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -14,10 +14,16 @@
                     "request": {
                         "method": "GET",
                         "url": {
-                            "raw": "{{url_api}}/clientes/115",
+                            "raw": "{{url_api}}/clientes?page=2",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "2"
+                                }
+                            ],
+                            "variable": [],
                             "path": [
-                                "clientes",
-                                "115"
+                                "clientes"
                             ],
                             "host": [
                                 "{{url_api}}"
@@ -509,14 +515,15 @@
                     }
                 },
                 {
-                    "name": "Get by Id",
+                    "name": "Add Produto OS",
                     "request": {
-                        "method": "GET",
+                        "method": "POST",
                         "url": {
-                            "raw": "{{url_api}}/os/14",
+                            "raw": "{{url_api}}/os/19/produtos",
                             "path": [
                                 "os",
-                                "14"
+                                "19",
+                                "produtos"
                             ],
                             "host": [
                                 "{{url_api}}"
@@ -535,7 +542,7 @@
                                     "language": "json"
                                 }
                             },
-                            "raw": "{\n  \"status\": true,\n  \"message\": \"Detalhes da O.S.\",\n  \"result\": {\n    \"idOs\": \"14\",\n    \"dataInicial\": \"2024-01-21\",\n    \"dataFinal\": \"2024-01-22\",\n    \"garantia\": \"\",\n    \"descricaoProduto\": \"<p>sada dgh fghfg</p>\",\n    \"defeito\": \"<p>sdferrtyrtyj tfdg</p>\",\n    \"status\": \"Faturado\",\n    \"observacoes\": \"<p>erdfgdf gdfhhj</p>\",\n    \"laudoTecnico\": \"<p>dfgdfgerger</p>\",\n    \"valorTotal\": \"565.00\",\n    \"desconto\": \"99.00\",\n    \"valor_desconto\": \"5.65\",\n    \"tipo_desconto\": \"porcento\",\n    \"clientes_id\": \"1\",\n    \"usuarios_id\": \"2\",\n    \"lancamento\": null,\n    \"faturado\": \"1\",\n    \"garantias_id\": null,\n    \"idClientes\": \"1\",\n  }\n}"
+                            "raw": "{\n  \"idProduto\": \"43\",\n  \"preco\": \"175.00\",\n  \"quantidade\": \"1\"\n}"
                         }
                     }
                 },
@@ -660,6 +667,60 @@
                                 "value": "{{access_token}}"
                             }
                         ]
+                    }
+                },
+                {
+                    "name": "Get By ID",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url_api}}/os/19",
+                            "path": [
+                                "os",
+                                "19"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "X-API-KEY",
+                                "value": "{{access_token}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Add Serviço OS",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url_api}}/os/19/servicos",
+                            "path": [
+                                "os",
+                                "19",
+                                "servicos"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "X-API-KEY",
+                                "value": "{{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"idServico\": \"2\",\n  \"preco\": \"650\",\n  \"quantidade\": \"2\"\n}"
+                        }
                     }
                 }
             ]

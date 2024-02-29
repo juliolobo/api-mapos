@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Api Mapos App",
-    "dateExported": "2024-02-28T08:46:46.946Z",
+    "dateExported": "2024-02-29T01:21:50.506Z",
     "version": "1.1",
     "folders": [
         {
@@ -111,18 +111,24 @@
             "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
             "containerId": "77839adc-5421-4d58-b676-002b3d9eac9e",
             "name": "Clientes/Index",
-            "url": "{{url_api}}/clientes/115",
+            "url": "{{url_api}}/clientes?page=2",
             "method": "GET",
             "sortNum": 50000,
             "created": "2024-02-25T15:42:04.338Z",
-            "modified": "2024-02-28T06:24:19.887Z",
+            "modified": "2024-02-28T16:41:48.155Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
                     "value": "{{access_token}}"
                 }
             ],
-            "params": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "2",
+                    "isPath": false
+                }
+            ],
             "tests": []
         },
         {
@@ -294,6 +300,25 @@
             "tests": []
         },
         {
+            "_id": "9a67e853-c1b5-458a-8905-28d12aed4669",
+            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
+            "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
+            "name": "Get By ID",
+            "url": "{{url_api}}/os/19",
+            "method": "GET",
+            "sortNum": 85000,
+            "created": "2024-02-29T00:13:58.255Z",
+            "modified": "2024-02-29T00:15:24.404Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
             "_id": "eec13dce-49a1-479d-86f5-4e3eeb5a1d2a",
             "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
             "containerId": "13b6b7d6-c247-4b94-bcee-4e14478b3938",
@@ -329,30 +354,6 @@
                 }
             ],
             "params": [],
-            "tests": []
-        },
-        {
-            "_id": "e50248a6-678c-42cb-8334-a35cebdb231a",
-            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
-            "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
-            "name": "Get by Id",
-            "url": "{{url_api}}/os/14",
-            "method": "GET",
-            "sortNum": 90000,
-            "created": "2024-02-27T05:01:43.361Z",
-            "modified": "2024-02-28T06:46:36.506Z",
-            "headers": [
-                {
-                    "name": "X-API-KEY",
-                    "value": "{{access_token}}"
-                }
-            ],
-            "params": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"status\": true,\n  \"message\": \"Detalhes da O.S.\",\n  \"result\": {\n    \"idOs\": \"14\",\n    \"dataInicial\": \"2024-01-21\",\n    \"dataFinal\": \"2024-01-22\",\n    \"garantia\": \"\",\n    \"descricaoProduto\": \"<p>sada dgh fghfg</p>\",\n    \"defeito\": \"<p>sdferrtyrtyj tfdg</p>\",\n    \"status\": \"Faturado\",\n    \"observacoes\": \"<p>erdfgdf gdfhhj</p>\",\n    \"laudoTecnico\": \"<p>dfgdfgerger</p>\",\n    \"valorTotal\": \"565.00\",\n    \"desconto\": \"99.00\",\n    \"valor_desconto\": \"5.65\",\n    \"tipo_desconto\": \"porcento\",\n    \"clientes_id\": \"1\",\n    \"usuarios_id\": \"2\",\n    \"lancamento\": null,\n    \"faturado\": \"1\",\n    \"garantias_id\": null,\n    \"idClientes\": \"1\",\n  }\n}",
-                "form": []
-            },
             "tests": []
         },
         {
@@ -644,6 +645,54 @@
                 }
             ],
             "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e50248a6-678c-42cb-8334-a35cebdb231a",
+            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
+            "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
+            "name": "Add Produto OS",
+            "url": "{{url_api}}/os/19/produtos",
+            "method": "POST",
+            "sortNum": 130000,
+            "created": "2024-02-27T05:01:43.361Z",
+            "modified": "2024-02-29T00:32:03.546Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"idProduto\": \"43\",\n  \"preco\": \"175.00\",\n  \"quantidade\": \"1\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "74d13a3d-5a57-43e7-8aeb-5d4b55cf3c65",
+            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
+            "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
+            "name": "Add Serviço OS",
+            "url": "{{url_api}}/os/19/servicos",
+            "method": "POST",
+            "sortNum": 140000,
+            "created": "2024-02-29T00:59:27.322Z",
+            "modified": "2024-02-29T01:02:29.591Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"idServico\": \"2\",\n  \"preco\": \"650\",\n  \"quantidade\": \"2\"\n}",
+                "form": []
+            },
             "tests": []
         }
     ]
