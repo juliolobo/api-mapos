@@ -178,4 +178,118 @@ class OsController extends RestController
         
         return 0;
     }
+    
+    public function produtos_post($id)
+    {
+        $inputData = json_decode(trim(file_get_contents('php://input')));
+
+        if(!isset($inputData->idProduto) || !isset($inputData->quantidade) || !isset($inputData->preco)) {
+            $this->response([
+                'status' => false,
+                'message' => 'Preencha todos os campos obrigatórios!'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
+
+        $data = [
+            'produtos_id' => $inputData->idProduto,
+            'preco'       => $inputData->preco,
+            'quantidade'  => $inputData->quantidade,
+            'subTotal'    => $inputData->preco * $inputData->quantidade,
+            'os_id'       => $id,
+        ];
+
+        $os = $this->os_model->getById($id);
+        if ($os == null) {
+            $this->response([
+                'status'  => false,
+                'message' => 'Erro ao tentar inserir produto na OS. OS Não encontrada!'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
+
+        if ($this->os_model->add('produtos_os', $data) == true) {
+            $this->load->model('produtos_model');
+
+            $this->CI = &get_instance();
+            $this->CI->load->database();
+            if ($this->CI->db->get_where('configuracoes', ['config' => 'control_estoque'])->row_object()->valor) {
+                $this->produtos_model->updateEstoque($inputData->idProduto, $inputData->quantidade, '-');
+            }
+
+            $this->db->set('desconto', 0.00);
+            $this->db->set('valor_desconto', 0.00);
+            $this->db->set('tipo_desconto', null);
+            $this->db->where('idOs', $id);
+            $this->db->update('os');
+
+            log_info('Adicionou produto a uma OS. ID (OS): ' . $this->input->post('idOsProduto'));
+
+            $result = [
+                'Produto'     => $this->produtos_model->getById($inputData->idProduto),
+                'quantidade'  => $inputData->quantidade,
+                'preco'       => $inputData->preco,
+                'subTotal'    => $inputData->preco * $inputData->quantidade,
+            ];
+
+            $this->response([
+                'status'  => true,
+                'message' => 'Produto adicinado com sucesso!',
+                'result'  => $result
+            ], RestController::HTTP_OK);
+        }
+        
+        $this->response([
+            'status'  => false,
+            'message' => 'Não foi possível adicionar o Produto. Avise ao Administrador.'
+        ], RestController::HTTP_INTERNAL_ERROR);
+    }
+
+    public function servicos_post($id)
+    {
+        $inputData = json_decode(trim(file_get_contents('php://input')));
+
+        if(!isset($inputData->idServico) || !isset($inputData->quantidade) || !isset($inputData->preco)) {
+            $this->response([
+                'status' => false,
+                'message' => 'Preencha todos os campos obrigatórios!'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
+
+        $data = [
+            'servicos_id' => $inputData->idServico,
+            'quantidade'  => $inputData->quantidade,
+            'preco'       => $inputData->preco,
+            'subTotal'    => $inputData->preco * $inputData->quantidade,
+            'os_id'       => $id,
+        ];
+
+        if ($this->os_model->add('servicos_os', $data) == true) {
+            $this->load->model('servicos_model');
+
+            $this->db->set('desconto', 0.00);
+            $this->db->set('valor_desconto', 0.00);
+            $this->db->set('tipo_desconto', null);
+            $this->db->where('idOs', $id);
+            $this->db->update('os');
+
+            log_info('Adicionou serviço a uma OS. ID (OS): ' . $id);
+
+            $result = [
+                'Serviço'     => $this->servicos_model->getById($inputData->idServico),
+                'quantidade'  => $inputData->quantidade,
+                'preco'       => $inputData->preco,
+                'subTotal'    => $inputData->preco * $inputData->quantidade,
+            ];
+
+            $this->response([
+                'status'  => true,
+                'message' => 'Serviço adicinado com sucesso!',
+                'result'  => $result
+            ], RestController::HTTP_OK);
+        }
+        
+        $this->response([
+            'status'  => false,
+            'message' => 'Não foi possível adicionar o Serviço. Avise ao Administrador.'
+        ], RestController::HTTP_INTERNAL_ERROR);
+    }
 }

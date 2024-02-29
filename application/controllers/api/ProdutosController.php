@@ -70,11 +70,11 @@ class ProdutosController extends RestController
         
         $inputData = json_decode(trim(file_get_contents('php://input')));
 
-        if(!$inputData->descricao || 
-        !$inputData->unidade || 
-        !$inputData->precoCompra || 
-        !$inputData->precoVenda || 
-        !$inputData->estoque) {
+        if(!isset($inputData->descricao) || 
+        !isset($inputData->unidade) || 
+        !isset($inputData->precoCompra) || 
+        !isset($inputData->precoVenda) || 
+        !isset($inputData->estoque)) {
             $this->response([
                 'status' => false,
                 'message' => 'Preencha todos os campos obrigatórios!'
@@ -86,15 +86,15 @@ class ProdutosController extends RestController
         $precoVenda  = $inputData->precoVenda;
         $precoVenda  = str_replace(",", "", $precoVenda);
         $data = [
-            'codDeBarra' => $inputData->codDeBarra,
+            'codDeBarra' => isset($inputData->codDeBarra) ? $inputData->codDeBarra : 0,
             'descricao' => $inputData->descricao,
             'unidade' => $inputData->unidade,
             'precoCompra' => $precoCompra,
             'precoVenda' => $precoVenda,
             'estoque' => $inputData->estoque,
-            'estoqueMinimo' => $inputData->estoqueMinimo,
-            'saida' => $inputData->saida,
-            'entrada' => $inputData->entrada,
+            'estoqueMinimo' => isset($inputData->estoqueMinimo) ? $inputData->estoqueMinimo : 0,
+            'saida' => isset($inputData->saida) ? $inputData->saida : 0,
+            'entrada' => isset($inputData->entrada) ? $inputData->entrada : 0,
         ];
 
         if ($this->produtos_model->add('produtos', $data) == true) {
@@ -122,11 +122,11 @@ class ProdutosController extends RestController
 
         $inputData = json_decode(trim(file_get_contents('php://input')));
         
-        if(!$inputData->descricao || 
-        !$inputData->unidade || 
-        !$inputData->precoCompra || 
-        !$inputData->precoVenda || 
-        !$inputData->estoque) {
+        if(!isset($inputData->descricao) || 
+        !isset($inputData->unidade) || 
+        !isset($inputData->precoCompra) || 
+        !isset($inputData->precoVenda) || 
+        !isset($inputData->estoque)) {
             $this->response([
                 'status' => false,
                 'message' => 'Preencha todos os campos obrigatórios!'
@@ -138,15 +138,15 @@ class ProdutosController extends RestController
         $precoVenda  = $inputData->precoVenda;
         $precoVenda  = str_replace(",", "", $precoVenda);
         $data = [
-            'codDeBarra' => $inputData->codDeBarra,
+            'codDeBarra' => isset($inputData->codDeBarra) ? $inputData->codDeBarra : 0,
             'descricao' => $inputData->descricao,
             'unidade' => $inputData->unidade,
             'precoCompra' => $precoCompra,
             'precoVenda' => $precoVenda,
             'estoque' => $inputData->estoque,
-            'estoqueMinimo' => $inputData->estoqueMinimo,
-            'saida' => $inputData->saida,
-            'entrada' => $inputData->entrada,
+            'estoqueMinimo' => isset($inputData->estoqueMinimo) ? $inputData->estoqueMinimo : 0,
+            'saida' => isset($inputData->saida) ? $inputData->saida : 0,
+            'entrada' => isset($inputData->entrada) ? $inputData->entrada : 0,
         ];
 
         if ($this->produtos_model->edit('produtos', $data, 'idProdutos', $id) == true) {

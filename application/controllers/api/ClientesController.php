@@ -86,21 +86,21 @@ class ClientesController extends RestController
 
         $inputData = json_decode(trim(file_get_contents('php://input')));
 
-        if(!$inputData->nomeCliente){
+        if(!isset($inputData->nomeCliente)){
             $this->response([
                 'status' => false,
                 'message' => 'Preencha todos os campos obrigatórios!'
             ], RestController::HTTP_BAD_REQUEST);
         }
         
-        if($inputData->documento && !verific_cpf_cnpj($inputData->documento)) {
+        if(isset($inputData->documento) && !verific_cpf_cnpj($inputData->documento)) {
             $this->response([
                 'status' => false,
                 'message' => 'CPF/CNPJ inválido. Verifique o número do documento e tente novamente.'
             ], RestController::HTTP_BAD_REQUEST);
         }
 
-        $userExist = $inputData->documento ? $this->clientes_model->get('clientes', '*', "documento = '{$inputData->documento}'", 1, 0, true) : false;
+        $userExist = isset($inputData->documento) ? $this->clientes_model->get('clientes', '*', "documento = '{$inputData->documento}'", 1, 0, true) : false;
 
         if($userExist) {
             $this->response([
@@ -158,7 +158,7 @@ class ClientesController extends RestController
 
         $inputData = json_decode(trim(file_get_contents('php://input')));
         
-        if($inputData->documento && !verific_cpf_cnpj($inputData->documento)) {
+        if(isset($inputData->documento) && !verific_cpf_cnpj($inputData->documento)) {
             $this->response([
                 'status' => false,
                 'message' => 'CPF/CNPJ inválido. Verifique o número do documento e tente novamente.'

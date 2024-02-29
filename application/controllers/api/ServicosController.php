@@ -69,7 +69,7 @@ class ServicosController extends RestController
 
         $inputData = json_decode(trim(file_get_contents('php://input')));
 
-        if(!$inputData->nome || !$inputData->preco) {
+        if(!isset($inputData->nome) || !isset($inputData->preco)) {
             $this->response([
                 'status' => false,
                 'message' => 'Preencha todos os campos obrigatórios!'
@@ -81,7 +81,7 @@ class ServicosController extends RestController
 
         $data = [
             'nome' => $inputData->nome,
-            'descricao' => $inputData->descricao,
+            'descricao' => isset($inputData->descricao) ? $inputData->descricao : '',
             'preco' => $preco,
         ];
 
@@ -110,7 +110,7 @@ class ServicosController extends RestController
 
         $inputData = json_decode(trim(file_get_contents('php://input')));
 
-        if(!$inputData->nome || !$inputData->preco) {
+        if(!isset($inputData->nome) || !isset($inputData->preco)) {
             $this->response([
                 'status' => false,
                 'message' => 'Preencha todos os campos obrigatórios!'
@@ -122,7 +122,7 @@ class ServicosController extends RestController
 
         $data = [
             'nome' => $inputData->nome,
-            'descricao' => $inputData->descricao,
+            'descricao' => isset($inputData->descricao) ? $inputData->descricao : '',
             'preco' => $preco,
         ];
 
