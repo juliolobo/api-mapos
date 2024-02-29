@@ -31,7 +31,7 @@ class ClientesController extends RestController
 
             $perPage  = $this->input->get('perPage') ?: 20;
             $page     = $this->input->get('page') ?: 0;
-            $start    = $page ? (($perPage * $page) + 1) : 0;
+            $start    = $page ? ($perPage * $page) : 0;
 
             $clientes = $this->clientes_model->get('clientes', '*', $where, $perPage, $start);
 
