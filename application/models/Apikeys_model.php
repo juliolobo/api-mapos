@@ -22,6 +22,11 @@ class Apikeys_model extends CI_Model
         return false;
     }
 
+    public function lastRow($table, $idColumn)
+    {
+        return $this->db->select("*")->limit(1)->order_by($idColumn,"DESC")->get($table)->row();
+    }
+
     public function getByKey($ci_key)
     {
         $this->db->where('ci_key', $ci_key);
