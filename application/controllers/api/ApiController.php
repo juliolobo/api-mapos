@@ -47,7 +47,7 @@ class ApiController extends RestController
         if(!isset($inputData->email) || !isset($inputData->password)){
             $this->response([
                 'status'  => false,
-                'message' => validation_errors()
+                'message' => 'Preencha todos os campos obrigatórios!'
             ], RestController::HTTP_UNAUTHORIZED);
         }
 
