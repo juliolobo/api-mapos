@@ -72,7 +72,7 @@ class ApiController extends RestController
                 
                 $data = [
                     'user_id'      => $user->idUsuarios,
-                    'ci_key'       => password_hash(time(), PASSWORD_DEFAULT),
+                    'ci_key'       => hash('sha256', time()),
                     'level'        => $user->permissoes_id,
                     'ip_addresses' => $this->input->ip_address(),
                     'date_created' => date('Y-m-d H:i:s')
@@ -101,7 +101,6 @@ class ApiController extends RestController
                         'status'  => true,
                         'message' => 'Login realizado com sucesso!',
                         'result'  => $result,
-                        'refresh_token' => $this->refreshToken()
                     ], RestController::HTTP_OK);
                 }
             }
