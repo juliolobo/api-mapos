@@ -2064,11 +2064,28 @@ class RestController extends CI_Controller
         $data = [
             'usuario' => $nome_usuario ?: $this->logged_user()->usuario->nome,
             'ip' => $this->CI->input->ip_address(),
-            'tarefa' => '[APP] '.$task,
+            'tarefa' => $task,
             'data' => date('Y-m-d'),
             'hora' => date('H:i:s'),
         ];
 
         $this->CI->Audit_model->add($data);
+    }
+
+    public function getConfig($config)
+    {
+        $this->CI = &get_instance();
+        $this->CI->load->database();
+
+        return $this->CI->db->get_where('configuracoes', ['config' => $config])->row_object()->valor;
+    }
+
+    public function refreshToken()
+    {
+        $usuarioLogado = $this->logged_user();
+
+        $this->load->model('Apikeys_model');
+        return $this->Apikeys_model->updateKeyByUserId($usuarioLogado->user_id);
+        // $this->mapos_model->delete('apikeys', 'id', $this->Apikeys_model->getByUserId($usuarioLogado->user_id)->id);
     }
 }

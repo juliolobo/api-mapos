@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "ee63154a-ff00-48b0-bef9-d117af2d6e80",
+        "_postman_id": "3cb09f4d-74c4-4606-8214-dc0f1a69f65c",
         "name": "Api Mapos App",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -153,10 +153,10 @@
                     "request": {
                         "method": "GET",
                         "url": {
-                            "raw": "{{url_api}}/clientes/113",
+                            "raw": "{{url_api}}/clientes/1",
                             "path": [
                                 "clientes",
-                                "113"
+                                "1"
                             ],
                             "host": [
                                 "{{url_api}}"
@@ -547,36 +547,6 @@
                     }
                 },
                 {
-                    "name": "Serviços/Create",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "{{url_api}}/os",
-                            "path": [
-                                "os"
-                            ],
-                            "host": [
-                                "{{url_api}}"
-                            ]
-                        },
-                        "header": [
-                            {
-                                "key": "X-API-KEY",
-                                "value": "{{access_token}}"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"status\": true,\n  \"message\": \"Detalhes da O.S.\",\n  \"result\": {\n    \"idOs\": \"14\",\n    \"dataInicial\": \"2024-01-21\",\n    \"dataFinal\": \"2024-01-22\",\n    \"garantia\": \"\",\n    \"descricaoProduto\": \"<p>sada dgh fghfg</p>\",\n    \"defeito\": \"<p>sdferrtyrtyj tfdg</p>\",\n    \"status\": \"Faturado\",\n    \"observacoes\": \"<p>erdfgdf gdfhhj</p>\",\n    \"laudoTecnico\": \"<p>dfgdfgerger</p>\",\n    \"valorTotal\": \"565.00\",\n    \"desconto\": \"99.00\",\n    \"valor_desconto\": \"5.65\",\n    \"tipo_desconto\": \"porcento\",\n    \"clientes_id\": \"1\",\n    \"usuarios_id\": \"2\",\n    \"lancamento\": null,\n    \"faturado\": \"1\",\n    \"garantias_id\": null,\n    \"idClientes\": \"1\"\n  }\n}"
-                        }
-                    }
-                },
-                {
                     "name": "Update Produto OS",
                     "request": {
                         "method": "PUT",
@@ -632,27 +602,31 @@
                     }
                 },
                 {
-                    "name": "Search",
+                    "name": "Add OS",
                     "request": {
-                        "method": "GET",
+                        "method": "POST",
                         "url": {
-                            "raw": "{{url_api}}/os/?search&status&from&to",
+                            "raw": "{{url_api}}/os/",
                             "query": [
                                 {
                                     "key": "search",
-                                    "value": ""
+                                    "value": "",
+                                    "disabled": true
                                 },
                                 {
                                     "key": "status",
-                                    "value": ""
+                                    "value": "",
+                                    "disabled": true
                                 },
                                 {
                                     "key": "from",
-                                    "value": ""
+                                    "value": "",
+                                    "disabled": true
                                 },
                                 {
                                     "key": "to",
-                                    "value": ""
+                                    "value": "",
+                                    "disabled": true
                                 }
                             ],
                             "variable": [],
@@ -668,7 +642,16 @@
                                 "key": "X-API-KEY",
                                 "value": "{{access_token}}"
                             }
-                        ]
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"dataInicial\": \"\",\n  \"dataFinal\": \"\",\n  \"status\": \"\",\n  \"clientes_id\": \"\",\n  \"usuarios_id\": \"\",\n  \"termoGarantia\": \"\",\n  \"garantias_id\": \"\",\n  \"garantia\": \"\",\n  \"descricaoProduto\": \"\",\n  \"defeito\": \"\",\n  \"observacoes\": \"\",\n  \"laudoTecnico\": \"\"\n}"
+                        }
                     }
                 },
                 {
@@ -759,7 +742,7 @@
                     }
                 },
                 {
-                    "name": "Excluir Serviço OS",
+                    "name": "Delete Serviço OS",
                     "request": {
                         "method": "DELETE",
                         "url": {
@@ -783,16 +766,101 @@
                     }
                 },
                 {
-                    "name": "Excluir Produto OS",
+                    "name": "Delete Produto OS",
                     "request": {
                         "method": "DELETE",
                         "url": {
-                            "raw": "{{url_api}}/os/19/produtos/11",
+                            "raw": "{{url_api}}/os/19/produtos/14",
                             "path": [
                                 "os",
                                 "19",
                                 "produtos",
-                                "11"
+                                "14"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "X-API-KEY",
+                                "value": "{{access_token}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Add Anotação",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url_api}}/os/19/anotacoes",
+                            "path": [
+                                "os",
+                                "19",
+                                "anotacoes"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "X-API-KEY",
+                                "value": "{{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"anotacao\": \"Teste de anotação API 2\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Anotação",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url_api}}/os/19/anotacoes",
+                            "path": [
+                                "os",
+                                "19",
+                                "anotacoes"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "X-API-KEY",
+                                "value": "{{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"anotacao\": \"Teste de anotação API 2\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Get All Copy",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url_api}}/os",
+                            "path": [
+                                "os"
                             ],
                             "host": [
                                 "{{url_api}}"
@@ -824,7 +892,7 @@
                 "header": [
                     {
                         "key": "X-API-KEY",
-                        "value": "569e087716a8e427c8defefacb2011c1"
+                        "value": "$2y$10$jgGhC4w.Gk.6e6SCbRK8ge.2JGjJkPV.uJgd1PbJvDaQJk/KTUyRy"
                     }
                 ],
                 "body": {
@@ -878,6 +946,87 @@
                         "key": "X-API-KEY",
                         "value": "{{access_token}}",
                         "disabled": true
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Status",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "{{url_api}}/status",
+                    "path": [
+                        "status"
+                    ],
+                    "host": [
+                        "{{url_api}}"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-API-KEY",
+                        "value": "{{access_token}}"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"api_key\": \"68095dd7cd0c57e347518c8303777799\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Login Delete",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "{{url_api}}/login",
+                    "path": [
+                        "login"
+                    ],
+                    "host": [
+                        "{{url_api}}"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-API-KEY",
+                        "value": "569e087716a8e427c8defefacb2011c1"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"api_key\": \"05efbc2d4613683d8faf790c46247e94\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Conta",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{url_api}}/conta",
+                    "path": [
+                        "conta"
+                    ],
+                    "host": [
+                        "{{url_api}}"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-API-KEY",
+                        "value": "{{access_token}}"
                     }
                 ]
             }

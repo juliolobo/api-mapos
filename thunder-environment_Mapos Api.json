@@ -1,0 +1,16 @@
+{
+    "client": "Thunder Client",
+    "environmentName": "Mapos Api",
+    "dateExported": "2024-03-02T07:12:52.039Z",
+    "version": "1.0",
+    "variables": [
+        {
+            "name": "url_api",
+            "value": "http://localhost/projetos/mapos-custom/api"
+        },
+        {
+            "name": "access_token",
+            "value": "$2y$10$xfcOfY5FZYOtANA0tMMGU.JKyBAVU6MHCkeevt/Kb4.Ea.YkLLI.q"
+        }
+    ]
+}

@@ -39,6 +39,7 @@ class ProdutosController extends RestController
                 'status' => true,
                 'message' => 'Listando Produtos',
                 'result' => $produtos,
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_OK);
         }
 
@@ -49,6 +50,7 @@ class ProdutosController extends RestController
                 'status' => true,
                 'message' => 'Detalhes do Produto',
                 'result' => $produto,
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_OK);
         }
 
@@ -56,6 +58,7 @@ class ProdutosController extends RestController
             'status' => false,
             'message' => 'Nenhum Produto localizado.',
             'result' => null,
+            'refresh_token' => $this->refreshToken()
         ], RestController::HTTP_OK);
     }
     
@@ -101,7 +104,8 @@ class ProdutosController extends RestController
             $this->response([
                 'status' => true,
                 'message' => 'Produto adicionado com sucesso!',
-                'result' => $this->produtos_model->get('produtos', '*', "descricao = '{$data['descricao']}'", 1, 0, true)
+                'result' => $this->produtos_model->get('produtos', '*', "descricao = '{$data['descricao']}'", 1, 0, true),
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_CREATED);
         }
         
@@ -153,7 +157,8 @@ class ProdutosController extends RestController
             $this->response([
                 'status' => true,
                 'message' => 'Produto editado com sucesso!',
-                'result' => $this->produtos_model->getById($id)
+                'result' => $this->produtos_model->getById($id),
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_OK);
         }
 
@@ -186,7 +191,8 @@ class ProdutosController extends RestController
             $this->log_app('Removeu um Produto. ID' . $id);
             $this->response([
                 'status' => true,
-                'message' => 'Produto excluído com sucesso!'
+                'message' => 'Produto excluído com sucesso!',
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_OK);
         }
 

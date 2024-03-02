@@ -38,6 +38,7 @@ class ServicosController extends RestController
                 'status' => true,
                 'message' => 'Listando Serviços',
                 'result' => $servicos,
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_OK);
         }
 
@@ -48,6 +49,7 @@ class ServicosController extends RestController
                 'status' => true,
                 'message' => 'Detalhes do Serviço',
                 'result' => $servico,
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_OK);
         }
 
@@ -89,7 +91,8 @@ class ServicosController extends RestController
             $this->response([
                 'status' => true,
                 'message' => 'Serviço adicionado com sucesso!',
-                'result' => $this->servicos_model->get('servicos', '*', "descricao = '{$data['descricao']}'", 1, 0, true)
+                'result' => $this->servicos_model->get('servicos', '*', "descricao = '{$data['descricao']}'", 1, 0, true),
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_CREATED);
         }
         
@@ -130,7 +133,8 @@ class ServicosController extends RestController
             $this->response([
                 'status' => true,
                 'message' => 'Serviço editado com sucesso!',
-                'result' => $this->servicos_model->getById($id)
+                'result' => $this->servicos_model->getById($id),
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_OK);
         }
 
@@ -162,7 +166,8 @@ class ServicosController extends RestController
             $this->log_app('Removeu um Serviço. ID' . $id);
             $this->response([
                 'status' => true,
-                'message' => 'Serviço excluído com sucesso!'
+                'message' => 'Serviço excluído com sucesso!',
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_OK);
         }
 

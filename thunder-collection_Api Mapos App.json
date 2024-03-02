@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Api Mapos App",
-    "dateExported": "2024-02-29T10:39:39.538Z",
+    "dateExported": "2024-03-02T01:24:40.267Z",
     "version": "1.1",
     "folders": [
         {
@@ -64,6 +64,30 @@
                         "value": "poiu7890"
                     }
                 ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "6181c46b-295e-46ba-b5c0-434589631c1f",
+            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
+            "containerId": "",
+            "name": "Login Delete",
+            "url": "{{url_api}}/login",
+            "method": "DELETE",
+            "sortNum": 20000,
+            "created": "2024-03-02T01:05:27.791Z",
+            "modified": "2024-03-02T01:06:35.897Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "569e087716a8e427c8defefacb2011c1"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"api_key\": \"05efbc2d4613683d8faf790c46247e94\"\n}",
+                "form": []
             },
             "tests": []
         },
@@ -161,11 +185,11 @@
             "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
             "containerId": "77839adc-5421-4d58-b676-002b3d9eac9e",
             "name": "Clientes/ById",
-            "url": "{{url_api}}/clientes/113",
+            "url": "{{url_api}}/clientes/1",
             "method": "GET",
             "sortNum": 53750,
             "created": "2024-02-28T05:14:34.223Z",
-            "modified": "2024-02-28T06:24:26.525Z",
+            "modified": "2024-02-29T10:57:21.820Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -300,15 +324,15 @@
             "tests": []
         },
         {
-            "_id": "9a67e853-c1b5-458a-8905-28d12aed4669",
+            "_id": "2f212412-cf18-46fd-848b-5e17d37d19ef",
             "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
             "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
-            "name": "Get By ID",
-            "url": "{{url_api}}/os/19",
+            "name": "Get All Copy",
+            "url": "{{url_api}}/os",
             "method": "GET",
-            "sortNum": 85000,
-            "created": "2024-02-29T00:13:58.255Z",
-            "modified": "2024-02-29T00:15:24.404Z",
+            "sortNum": 82500,
+            "created": "2024-03-01T23:25:23.061Z",
+            "modified": "2024-03-01T23:25:23.061Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -347,6 +371,25 @@
             "sortNum": 90000,
             "created": "2024-02-26T04:28:39.361Z",
             "modified": "2024-02-28T06:23:57.806Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9a67e853-c1b5-458a-8905-28d12aed4669",
+            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
+            "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
+            "name": "Get By ID",
+            "url": "{{url_api}}/os/19",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2024-02-29T00:13:58.255Z",
+            "modified": "2024-02-29T00:15:24.404Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -410,12 +453,12 @@
             "_id": "645a94f4-5f5d-4299-8839-ba9edf3f7046",
             "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
             "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
-            "name": "Search",
-            "url": "{{url_api}}/os/?search&status&from&to",
-            "method": "GET",
+            "name": "Add OS",
+            "url": "{{url_api}}/os/",
+            "method": "POST",
             "sortNum": 95000,
             "created": "2024-02-28T06:06:47.430Z",
-            "modified": "2024-02-28T06:41:26.012Z",
+            "modified": "2024-03-01T23:34:18.775Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -426,24 +469,33 @@
                 {
                     "name": "search",
                     "value": "",
+                    "isDisabled": true,
                     "isPath": false
                 },
                 {
                     "name": "status",
                     "value": "",
+                    "isDisabled": true,
                     "isPath": false
                 },
                 {
                     "name": "from",
                     "value": "",
+                    "isDisabled": true,
                     "isPath": false
                 },
                 {
                     "name": "to",
                     "value": "",
+                    "isDisabled": true,
                     "isPath": false
                 }
             ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"dataInicial\": \"\",\n  \"dataFinal\": \"\",\n  \"status\": \"\",\n  \"clientes_id\": \"\",\n  \"usuarios_id\": \"\",\n  \"termoGarantia\": \"\",\n  \"garantias_id\": \"\",\n  \"garantia\": \"\",\n  \"descricaoProduto\": \"\",\n  \"defeito\": \"\",\n  \"observacoes\": \"\",\n  \"laudoTecnico\": \"\"\n}",
+                "form": []
+            },
             "tests": []
         },
         {
@@ -490,30 +542,6 @@
             "body": {
                 "type": "json",
                 "raw": "{\n  \"nome\": \"Troca de teclado\",\n  \"descricao\": \"Troca de teclado de notebook\",\n  \"preco\": \"151.00\"\n}",
-                "form": []
-            },
-            "tests": []
-        },
-        {
-            "_id": "5503bdcc-bcb1-4c8e-a8d6-25607f1a1683",
-            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
-            "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
-            "name": "Serviços/Create",
-            "url": "{{url_api}}/os",
-            "method": "POST",
-            "sortNum": 100000,
-            "created": "2024-02-27T05:01:43.362Z",
-            "modified": "2024-02-28T06:47:06.946Z",
-            "headers": [
-                {
-                    "name": "X-API-KEY",
-                    "value": "{{access_token}}"
-                }
-            ],
-            "params": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"status\": true,\n  \"message\": \"Detalhes da O.S.\",\n  \"result\": {\n    \"idOs\": \"14\",\n    \"dataInicial\": \"2024-01-21\",\n    \"dataFinal\": \"2024-01-22\",\n    \"garantia\": \"\",\n    \"descricaoProduto\": \"<p>sada dgh fghfg</p>\",\n    \"defeito\": \"<p>sdferrtyrtyj tfdg</p>\",\n    \"status\": \"Faturado\",\n    \"observacoes\": \"<p>erdfgdf gdfhhj</p>\",\n    \"laudoTecnico\": \"<p>dfgdfgerger</p>\",\n    \"valorTotal\": \"565.00\",\n    \"desconto\": \"99.00\",\n    \"valor_desconto\": \"5.65\",\n    \"tipo_desconto\": \"porcento\",\n    \"clientes_id\": \"1\",\n    \"usuarios_id\": \"2\",\n    \"lancamento\": null,\n    \"faturado\": \"1\",\n    \"garantias_id\": null,\n    \"idClientes\": \"1\"\n  }\n}",
                 "form": []
             },
             "tests": []
@@ -675,12 +703,12 @@
             "_id": "dea07dfb-d0a7-45e8-a4de-384c619696df",
             "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
             "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
-            "name": "Excluir Produto OS",
-            "url": "{{url_api}}/os/19/produtos/11",
+            "name": "Delete Produto OS",
+            "url": "{{url_api}}/os/19/produtos/14",
             "method": "DELETE",
             "sortNum": 137500,
             "created": "2024-02-29T10:38:12.142Z",
-            "modified": "2024-02-29T10:38:54.449Z",
+            "modified": "2024-03-01T19:09:09.594Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -742,7 +770,7 @@
             "_id": "f751d691-5a03-482b-bc3c-ce4779faf5ff",
             "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
             "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
-            "name": "Excluir Serviço OS",
+            "name": "Delete Serviço OS",
             "url": "{{url_api}}/os/19/servicos/11",
             "method": "DELETE",
             "sortNum": 160000,
@@ -755,6 +783,78 @@
                 }
             ],
             "params": [],
+            "tests": []
+        },
+        {
+            "_id": "621245c9-402c-49c0-a5ea-9314f5f81585",
+            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
+            "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
+            "name": "Add Anotação",
+            "url": "{{url_api}}/os/19/anotacoes",
+            "method": "POST",
+            "sortNum": 170000,
+            "created": "2024-02-29T13:26:16.581Z",
+            "modified": "2024-02-29T13:32:00.510Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"anotacao\": \"Teste de anotação API 2\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9660d113-d0eb-4d52-a6d3-fc1323d3f5a0",
+            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
+            "containerId": "07612a35-5af0-4c61-8b68-93db904f4485",
+            "name": "Delete Anotação",
+            "url": "{{url_api}}/os/19/anotacoes",
+            "method": "POST",
+            "sortNum": 180000,
+            "created": "2024-02-29T13:36:38.552Z",
+            "modified": "2024-02-29T13:36:38.552Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"anotacao\": \"Teste de anotação API 2\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "942cac7d-6be8-4c6d-a598-10d4162ad16f",
+            "colId": "3e708b6d-6205-47c6-8a71-339c9ebb4925",
+            "containerId": "",
+            "name": "Status",
+            "url": "{{url_api}}/status",
+            "method": "POST",
+            "sortNum": 190000,
+            "created": "2024-03-02T00:36:01.292Z",
+            "modified": "2024-03-02T00:40:15.107Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"api_key\": \"68095dd7cd0c57e347518c8303777799\"\n}",
+                "form": []
+            },
             "tests": []
         }
     ]

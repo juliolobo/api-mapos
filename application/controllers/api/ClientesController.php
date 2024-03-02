@@ -40,13 +40,14 @@ class ClientesController extends RestController
                     'status' => true,
                     'message' => 'Lista de Clientes',
                     'result' => $clientes,
+                    'refresh_token' => $this->refreshToken()
                 ], RestController::HTTP_OK);
             }
 
             $this->response([
                 'status' => false,
                 'message' => 'Nenhum cliente localizado',
-                'result' => null,
+                'result' => null
             ], RestController::HTTP_OK);
         }
 
@@ -59,6 +60,7 @@ class ClientesController extends RestController
                     'status' => true,
                     'message' => 'Detalhes do Cliente',
                     'result' => $cliente,
+                    'refresh_token' => $this->refreshToken()
                 ], RestController::HTTP_OK);
             }
             
@@ -138,7 +140,8 @@ class ClientesController extends RestController
             $this->response([
                 'status' => true,
                 'message' => 'Cliente adicionado com sucesso!',
-                'result' => $this->clientes_model->get('clientes', '*', "telefone = '{$data['telefone']}'", 1, 0, true)
+                'result' => $this->clientes_model->get('clientes', '*', "telefone = '{$data['telefone']}'", 1, 0, true),
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_CREATED);
         }
         
@@ -191,7 +194,8 @@ class ClientesController extends RestController
             $this->response([
                 'status' => true,
                 'message' => 'Cliente editado com sucesso!',
-                'result' => $this->clientes_model->getById($id)
+                'result' => $this->clientes_model->getById($id),
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_OK);
         }
 
@@ -231,7 +235,8 @@ class ClientesController extends RestController
             $this->log_app('Removeu um cliente. ID' . $id);
             $this->response([
                 'status' => true,
-                'message' => 'Cliente excluído com sucesso!'
+                'message' => 'Cliente excluído com sucesso!',
+                'refresh_token' => $this->refreshToken()
             ], RestController::HTTP_OK);
         }
 
