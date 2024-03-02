@@ -2086,6 +2086,5 @@ class RestController extends CI_Controller
 
         $this->load->model('Apikeys_model');
         return $this->Apikeys_model->updateKeyByUserId($usuarioLogado->user_id);
-        // $this->mapos_model->delete('apikeys', 'id', $this->Apikeys_model->getByUserId($usuarioLogado->user_id)->id);
     }
 }
