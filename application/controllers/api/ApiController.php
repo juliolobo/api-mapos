@@ -42,10 +42,9 @@ class ApiController extends RestController
 
     public function login_post()
     {
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('email', 'E-mail', 'valid_email|required|trim');
-        $this->form_validation->set_rules('senha', 'Senha', 'required|trim');
-        if ($this->form_validation->run() == false) {
+        $inputData = json_decode(trim(file_get_contents('php://input')));
+
+        if(!isset($inputData->email) || !isset($inputData->password)){
             $this->response([
                 'status'  => false,
                 'message' => validation_errors()
@@ -53,8 +52,8 @@ class ApiController extends RestController
         }
 
         $this->load->model('Mapos_model');
-        $email    = $this->input->post('email');
-        $password = $this->input->post('senha');
+        $email    = $inputData->email;
+        $password = $inputData->password;
         $user     = $this->Mapos_model->check_credentials($email);
 
         if ($user) {
