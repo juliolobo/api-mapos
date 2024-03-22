@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "64ed002c-7209-4165-8311-04df84b60888",
+        "_postman_id": "7fcce07f-4f2e-4f2b-827d-132e4611c41c",
         "name": "Api Mapos JWT",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -32,7 +32,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -60,7 +60,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -82,7 +82,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -103,7 +103,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -134,7 +134,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -165,7 +165,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -191,7 +191,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -213,7 +213,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -241,7 +241,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -262,7 +262,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -293,7 +293,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -324,7 +324,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -350,7 +350,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -372,7 +372,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -400,7 +400,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -421,7 +421,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -452,7 +452,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -483,7 +483,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -531,7 +531,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -575,7 +575,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -606,7 +606,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -629,7 +629,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -662,7 +662,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -695,7 +695,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -718,7 +718,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -751,7 +751,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -784,7 +784,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ]
                     }
@@ -807,7 +807,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -839,7 +839,7 @@
                         "header": [
                             {
                                 "key": "X-API-KEY",
-                                "value": "{{access_token}}"
+                                "value": "{{authorization}}"
                             }
                         ],
                         "body": {
@@ -908,12 +908,12 @@
             "request": {
                 "method": "POST",
                 "url": {
-                    "raw": "{{url_jwt}}/login",
+                    "raw": "{{url_api}}/login",
                     "path": [
                         "login"
                     ],
                     "host": [
-                        "{{url_jwt}}"
+                        "{{url_api}}"
                     ]
                 },
                 "body": {
@@ -932,9 +932,9 @@
             "request": {
                 "method": "GET",
                 "url": {
-                    "raw": "{{url_jwt}}",
+                    "raw": "{{url_api}}",
                     "host": [
-                        "{{url_jwt}}"
+                        "{{url_api}}"
                     ]
                 },
                 "header": [
@@ -950,12 +950,12 @@
             "request": {
                 "method": "GET",
                 "url": {
-                    "raw": "{{url_jwt}}/emitente",
+                    "raw": "{{url_api}}/emitente",
                     "path": [
                         "emitente"
                     ],
                     "host": [
-                        "{{url_jwt}}"
+                        "{{url_api}}"
                     ]
                 },
                 "header": [
@@ -971,12 +971,12 @@
             "request": {
                 "method": "GET",
                 "url": {
-                    "raw": "{{url_jwt}}/status",
+                    "raw": "{{url_api}}/status",
                     "path": [
                         "status"
                     ],
                     "host": [
-                        "{{url_jwt}}"
+                        "{{url_api}}"
                     ]
                 },
                 "header": [
@@ -992,12 +992,12 @@
             "request": {
                 "method": "GET",
                 "url": {
-                    "raw": "{{url_jwt}}/conta",
+                    "raw": "{{url_api}}/conta",
                     "path": [
                         "conta"
                     ],
                     "host": [
-                        "{{url_jwt}}"
+                        "{{url_api}}"
                     ]
                 },
                 "header": [
@@ -1013,12 +1013,12 @@
             "request": {
                 "method": "GET",
                 "url": {
-                    "raw": "{{url_jwt}}/reGenToken",
+                    "raw": "{{url_api}}/reGenToken",
                     "path": [
                         "reGenToken"
                     ],
                     "host": [
-                        "{{url_jwt}}"
+                        "{{url_api}}"
                     ]
                 },
                 "header": [

@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Api Mapos JWT",
-    "dateExported": "2024-03-22T06:19:54.497Z",
+    "dateExported": "2024-03-22T07:50:54.953Z",
     "version": "1.1",
     "folders": [
         {
@@ -46,11 +46,11 @@
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "Login",
-            "url": "{{url_jwt}}/login",
+            "url": "{{url_api}}/login",
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-03-21T05:22:03.102Z",
-            "modified": "2024-03-21T05:22:03.102Z",
+            "modified": "2024-03-22T06:43:36.155Z",
             "headers": [],
             "params": [],
             "body": {
@@ -58,6 +58,7 @@
                 "raw": "{\n  \"email\": \"juliolobo.info@gmail.com\",\n  \"password\": \"poiu7890\"\n}",
                 "form": []
             },
+            "reqType": "post",
             "tests": []
         },
         {
@@ -85,11 +86,11 @@
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "reGenToken",
-            "url": "{{url_jwt}}/reGenToken",
+            "url": "{{url_api}}/reGenToken",
             "method": "GET",
             "sortNum": 20000,
             "created": "2024-03-21T05:22:03.138Z",
-            "modified": "2024-03-21T05:22:03.138Z",
+            "modified": "2024-03-22T06:43:38.561Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -97,6 +98,7 @@
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -124,11 +126,11 @@
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "Index",
-            "url": "{{url_jwt}}",
+            "url": "{{url_api}}",
             "method": "GET",
             "sortNum": 30000,
             "created": "2024-03-21T05:22:03.103Z",
-            "modified": "2024-03-21T05:22:03.103Z",
+            "modified": "2024-03-22T06:43:41.279Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -136,6 +138,7 @@
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -143,11 +146,11 @@
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "Emitente",
-            "url": "{{url_jwt}}/emitente",
+            "url": "{{url_api}}/emitente",
             "method": "GET",
             "sortNum": 40000,
             "created": "2024-03-21T05:22:03.104Z",
-            "modified": "2024-03-21T05:22:03.104Z",
+            "modified": "2024-03-22T06:43:43.948Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -155,6 +158,7 @@
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -166,11 +170,11 @@
             "method": "GET",
             "sortNum": 50000,
             "created": "2024-03-21T05:22:03.105Z",
-            "modified": "2024-03-21T05:22:03.105Z",
+            "modified": "2024-03-22T06:46:44.217Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [
@@ -180,6 +184,7 @@
                     "isPath": false
                 }
             ],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -191,11 +196,11 @@
             "method": "GET",
             "sortNum": 52500,
             "created": "2024-03-21T05:22:03.106Z",
-            "modified": "2024-03-21T05:22:03.106Z",
+            "modified": "2024-03-22T06:46:48.732Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [
@@ -205,6 +210,7 @@
                     "isPath": false
                 }
             ],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -216,14 +222,15 @@
             "method": "GET",
             "sortNum": 53750,
             "created": "2024-03-21T05:22:03.107Z",
-            "modified": "2024-03-21T05:22:03.107Z",
+            "modified": "2024-03-22T06:46:52.562Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -235,11 +242,11 @@
             "method": "POST",
             "sortNum": 55000,
             "created": "2024-03-21T05:22:03.108Z",
-            "modified": "2024-03-21T05:22:03.108Z",
+            "modified": "2024-03-22T06:46:56.462Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -248,6 +255,7 @@
                 "raw": "{\n    \"asaas_id\": null,\n    \"nomeCliente\": \"Teste Lobo 006\",\n    \"sexo\": null,\n    \"pessoa_fisica\": \"1\",\n    \"documento\": \"\",\n    \"telefone\": \"(21)96969-6969\",\n    \"celular\": \"\",\n    \"email\": \"juliolobo.info@aasdgmail.com\",\n    \"senha\": \"$2y$10$UHjv0RMbM4kppHMCwq4Q4.Nr/YV8MzXR7sfWEshsOHY8CE1Ngkxzi\",\n    \"dataCadastro\": \"2024-02-20\",\n    \"rua\": \"Rua Hélio Mendes do Amaral\",\n    \"numero\": \"35\",\n    \"bairro\": \"Santa Terezinha\",\n    \"cidade\": \"Mesquita\",\n    \"estado\": \"RJ\",\n    \"cep\": \"26554-110\",\n    \"contato\": null,\n    \"complemento\": \"\",\n    \"fornecedor\": \"0\"\n}",
                 "form": []
             },
+            "reqType": "post",
             "tests": []
         },
         {
@@ -259,11 +267,11 @@
             "method": "PUT",
             "sortNum": 60000,
             "created": "2024-03-21T05:22:03.109Z",
-            "modified": "2024-03-21T05:22:03.109Z",
+            "modified": "2024-03-22T06:47:00.761Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -272,6 +280,7 @@
                 "raw": "{\n    \"idClientes\": \"115\",\n    \"asaas_id\": null,\n    \"nomeCliente\": \"Teste Lobo 005\",\n    \"sexo\": null,\n    \"pessoa_fisica\": \"1\",\n    \"documento\": \"726.553.730-06\",\n    \"telefone\": \"(21)96969-6969\",\n    \"celular\": \"\",\n    \"email\": \"juliolobo.info@aasdgmail.com\",\n    \"senha\": \"$2y$10$UHjv0RMbM4kppHMCwq4Q4.Nr/YV8MzXR7sfWEshsOHY8CE1Ngkxzi\",\n    \"dataCadastro\": \"2024-02-20\",\n    \"rua\": \"Rua Hélio Mendes do Amaral\",\n    \"numero\": \"31\",\n    \"bairro\": \"Santa Terezinha\",\n    \"cidade\": \"Mesquita\",\n    \"estado\": \"RJ\",\n    \"cep\": \"26554-110\",\n    \"contato\": null,\n    \"complemento\": \"\",\n    \"fornecedor\": \"0\"\n}",
                 "form": []
             },
+            "reqType": "put",
             "tests": []
         },
         {
@@ -283,14 +292,15 @@
             "method": "DELETE",
             "sortNum": 70000,
             "created": "2024-03-21T05:22:03.110Z",
-            "modified": "2024-03-21T05:22:03.110Z",
+            "modified": "2024-03-22T06:47:04.299Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
+            "reqType": "del",
             "tests": []
         },
         {
@@ -302,14 +312,15 @@
             "method": "GET",
             "sortNum": 80000,
             "created": "2024-03-21T05:22:03.111Z",
-            "modified": "2024-03-21T05:22:03.111Z",
+            "modified": "2024-03-22T06:48:11.127Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -321,14 +332,15 @@
             "method": "GET",
             "sortNum": 80000,
             "created": "2024-03-21T05:22:03.112Z",
-            "modified": "2024-03-21T05:22:03.112Z",
+            "modified": "2024-03-22T06:47:46.624Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -360,14 +372,15 @@
             "method": "GET",
             "sortNum": 90000,
             "created": "2024-03-21T05:22:03.115Z",
-            "modified": "2024-03-21T05:22:03.115Z",
+            "modified": "2024-03-22T06:48:14.598Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -379,14 +392,15 @@
             "method": "GET",
             "sortNum": 90000,
             "created": "2024-03-21T05:22:03.116Z",
-            "modified": "2024-03-21T05:22:03.116Z",
+            "modified": "2024-03-22T06:47:49.991Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -398,11 +412,11 @@
             "method": "GET",
             "sortNum": 90000,
             "created": "2024-03-21T05:22:03.117Z",
-            "modified": "2024-03-22T06:07:16.084Z",
+            "modified": "2024-03-22T06:48:51.977Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -418,11 +432,11 @@
             "method": "GET",
             "sortNum": 95000,
             "created": "2024-03-21T05:22:03.118Z",
-            "modified": "2024-03-21T05:22:03.118Z",
+            "modified": "2024-03-22T06:48:18.539Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [
@@ -432,6 +446,7 @@
                     "isPath": false
                 }
             ],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -443,11 +458,11 @@
             "method": "GET",
             "sortNum": 95000,
             "created": "2024-03-21T05:22:03.119Z",
-            "modified": "2024-03-21T05:22:03.119Z",
+            "modified": "2024-03-22T06:47:53.622Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [
@@ -457,6 +472,7 @@
                     "isPath": false
                 }
             ],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -468,11 +484,11 @@
             "method": "POST",
             "sortNum": 95000,
             "created": "2024-03-21T05:22:03.120Z",
-            "modified": "2024-03-22T06:07:13.754Z",
+            "modified": "2024-03-22T06:48:48.567Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [
@@ -518,11 +534,11 @@
             "method": "POST",
             "sortNum": 100000,
             "created": "2024-03-21T05:22:03.121Z",
-            "modified": "2024-03-21T05:22:03.121Z",
+            "modified": "2024-03-22T06:48:22.278Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -531,6 +547,7 @@
                 "raw": "{\n  \"codDeBarra\": \"\",\n  \"descricao\": \"teclado\",\n  \"unidade\": \"UNID\",\n  \"precoCompra\": \"51.00\",\n  \"precoVenda\": \"177.00\",\n  \"estoque\": \"201\",\n  \"estoqueMinimo\": \"0\",\n  \"saida\": \"1\",\n  \"entrada\": \"1\"\n}",
                 "form": []
             },
+            "reqType": "post",
             "tests": []
         },
         {
@@ -542,11 +559,11 @@
             "method": "POST",
             "sortNum": 100000,
             "created": "2024-03-21T05:22:03.122Z",
-            "modified": "2024-03-21T05:22:03.122Z",
+            "modified": "2024-03-22T06:47:57.280Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -555,6 +572,7 @@
                 "raw": "{\n  \"nome\": \"Troca de teclado\",\n  \"descricao\": \"Troca de teclado de notebook\",\n  \"preco\": \"151.00\"\n}",
                 "form": []
             },
+            "reqType": "post",
             "tests": []
         },
         {
@@ -566,11 +584,11 @@
             "method": "PUT",
             "sortNum": 110000,
             "created": "2024-03-21T05:22:03.123Z",
-            "modified": "2024-03-21T05:22:03.123Z",
+            "modified": "2024-03-22T06:48:26.016Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -579,6 +597,7 @@
                 "raw": "{\n  \"codDeBarra\": \"\",\n  \"descricao\": \"teclado\",\n  \"unidade\": \"UNID\",\n  \"precoCompra\": \"51.50\",\n  \"precoVenda\": \"177.07\",\n  \"estoque\": \"202\",\n  \"estoqueMinimo\": \"10\",\n  \"saida\": \"1\",\n  \"entrada\": \"1\"\n}",
                 "form": []
             },
+            "reqType": "put",
             "tests": []
         },
         {
@@ -590,11 +609,11 @@
             "method": "PUT",
             "sortNum": 110000,
             "created": "2024-03-21T05:22:03.124Z",
-            "modified": "2024-03-21T05:22:03.124Z",
+            "modified": "2024-03-22T06:48:00.981Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -603,6 +622,7 @@
                 "raw": "{\n  \"nome\": \"Troca de teclado\",\n  \"descricao\": \"Troca de teclado de notebook\",\n  \"preco\": \"152.00\"\n}",
                 "form": []
             },
+            "reqType": "put",
             "tests": []
         },
         {
@@ -614,14 +634,15 @@
             "method": "DELETE",
             "sortNum": 120000,
             "created": "2024-03-21T05:22:03.125Z",
-            "modified": "2024-03-21T05:22:03.125Z",
+            "modified": "2024-03-22T06:48:32.513Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
+            "reqType": "del",
             "tests": []
         },
         {
@@ -633,14 +654,15 @@
             "method": "DELETE",
             "sortNum": 120000,
             "created": "2024-03-21T05:22:03.126Z",
-            "modified": "2024-03-21T05:22:03.126Z",
+            "modified": "2024-03-22T06:48:04.708Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
+            "reqType": "del",
             "tests": []
         },
         {
@@ -652,11 +674,11 @@
             "method": "DELETE",
             "sortNum": 120000,
             "created": "2024-03-21T05:22:03.127Z",
-            "modified": "2024-03-22T06:07:10.814Z",
+            "modified": "2024-03-22T06:48:45.109Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -672,11 +694,11 @@
             "method": "POST",
             "sortNum": 130000,
             "created": "2024-03-21T05:22:03.128Z",
-            "modified": "2024-03-22T06:07:08.080Z",
+            "modified": "2024-03-22T06:48:41.497Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -697,11 +719,11 @@
             "method": "PUT",
             "sortNum": 135000,
             "created": "2024-03-21T05:22:03.129Z",
-            "modified": "2024-03-22T06:07:05.438Z",
+            "modified": "2024-03-22T06:49:00.815Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -722,11 +744,11 @@
             "method": "DELETE",
             "sortNum": 137500,
             "created": "2024-03-21T05:22:03.130Z",
-            "modified": "2024-03-22T06:07:02.788Z",
+            "modified": "2024-03-22T06:49:05.753Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -742,11 +764,11 @@
             "method": "POST",
             "sortNum": 140000,
             "created": "2024-03-21T05:22:03.131Z",
-            "modified": "2024-03-22T06:07:00.403Z",
+            "modified": "2024-03-22T06:49:09.576Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -767,11 +789,11 @@
             "method": "PUT",
             "sortNum": 150000,
             "created": "2024-03-21T05:22:03.132Z",
-            "modified": "2024-03-22T06:06:57.871Z",
+            "modified": "2024-03-22T06:49:13.746Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -792,11 +814,11 @@
             "method": "DELETE",
             "sortNum": 160000,
             "created": "2024-03-21T05:22:03.133Z",
-            "modified": "2024-03-22T06:06:54.994Z",
+            "modified": "2024-03-22T06:49:17.881Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -812,11 +834,11 @@
             "method": "POST",
             "sortNum": 170000,
             "created": "2024-03-21T05:22:03.134Z",
-            "modified": "2024-03-22T06:06:52.072Z",
+            "modified": "2024-03-22T06:49:22.811Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -837,11 +859,11 @@
             "method": "POST",
             "sortNum": 180000,
             "created": "2024-03-21T05:22:03.135Z",
-            "modified": "2024-03-22T06:06:48.320Z",
+            "modified": "2024-03-22T06:49:26.981Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
-                    "value": "{{access_token}}"
+                    "value": "{{authorization}}"
                 }
             ],
             "params": [],
@@ -858,11 +880,11 @@
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "Status",
-            "url": "{{url_jwt}}/status",
+            "url": "{{url_api}}/status",
             "method": "GET",
             "sortNum": 190000,
             "created": "2024-03-21T05:22:03.136Z",
-            "modified": "2024-03-21T05:22:03.136Z",
+            "modified": "2024-03-22T06:43:46.914Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -870,6 +892,7 @@
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -877,11 +900,11 @@
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "Conta",
-            "url": "{{url_jwt}}/conta",
+            "url": "{{url_api}}/conta",
             "method": "GET",
             "sortNum": 200000,
             "created": "2024-03-21T05:22:03.137Z",
-            "modified": "2024-03-21T05:22:03.137Z",
+            "modified": "2024-03-22T06:43:50.004Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -889,6 +912,7 @@
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         }
     ]
