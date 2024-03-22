@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "7fcce07f-4f2e-4f2b-827d-132e4611c41c",
+        "_postman_id": "7b14e561-7243-4c0e-a526-b862558f9408",
         "name": "Api Mapos JWT",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -31,7 +31,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -59,7 +59,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -81,7 +81,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -102,7 +102,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -133,7 +133,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -164,7 +164,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -190,7 +190,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -212,7 +212,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -240,7 +240,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -261,7 +261,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -292,7 +292,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -323,7 +323,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -349,7 +349,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -371,7 +371,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -399,7 +399,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -420,7 +420,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -451,7 +451,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -482,7 +482,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -508,7 +508,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -530,7 +530,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -574,7 +574,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -605,7 +605,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -628,7 +628,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -661,7 +661,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -694,7 +694,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -717,7 +717,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -750,7 +750,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -783,7 +783,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -806,7 +806,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -838,7 +838,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ],
@@ -873,7 +873,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -895,7 +895,7 @@
                         },
                         "header": [
                             {
-                                "key": "X-API-KEY",
+                                "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
                         ]
@@ -939,7 +939,7 @@
                 },
                 "header": [
                     {
-                        "key": "X-API-KEY",
+                        "key": "x-api-key",
                         "value": "{{authorization}}"
                     }
                 ]
@@ -960,7 +960,7 @@
                 },
                 "header": [
                     {
-                        "key": "X-API-KEY",
+                        "key": "x-api-key",
                         "value": "{{authorization}}"
                     }
                 ]
@@ -981,7 +981,7 @@
                 },
                 "header": [
                     {
-                        "key": "X-API-KEY",
+                        "key": "x-api-key",
                         "value": "{{authorization}}"
                     }
                 ]
@@ -1002,7 +1002,7 @@
                 },
                 "header": [
                     {
-                        "key": "X-API-KEY",
+                        "key": "x-api-key",
                         "value": "{{authorization}}"
                     }
                 ]
@@ -1023,7 +1023,7 @@
                 },
                 "header": [
                     {
-                        "key": "X-API-KEY",
+                        "key": "x-api-key",
                         "value": "{{authorization}}"
                     }
                 ]

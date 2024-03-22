@@ -81,10 +81,8 @@ class ClientesController extends REST_Controller
         $_POST = json_decode(file_get_contents("php://input"), true);
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('email', 'E-mail', 'valid_email|required|trim');
-        $this->form_validation->set_rules('password', 'Senha', 'required|trim');
 		
-		if ($this->form_validation->run() == false) {
+		if ($this->form_validation->run('clientes') == false) {
             $this->response([
                 'status' => false,
                 'message' => validation_errors()

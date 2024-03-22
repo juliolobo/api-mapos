@@ -2363,7 +2363,7 @@ abstract class REST_Controller extends CI_Controller {
     {
         $headers = $this->input->request_headers();
 
-        if(!isset($headers['X-Api-Key'])) {
+        if(!isset($headers['x-api-key'])) {
             $this->response([
                 'status'  => false,
                 'message' => 'Faça login para acessar a API.'
@@ -2372,7 +2372,7 @@ abstract class REST_Controller extends CI_Controller {
         }
 
         $this->load->library('Authorization_Token');
-        $decodedToken = (object) $this->authorization_token->validateToken($headers['X-Api-Key']);
+        $decodedToken = (object) $this->authorization_token->validateToken($headers['x-api-key']);
 
         if(!$reGenToken && !$decodedToken->status) {
             $this->response([
