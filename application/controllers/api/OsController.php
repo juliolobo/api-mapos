@@ -1,28 +1,26 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-if (!defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+require(APPPATH.'/libraries/REST_Controller.php');
 
-require APPPATH . 'libraries/RestController.php';
-
-class OsController extends RestController
+class OsController extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
 
         $this->load->model('os_model');
-        $this->load->model('Apikeys_model');
+        $this->load->model('Api_model');
     }
 
     public function index_get($id = '')
-    {        
+    {
+        $this->logged_user();    
         if (!$this->permission->checkPermission($this->logged_user()->level, 'vOs')) {
             $this->response([
                 'status' => false,
                 'message' => 'Você não está autorizado a Visualizar Ordens de Serviços'
-            ], RestController::HTTP_UNAUTHORIZED);
+            ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
         $where_array = [];
@@ -69,9 +67,8 @@ class OsController extends RestController
             $this->response([
                 'status' => true,
                 'message' => 'Listando OSs',
-                'result' => $oss,
-                'refresh_token' => $this->refreshToken()
-            ], RestController::HTTP_OK);
+                'result' => $oss
+            ], REST_Controller::HTTP_OK);
         }
 
         $oss            = $this->os_model->getById($id);
@@ -85,37 +82,34 @@ class OsController extends RestController
         $this->response([
             'status' => true,
             'message' => 'Detalhes da OS',
-            'result' => $oss,
-            'refresh_token' => $this->refreshToken()
-        ], RestController::HTTP_OK);
+            'result' => $oss
+        ], REST_Controller::HTTP_OK);
     }
 
     public function index_post()
     {
+        $this->logged_user();
         if (!$this->permission->checkPermission($this->logged_user()->level, 'aOs')) {
             $this->response([
                 'status'  => false,
                 'message' => 'Você não está autorizado a Adicionar OS!'
-            ], RestController::HTTP_UNAUTHORIZED);
+            ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
-        $inputData = json_decode(trim(file_get_contents('php://input')));
+        $_POST = json_decode(file_get_contents("php://input"), true);
+
+        $this->load->library('form_validation');
         
-        if(!isset($inputData->dataInicial) || 
-           !isset($inputData->dataFinal) || 
-           !isset($inputData->status) || 
-           !isset($inputData->clientes_id) || 
-           !isset($inputData->usuarios_id))
-        {
+        if($this->form_validation->run('os') == false) {
             $this->response([
                 'status' => false,
-                'message' => 'Preencha todos os campos obrigatórios!'
-            ], RestController::HTTP_BAD_REQUEST);
+                'message' => validation_errors()
+            ], REST_Controller::HTTP_BAD_REQUEST);
         }
 
-        $dataInicial     = $inputData->dataInicial;
-        $dataFinal       = $inputData->dataFinal;
-        $termoGarantiaId = $inputData->termoGarantia;
+        $dataInicial     = $this->input->post('dataInicial');
+        $dataFinal       = $this->input->post('dataFinal');
+        $termoGarantiaId = $this->input->post('termoGarantia');
 
         try {
             $dataInicial = explode('/', $dataInicial);
@@ -128,7 +122,7 @@ class OsController extends RestController
                 $dataFinal = date('Y/m/d');
             }
 
-            $termoGarantiaId = (!$termoGarantiaId == null || !$termoGarantiaId == '') ? $inputData->garantias_id : null;
+            $termoGarantiaId = (!$termoGarantiaId == null || !$termoGarantiaId == '') ? $this->input->post('garantias_id') : null;
         } catch (Exception $e) {
             $dataInicial = date('Y/m/d');
             $dataFinal   = date('Y/m/d');
@@ -136,16 +130,16 @@ class OsController extends RestController
 
         $data = [
             'dataInicial'      => $dataInicial,
-            'clientes_id'      => $inputData->clientes_id,
-            'usuarios_id'      => $inputData->usuarios_id,
+            'clientes_id'      => $this->input->post('clientes_id'),
+            'usuarios_id'      => $this->input->post('usuarios_id'),
             'dataFinal'        => $dataFinal,
-            'garantia'         => $inputData->garantia,
+            'garantia'         => $this->input->post('garantia'),
             'garantias_id'     => $termoGarantiaId,
-            'descricaoProduto' => $inputData->descricaoProduto,
-            'defeito'          => $inputData->defeito,
-            'status'           => $inputData->status,
-            'observacoes'      => $inputData->observacoes,
-            'laudoTecnico'     => $inputData->laudoTecnico,
+            'descricaoProduto' => $this->input->post('descricaoProduto'),
+            'defeito'          => $this->input->post('defeito'),
+            'status'           => $this->input->post('status'),
+            'observacoes'      => $this->input->post('observacoes'),
+            'laudoTecnico'     => $this->input->post('laudoTecnico'),
             'faturado'         => 0,
         ];
 
@@ -183,28 +177,36 @@ class OsController extends RestController
                 $this->enviarOsPorEmail($idOs, $remetentes, 'Ordem de Serviço - Criada');
             }
 
-            $this->session->set_flashdata('success', 'OS adicionada com sucesso, você pode adicionar produtos ou serviços a essa OS nas abas de Produtos e Serviços!');
-            log_info('Adicionou uma OS. ID: ' . $id);
-            redirect(site_url('os/editar/') . $id);
-        } else {
-            $this->data['custom_error'] = '<div class="alert">Ocorreu um erro.</div>';
+            log_app('Adicionou uma OS. ID: ' . $id);
+            
+            $this->response([
+                'status' => true,
+                'message' => 'OS adicionada com sucesso!',
+                'result' => $os
+            ], REST_Controller::HTTP_CREATED);
         }
+        
+        $this->response([
+            'status' => false,
+            'message' => 'Não foi possível adicionar a OS. Avise ao Administrador.'
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
 
     public function index_delete($id)
     {
+        $this->logged_user();
         if (!$this->permission->checkPermission($this->logged_user()->level, 'dServico')) {
             $this->response([
                 'status' => false,
                 'message' => 'Você não está autorizado a Apagar OS!'
-            ], RestController::HTTP_UNAUTHORIZED);
+            ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
         if(!$id) {
             $this->response([
                 'status' => false,
                 'message' => 'Informe o ID da OS!'
-            ], RestController::HTTP_BAD_REQUEST);
+            ], REST_Controller::HTTP_BAD_REQUEST);
         }
 
         $os = $this->os_model->getByIdCobrancas($id);
@@ -214,7 +216,7 @@ class OsController extends RestController
                 $this->response([
                     'status' => false,
                     'message' => 'Erro ao tentar excluir OS!'
-                ], RestController::HTTP_BAD_REQUEST);
+                ], REST_Controller::HTTP_BAD_REQUEST);
             }
         }
 
@@ -225,7 +227,7 @@ class OsController extends RestController
                 $this->response([
                     'status' => false,
                     'message' => 'Existe uma cobrança associada a esta OS, deve cancelar e/ou excluir a cobrança primeiro!'
-                ], RestController::HTTP_BAD_REQUEST);
+                ], REST_Controller::HTTP_BAD_REQUEST);
             }
         }
 
@@ -247,33 +249,36 @@ class OsController extends RestController
             $this->log_app('Removeu uma OS ID' . $id);
             $this->response([
                 'status' => true,
-                'message' => 'OS excluída com sucesso!',
-                'refresh_token' => $this->refreshToken()
-            ], RestController::HTTP_OK);
+                'message' => 'OS excluída com sucesso!'
+            ], REST_Controller::HTTP_OK);
         }
 
         $this->response([
             'status' => false,
             'message' => 'Não foi possível excluir a OS Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
     
     public function produtos_post($id)
     {
-        $inputData = json_decode(trim(file_get_contents('php://input')));
+        $this->logged_user();
 
-        if(!isset($inputData->idProduto) || !isset($inputData->quantidade) || !isset($inputData->preco)) {
+        $_POST = json_decode(trim(file_get_contents('php://input')));
+        
+        $this->load->library('form_validation');
+
+        if ($this->form_validation->run('adicionar_produto_os') === false) {
             $this->response([
                 'status' => false,
-                'message' => 'Preencha todos os campos obrigatórios!'
-            ], RestController::HTTP_BAD_REQUEST);
+                'message' => validation_errors()
+            ], REST_Controller::HTTP_BAD_REQUEST);
         }
 
         $data = [
-            'produtos_id' => $inputData->idProduto,
-            'preco'       => $inputData->preco,
-            'quantidade'  => $inputData->quantidade,
-            'subTotal'    => $inputData->preco * $inputData->quantidade,
+            'produtos_id' => $this->input->post('idProduto'),
+            'preco'       => $this->input->post('preco'),
+            'quantidade'  => $this->input->post('quantidade'),
+            'subTotal'    => $this->input->post('preco') * $this->input->post('quantidade'),
             'os_id'       => $id,
         ];
 
@@ -282,15 +287,15 @@ class OsController extends RestController
             $this->response([
                 'status'  => false,
                 'message' => 'Erro ao tentar inserir produto na OS. OS Não encontrada!'
-            ], RestController::HTTP_BAD_REQUEST);
+            ], REST_Controller::HTTP_BAD_REQUEST);
         }
 
         if ($this->os_model->add('produtos_os', $data) == true) {
-            $lastProdutoOs = $this->Apikeys_model->lastRow('produtos_os', 'idProdutos_os');
+            $lastProdutoOs = $this->Api_model->lastRow('produtos_os', 'idProdutos_os');
 
             $this->load->model('produtos_model');
 
-            $this->produtoEstoque($inputData->idProduto, $inputData->quantidade, '-');
+            $this->produtoEstoque($this->input->post('idProduto'), $this->input->post('quantidade'), '-');
 
             $this->db->set('desconto', 0.00);
             $this->db->set('valor_desconto', 0.00);
@@ -302,27 +307,27 @@ class OsController extends RestController
 
             $result = $lastProdutoOs;
             unset($result->descricao);
-            $result->produto = $this->produtos_model->getById($inputData->idProduto);
+            $result->produto = $this->produtos_model->getById($this->input->post('idProduto'));
 
             $this->response([
                 'status'  => true,
                 'message' => 'Produto adicinado com sucesso!',
-                'result'  => $result,
-                'refresh_token' => $this->refreshToken()
-            ], RestController::HTTP_OK);
+                'result'  => $result
+            ], REST_Controller::HTTP_OK);
         }
         
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível adicionar o Produto. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
     
     public function produtos_put($id, $idProdutos_os)
     {
+        $this->logged_user();
         $inputData = json_decode(trim(file_get_contents('php://input')));
         
-        $ddAntigo = $this->Apikeys_model->getRowById('produtos_os', 'idProdutos_os', $idProdutos_os);
+        $ddAntigo = $this->Api_model->getRowById('produtos_os', 'idProdutos_os', $idProdutos_os);
 
         $subTotal = $inputData->preco * $inputData->quantidade;
 
@@ -347,34 +352,34 @@ class OsController extends RestController
             $this->response([
                 'status'  => true,
                 'message' => 'Produto da OS editado com sucesso!',
-                'result'  => $data,
-                'refresh_token' => $this->refreshToken()
-            ], RestController::HTTP_OK);
+                'result'  => $data
+            ], REST_Controller::HTTP_OK);
         }
         
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível editar o Produto da OS. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
 
     public function produtos_delete($id, $idProdutos_os)
     {
+        $this->logged_user();
         $os = $this->os_model->getById($id);
         if ($os == null) {
             $this->response([
                 'status'  => false,
                 'message' => 'Não foi possível excluir o Produto da OS.'
-            ], RestController::HTTP_BAD_REQUEST);
+            ], REST_Controller::HTTP_BAD_REQUEST);
         }
         
-        $ddAntigo = $this->Apikeys_model->getRowById('produtos_os', 'idProdutos_os', $idProdutos_os);
+        $ddAntigo = $this->Api_model->getRowById('produtos_os', 'idProdutos_os', $idProdutos_os);
 
         if(!$ddAntigo) {
             $this->response([
                 'status'  => false,
                 'message' => 'Não foi encontrado esse Produto na OS.'
-            ], RestController::HTTP_BAD_REQUEST);
+            ], REST_Controller::HTTP_BAD_REQUEST);
         }
 
         if ($this->os_model->delete('produtos_os', 'idProdutos_os', $idProdutos_os) == true) {
@@ -390,38 +395,40 @@ class OsController extends RestController
 
             $this->response([
                 'status'  => true,
-                'message' => 'Produto da OS excluído com sucesso!',
-                'refresh_token' => $this->refreshToken()
-            ], RestController::HTTP_OK);
+                'message' => 'Produto da OS excluído com sucesso!'
+            ], REST_Controller::HTTP_OK);
         }
         
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível excluir o Produto da OS. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
 
     public function servicos_post($id)
     {
-        $inputData = json_decode(trim(file_get_contents('php://input')));
+        $this->logged_user();
+        $_POST = json_decode(trim(file_get_contents('php://input')));
 
-        if(!isset($inputData->idServico) || !isset($inputData->quantidade) || !isset($inputData->preco)) {
+        $this->load->library('form_validation');
+
+        if ($this->form_validation->run('adicionar_servico_os') === false) {
             $this->response([
                 'status' => false,
-                'message' => 'Preencha todos os campos obrigatórios!'
-            ], RestController::HTTP_BAD_REQUEST);
+                'message' => validation_errors()
+            ], REST_Controller::HTTP_BAD_REQUEST);
         }
 
         $data = [
-            'servicos_id' => $inputData->idServico,
-            'quantidade'  => $inputData->quantidade,
-            'preco'       => $inputData->preco,
-            'subTotal'    => $inputData->preco * $inputData->quantidade,
+            'servicos_id' => $this->input->post('idServico'),
+            'quantidade'  => $this->input->post('quantidade'),
+            'preco'       => $this->input->post('preco'),
+            'subTotal'    => $this->input->post('preco') * $this->input->post('quantidade'),
             'os_id'       => $id,
         ];
 
         if ($this->os_model->add('servicos_os', $data) == true) {
-            $lastServicoOs = $this->Apikeys_model->lastRow('servicos_os', 'idServicos_os');
+            $lastServicoOs = $this->Api_model->lastRow('servicos_os', 'idServicos_os');
 
             $this->load->model('servicos_model');
 
@@ -435,27 +442,27 @@ class OsController extends RestController
 
             $result = $lastServicoOs;
             unset($result->servico);
-            $result->servico = $this->servicos_model->getById($inputData->idServico);
+            $result->servico = $this->servicos_model->getById($this->input->post('idServico'));
 
             $this->response([
                 'status'  => true,
                 'message' => 'Serviço adicinado com sucesso!',
-                'result'  => $result,
-                'refresh_token' => $this->refreshToken()
-            ], RestController::HTTP_OK);
+                'result'  => $result
+            ], REST_Controller::HTTP_OK);
         }
         
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível adicionar o Serviço. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
     
     public function servicos_put($id, $idServicos_os)
     {
+        $this->logged_user();
         $inputData = json_decode(trim(file_get_contents('php://input')));
 
-        $ddAntigo = $this->Apikeys_model->getRowById('servicos_os', 'idServicos_os', $idServicos_os);
+        $ddAntigo = $this->Api_model->getRowById('servicos_os', 'idServicos_os', $idServicos_os);
 
         $subTotal = $inputData->preco * $inputData->quantidade;
 
@@ -473,19 +480,19 @@ class OsController extends RestController
             $this->response([
                 'status'  => true,
                 'message' => 'Serviço da OS editado com sucesso!',
-                'result'  => $data,
-                'refresh_token' => $this->refreshToken()
-            ], RestController::HTTP_OK);
+                'result'  => $data
+            ], REST_Controller::HTTP_OK);
         }
         
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível editar o Serviço da OS. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
 
     public function servicos_delete($id, $idServicos_os)
     {
+        $this->logged_user();
         if ($this->os_model->delete('servicos_os', 'idServicos_os', $idServicos_os) == true) {
             $this->log_app('Removeu Serviço de uma OS. ID (OS): ' . $id);
             $this->CI = &get_instance();
@@ -498,73 +505,75 @@ class OsController extends RestController
             
             $this->response([
                 'status'  => true,
-                'message' => 'Serviço da OS excluído com sucesso!',
-                'refresh_token' => $this->refreshToken()
-            ], RestController::HTTP_OK);
+                'message' => 'Serviço da OS excluído com sucesso!'
+            ], REST_Controller::HTTP_OK);
         }
         
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível excluir o Serviço da OS. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
 
     public function anotacoes_post($id)
     {
-        $inputData = json_decode(trim(file_get_contents('php://input')));
+        $this->logged_user();
 
-        if(!isset($inputData->anotacao)) {
+        $_POST = json_decode(trim(file_get_contents('php://input')));
+
+        $this->load->library('form_validation');
+        
+        if($this->form_validation->run('anotacoes_os') == false) {
             $this->response([
                 'status' => false,
-                'message' => 'Preencha todos os campos obrigatórios!'
-            ], RestController::HTTP_BAD_REQUEST);
+                'message' => validation_errors()
+            ], REST_Controller::HTTP_BAD_REQUEST);
         }
         
         $data = [
-            'anotacao' => "[{$this->logged_user()->usuario->nome}] ".$inputData->anotacao,
+            'anotacao' => "[{$this->logged_user()->usuario->nome}] ".$this->input->post('anotacao'),
             'data_hora' => date('Y-m-d H:i:s'),
             'os_id' => $id,
         ];
 
         if ($this->os_model->add('anotacoes_os', $data) == true) {
-            $lastAnotacao = $this->Apikeys_model->lastRow('anotacoes_os', 'idAnotacoes');
+            $lastAnotacao = $this->Api_model->lastRow('anotacoes_os', 'idAnotacoes');
             $this->log_app('Adicionou anotação a uma OS. ID (OS): ' . $id);
             
             $result = [
                 'idAnotacoes' => $lastAnotacao->idAnotacoes,
-                'anotacao'   => $inputData->anotacao
+                'anotacao'   => $this->input->post('anotacao')
             ];
 
             $this->response([
                 'status'  => true,
                 'message' => 'Serviço adicinado com sucesso!',
-                'result'  => $result,
-                'refresh_token' => $this->refreshToken()
-            ], RestController::HTTP_OK);
+                'result'  => $result
+            ], REST_Controller::HTTP_OK);
         }
         
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível adicionar Anotação. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
 
     public function anotacoes_delete($id, $idAnotacao)
     {
+        $this->logged_user();
         if ($this->os_model->delete('anotacoes_os', 'idAnotacoes', $idAnotacao) == true) {
             $this->log_app('Removeu anotação de uma OS. ID (OS): ' . $id);
             
             $this->response([
                 'status'  => true,
-                'message' => 'Anotação excluída com sucesso!',
-                'refresh_token' => $this->refreshToken()
-            ], RestController::HTTP_OK);
+                'message' => 'Anotação excluída com sucesso!'
+            ], REST_Controller::HTTP_OK);
         }
         
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível excluir a Anotação. Avise ao Administrador.'
-        ], RestController::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
 
     private function calcTotal($id)

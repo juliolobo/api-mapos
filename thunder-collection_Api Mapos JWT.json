@@ -1,0 +1,862 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Api Mapos JWT",
+    "dateExported": "2024-03-18T18:44:24.596Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "name": "Clientes",
+            "containerId": "",
+            "created": "2024-03-03T15:58:38.133Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "name": "Serviços",
+            "containerId": "",
+            "created": "2024-03-03T15:58:38.134Z",
+            "sortNum": 15000
+        },
+        {
+            "_id": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "name": "Produtos",
+            "containerId": "",
+            "created": "2024-03-03T15:58:38.135Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "OSs",
+            "containerId": "",
+            "created": "2024-03-03T15:58:38.136Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "aede2aa8-9b9f-40ac-bfb9-300120e30c94",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "",
+            "name": "Login",
+            "url": "{{url_jwt}}/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-03T15:58:38.133Z",
+            "modified": "2024-03-10T02:05:35.987Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"juliolobo.info@gmail.com\",\n  \"password\": \"poiu7890\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "800ab624-d094-468f-bb1e-4d9bd952fa19",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "",
+            "name": "reGenToken",
+            "url": "{{url_jwt}}/reGenToken",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-03-10T02:04:22.616Z",
+            "modified": "2024-03-10T03:24:06.495Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "a0446779-af30-460c-9422-99b0f01880f0",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "",
+            "name": "Index",
+            "url": "{{url_jwt}}",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-03-03T15:58:38.135Z",
+            "modified": "2024-03-10T02:55:36.456Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "84ef9e27-6a0a-46d2-9ab2-c928a5057b31",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "",
+            "name": "Emitente",
+            "url": "{{url_jwt}}/emitente",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-03-03T15:58:38.136Z",
+            "modified": "2024-03-10T02:59:03.667Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "f1bba7fa-f6bc-4164-97c2-d6b8c57747f5",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "name": "Clientes/Index",
+            "url": "{{url_api}}/clientes?page=2",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-03-03T15:58:38.137Z",
+            "modified": "2024-03-03T15:58:38.137Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "2",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "6a476507-8ba8-4f72-a92c-843c84a3166b",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "name": "Clientes/Search",
+            "url": "{{url_api}}/clientes/?search=6969",
+            "method": "GET",
+            "sortNum": 52500,
+            "created": "2024-03-03T15:58:38.138Z",
+            "modified": "2024-03-03T15:58:38.138Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [
+                {
+                    "name": "search",
+                    "value": "6969",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "3822355d-ed79-4101-831e-5eb71b1b7ea6",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "name": "Clientes/ById",
+            "url": "{{url_api}}/clientes/1",
+            "method": "GET",
+            "sortNum": 53750,
+            "created": "2024-03-03T15:58:38.139Z",
+            "modified": "2024-03-03T15:58:38.139Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "8c43c0ae-1bd9-4da0-a1d8-069fceb7aaef",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "name": "Clientes/Create",
+            "url": "{{url_api}}/clientes",
+            "method": "POST",
+            "sortNum": 55000,
+            "created": "2024-03-03T15:58:38.140Z",
+            "modified": "2024-03-03T15:58:38.140Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"asaas_id\": null,\n    \"nomeCliente\": \"Teste Lobo 006\",\n    \"sexo\": null,\n    \"pessoa_fisica\": \"1\",\n    \"documento\": \"\",\n    \"telefone\": \"(21)96969-6969\",\n    \"celular\": \"\",\n    \"email\": \"juliolobo.info@aasdgmail.com\",\n    \"senha\": \"$2y$10$UHjv0RMbM4kppHMCwq4Q4.Nr/YV8MzXR7sfWEshsOHY8CE1Ngkxzi\",\n    \"dataCadastro\": \"2024-02-20\",\n    \"rua\": \"Rua Hélio Mendes do Amaral\",\n    \"numero\": \"35\",\n    \"bairro\": \"Santa Terezinha\",\n    \"cidade\": \"Mesquita\",\n    \"estado\": \"RJ\",\n    \"cep\": \"26554-110\",\n    \"contato\": null,\n    \"complemento\": \"\",\n    \"fornecedor\": \"0\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a2463662-a4eb-4874-845f-2924c3358f61",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "name": "Clientes/UPDATE",
+            "url": "{{url_api}}/clientes/115",
+            "method": "PUT",
+            "sortNum": 60000,
+            "created": "2024-03-03T15:58:38.141Z",
+            "modified": "2024-03-03T15:58:38.141Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"idClientes\": \"115\",\n    \"asaas_id\": null,\n    \"nomeCliente\": \"Teste Lobo 005\",\n    \"sexo\": null,\n    \"pessoa_fisica\": \"1\",\n    \"documento\": \"726.553.730-06\",\n    \"telefone\": \"(21)96969-6969\",\n    \"celular\": \"\",\n    \"email\": \"juliolobo.info@aasdgmail.com\",\n    \"senha\": \"$2y$10$UHjv0RMbM4kppHMCwq4Q4.Nr/YV8MzXR7sfWEshsOHY8CE1Ngkxzi\",\n    \"dataCadastro\": \"2024-02-20\",\n    \"rua\": \"Rua Hélio Mendes do Amaral\",\n    \"numero\": \"31\",\n    \"bairro\": \"Santa Terezinha\",\n    \"cidade\": \"Mesquita\",\n    \"estado\": \"RJ\",\n    \"cep\": \"26554-110\",\n    \"contato\": null,\n    \"complemento\": \"\",\n    \"fornecedor\": \"0\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "fb44a503-3e05-4fa0-bf93-5ef68e6f4ec8",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "name": "Clientes/Delete",
+            "url": "{{url_api}}/clientes/94",
+            "method": "DELETE",
+            "sortNum": 70000,
+            "created": "2024-03-03T15:58:38.142Z",
+            "modified": "2024-03-03T15:58:38.142Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d7934a32-709b-45b9-a04e-30a9bda431d8",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "name": "Get All",
+            "url": "{{url_api}}/produtos",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-03-03T15:58:38.143Z",
+            "modified": "2024-03-03T15:58:38.143Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ed6a9dc5-c8b3-44e7-910a-e74245303f55",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "name": "Get All",
+            "url": "{{url_api}}/servicos",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-03-03T15:58:38.144Z",
+            "modified": "2024-03-03T15:58:38.144Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "2b3ffbda-4e48-4820-a4c2-ff38270b584f",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Get All",
+            "url": "{{url_jwt}}/os",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-03-03T15:58:38.145Z",
+            "modified": "2024-03-10T03:52:10.765Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "a5dcc334-7733-46d3-a2bc-c7ebe5f5505d",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Get All Copy",
+            "url": "{{url_api}}/os",
+            "method": "GET",
+            "sortNum": 82500,
+            "created": "2024-03-03T15:58:38.146Z",
+            "modified": "2024-03-03T15:58:38.146Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "71a680df-1c45-4673-a0f4-649869bc163f",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "name": "Get by Id",
+            "url": "{{url_api}}/produtos/48",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2024-03-03T15:58:38.147Z",
+            "modified": "2024-03-03T15:58:38.147Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "3de5dd95-0772-4f27-9170-0b663b573f6c",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "name": "Get by Id",
+            "url": "{{url_api}}/servicos/4",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2024-03-03T15:58:38.148Z",
+            "modified": "2024-03-03T15:58:38.148Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "f8f78b3e-0528-4078-932d-a15aa68b8b4d",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Get By ID",
+            "url": "{{url_api}}/os/19",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2024-03-03T15:58:38.149Z",
+            "modified": "2024-03-03T15:58:38.149Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "36ba0d19-db27-4fee-ab5c-e5c53e2cf574",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "name": "Search",
+            "url": "{{url_api}}/produtos/?search=telefone",
+            "method": "GET",
+            "sortNum": 95000,
+            "created": "2024-03-03T15:58:38.150Z",
+            "modified": "2024-03-03T15:58:38.150Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [
+                {
+                    "name": "search",
+                    "value": "telefone",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "b2f45d5e-dedb-4147-b59f-56db88fab9d0",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "name": "Search",
+            "url": "{{url_api}}/servicos/?search=teclado",
+            "method": "GET",
+            "sortNum": 95000,
+            "created": "2024-03-03T15:58:38.151Z",
+            "modified": "2024-03-03T15:58:38.151Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [
+                {
+                    "name": "search",
+                    "value": "teclado",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "9c774ff8-280d-47f7-8945-7131d27af1bf",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Add OS",
+            "url": "{{url_api}}/os/",
+            "method": "POST",
+            "sortNum": 95000,
+            "created": "2024-03-03T15:58:38.152Z",
+            "modified": "2024-03-03T15:58:38.152Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [
+                {
+                    "name": "search",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "status",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "from",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "to",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"dataInicial\": \"\",\n  \"dataFinal\": \"\",\n  \"status\": \"\",\n  \"clientes_id\": \"\",\n  \"usuarios_id\": \"\",\n  \"termoGarantia\": \"\",\n  \"garantias_id\": \"\",\n  \"garantia\": \"\",\n  \"descricaoProduto\": \"\",\n  \"defeito\": \"\",\n  \"observacoes\": \"\",\n  \"laudoTecnico\": \"\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "311490a8-54eb-4ac3-8a96-485e2fa8fee6",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "name": "Produtos/Create",
+            "url": "{{url_api}}/produtos",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-03-03T15:58:38.153Z",
+            "modified": "2024-03-03T15:58:38.153Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"codDeBarra\": \"\",\n  \"descricao\": \"teclado\",\n  \"unidade\": \"UNID\",\n  \"precoCompra\": \"51.00\",\n  \"precoVenda\": \"177.00\",\n  \"estoque\": \"201\",\n  \"estoqueMinimo\": \"0\",\n  \"saida\": \"1\",\n  \"entrada\": \"1\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "0bd0e2ea-4e47-47d9-a878-6060eba57f3e",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "name": "Serviços/Create",
+            "url": "{{url_api}}/servicos",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-03-03T15:58:38.154Z",
+            "modified": "2024-03-03T15:58:38.154Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Troca de teclado\",\n  \"descricao\": \"Troca de teclado de notebook\",\n  \"preco\": \"151.00\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "498e36b4-b588-4fba-8d11-412078bc163b",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "name": "Produtos/Update",
+            "url": "{{url_api}}/produtos/49",
+            "method": "PUT",
+            "sortNum": 110000,
+            "created": "2024-03-03T15:58:38.155Z",
+            "modified": "2024-03-03T15:58:38.155Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"codDeBarra\": \"\",\n  \"descricao\": \"teclado\",\n  \"unidade\": \"UNID\",\n  \"precoCompra\": \"51.50\",\n  \"precoVenda\": \"177.07\",\n  \"estoque\": \"202\",\n  \"estoqueMinimo\": \"10\",\n  \"saida\": \"1\",\n  \"entrada\": \"1\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1f6397f9-988e-4b22-a2a8-238e3975d25d",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "name": "Produtos/Update",
+            "url": "{{url_api}}/servicos/4",
+            "method": "PUT",
+            "sortNum": 110000,
+            "created": "2024-03-03T15:58:38.156Z",
+            "modified": "2024-03-03T15:58:38.156Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Troca de teclado\",\n  \"descricao\": \"Troca de teclado de notebook\",\n  \"preco\": \"152.00\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d8c177d2-99ca-4ac6-aee7-767945edac1b",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "name": "Produtos/Delete",
+            "url": "{{url_api}}/produtos/48",
+            "method": "DELETE",
+            "sortNum": 120000,
+            "created": "2024-03-03T15:58:38.157Z",
+            "modified": "2024-03-03T15:58:38.157Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "297d37a6-a898-49b3-809c-39a7c26b7945",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "name": "Produtos/Delete",
+            "url": "{{url_api}}/servicos/3",
+            "method": "DELETE",
+            "sortNum": 120000,
+            "created": "2024-03-03T15:58:38.158Z",
+            "modified": "2024-03-03T15:58:38.158Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d0749bfa-0e9b-4d20-acce-e8efdfcc3d7d",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Delete",
+            "url": "{{url_api}}/os/3",
+            "method": "DELETE",
+            "sortNum": 120000,
+            "created": "2024-03-03T15:58:38.159Z",
+            "modified": "2024-03-03T15:58:38.159Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d873e0d5-20bd-47fb-881c-1c25a19cc118",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Add Produto OS",
+            "url": "{{url_api}}/os/19/produtos",
+            "method": "POST",
+            "sortNum": 130000,
+            "created": "2024-03-03T15:58:38.160Z",
+            "modified": "2024-03-03T15:58:38.160Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"idProduto\": \"43\",\n  \"preco\": \"175.00\",\n  \"quantidade\": \"1\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "c12dc925-fa03-4d60-a3b2-3d3d59c2cf6c",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Update Produto OS",
+            "url": "{{url_api}}/os/19/produtos/14",
+            "method": "PUT",
+            "sortNum": 135000,
+            "created": "2024-03-03T15:58:38.161Z",
+            "modified": "2024-03-03T15:58:38.161Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"quantidade\": \"1\",\n  \"preco\": \"175\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "35574b29-8639-4579-b3e7-d07307c28729",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Delete Produto OS",
+            "url": "{{url_api}}/os/19/produtos/14",
+            "method": "DELETE",
+            "sortNum": 137500,
+            "created": "2024-03-03T15:58:38.162Z",
+            "modified": "2024-03-03T15:58:38.162Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c467aa23-9894-4413-a6ba-0c112c281fdc",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Add Serviço OS",
+            "url": "{{url_api}}/os/19/servicos",
+            "method": "POST",
+            "sortNum": 140000,
+            "created": "2024-03-03T15:58:38.163Z",
+            "modified": "2024-03-03T15:58:38.163Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"idServico\": \"2\",\n  \"preco\": \"550\",\n  \"quantidade\": \"2\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "02457e99-d4a4-48a5-a9f2-88f5e2323320",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Update Serviço OS",
+            "url": "{{url_api}}/os/19/servicos/10",
+            "method": "PUT",
+            "sortNum": 150000,
+            "created": "2024-03-03T15:58:38.164Z",
+            "modified": "2024-03-03T15:58:38.164Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"quantidade\": \"1\",\n  \"preco\": \"550.00\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7a26cf99-4428-45e0-a425-d1f5cd7112d3",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Delete Serviço OS",
+            "url": "{{url_api}}/os/19/servicos/11",
+            "method": "DELETE",
+            "sortNum": 160000,
+            "created": "2024-03-03T15:58:38.165Z",
+            "modified": "2024-03-03T15:58:38.165Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5d183f9b-1ab7-46a4-9e33-5335bb51ee9f",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Add Anotação",
+            "url": "{{url_api}}/os/19/anotacoes",
+            "method": "POST",
+            "sortNum": 170000,
+            "created": "2024-03-03T15:58:38.166Z",
+            "modified": "2024-03-03T15:58:38.166Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"anotacao\": \"Teste de anotação API 2\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "789da6f2-cc20-4be5-b89a-4bd87c40e320",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "name": "Delete Anotação",
+            "url": "{{url_api}}/os/19/anotacoes",
+            "method": "POST",
+            "sortNum": 180000,
+            "created": "2024-03-03T15:58:38.167Z",
+            "modified": "2024-03-03T15:58:38.167Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"anotacao\": \"Teste de anotação API 2\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8a4a6f69-5525-4f04-a112-46c11b3fde30",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "",
+            "name": "Status",
+            "url": "{{url_jwt}}/status",
+            "method": "GET",
+            "sortNum": 190000,
+            "created": "2024-03-03T15:58:38.168Z",
+            "modified": "2024-03-10T02:55:58.102Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "40d5603c-ebed-48c5-8eaf-553ca0c15a25",
+            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "containerId": "",
+            "name": "Conta",
+            "url": "{{url_jwt}}/conta",
+            "method": "GET",
+            "sortNum": 200000,
+            "created": "2024-03-03T15:58:38.169Z",
+            "modified": "2024-03-10T02:56:02.293Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        }
+    ]
+}
