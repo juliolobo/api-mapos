@@ -1,16 +1,24 @@
 {
     "client": "Thunder Client",
     "environmentName": "Mapos Api",
-    "dateExported": "2024-03-02T07:12:52.039Z",
+    "dateExported": "2024-03-22T06:20:37.904Z",
     "version": "1.0",
     "variables": [
         {
             "name": "url_api",
-            "value": "http://localhost/projetos/mapos-custom/api"
+            "value": "http://localhost/projetos/MapOS/mapos-api-jwt/index.php/api"
         },
         {
             "name": "access_token",
             "value": "$2y$10$xfcOfY5FZYOtANA0tMMGU.JKyBAVU6MHCkeevt/Kb4.Ea.YkLLI.q"
+        },
+        {
+            "name": "url_jwt",
+            "value": "http://localhost/projetos/MapOS/mapos-api-jwt/index.php/api"
+        },
+        {
+            "name": "authorization",
+            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxIiwiZW1haWwiOiJqdWxpb2xvYm8uaW5mb0BnbWFpbC5jb20iLCJwZXJtaXNzYW8iOiIxIiwiQVBJX1RJTUUiOjE3MTEwODc4MjJ9.bSGcV3hFUvVlrfDOND4TyWXa7GQnmQCkuI3dp9aZtpU"
         }
     ]
 }

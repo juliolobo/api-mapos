@@ -1,49 +1,56 @@
 {
     "client": "Thunder Client",
     "collectionName": "Api Mapos JWT",
-    "dateExported": "2024-03-18T18:44:24.596Z",
+    "dateExported": "2024-03-22T06:19:54.497Z",
     "version": "1.1",
     "folders": [
         {
-            "_id": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "_id": "9435fb73-4219-4265-8308-f495a4d0d903",
             "name": "Clientes",
             "containerId": "",
-            "created": "2024-03-03T15:58:38.133Z",
+            "created": "2024-03-21T05:22:03.102Z",
             "sortNum": 10000
         },
         {
-            "_id": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "_id": "3942590f-9890-4183-a10b-e3daab2d44e8",
             "name": "Serviços",
             "containerId": "",
-            "created": "2024-03-03T15:58:38.134Z",
+            "created": "2024-03-21T05:22:03.103Z",
             "sortNum": 15000
         },
         {
-            "_id": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "_id": "c2cea663-9b18-4cb1-843c-0253ef80b4ca",
             "name": "Produtos",
             "containerId": "",
-            "created": "2024-03-03T15:58:38.135Z",
+            "created": "2024-03-21T05:22:03.104Z",
             "sortNum": 20000
         },
         {
-            "_id": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "OSs",
             "containerId": "",
-            "created": "2024-03-03T15:58:38.136Z",
+            "created": "2024-03-21T05:22:03.105Z",
             "sortNum": 30000
+        },
+        {
+            "_id": "283bf432-5030-4362-8913-99dab6e1b13f",
+            "name": "Usuarios",
+            "containerId": "",
+            "created": "2024-03-22T05:59:33.797Z",
+            "sortNum": 40000
         }
     ],
     "requests": [
         {
-            "_id": "aede2aa8-9b9f-40ac-bfb9-300120e30c94",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "_id": "4555d1aa-b973-456d-97f5-3dda6d66847c",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "Login",
             "url": "{{url_jwt}}/login",
             "method": "POST",
             "sortNum": 10000,
-            "created": "2024-03-03T15:58:38.133Z",
-            "modified": "2024-03-10T02:05:35.987Z",
+            "created": "2024-03-21T05:22:03.102Z",
+            "modified": "2024-03-21T05:22:03.102Z",
             "headers": [],
             "params": [],
             "body": {
@@ -51,19 +58,38 @@
                 "raw": "{\n  \"email\": \"juliolobo.info@gmail.com\",\n  \"password\": \"poiu7890\"\n}",
                 "form": []
             },
-            "reqType": "post",
             "tests": []
         },
         {
-            "_id": "800ab624-d094-468f-bb1e-4d9bd952fa19",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "_id": "f02c7f8c-d5f9-4604-b633-9ce7d06c40b0",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "283bf432-5030-4362-8913-99dab6e1b13f",
+            "name": "Get All",
+            "url": "{{url_api}}/usuarios",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-03-22T06:05:34.499Z",
+            "modified": "2024-03-22T06:08:10.370Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "e2eacb5e-9d31-4dbb-ba80-ef6820709cee",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "reGenToken",
             "url": "{{url_jwt}}/reGenToken",
             "method": "GET",
             "sortNum": 20000,
-            "created": "2024-03-10T02:04:22.616Z",
-            "modified": "2024-03-10T03:24:06.495Z",
+            "created": "2024-03-21T05:22:03.138Z",
+            "modified": "2024-03-21T05:22:03.138Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -71,19 +97,38 @@
                 }
             ],
             "params": [],
-            "reqType": "post",
             "tests": []
         },
         {
-            "_id": "a0446779-af30-460c-9422-99b0f01880f0",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "_id": "71725268-f3dd-4f99-b5b3-cbdb4d87483f",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "283bf432-5030-4362-8913-99dab6e1b13f",
+            "name": "Get by ID",
+            "url": "{{url_api}}/usuarios/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-03-22T06:11:25.786Z",
+            "modified": "2024-03-22T06:11:52.095Z",
+            "headers": [
+                {
+                    "name": "X-API-KEY",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "4c74a1a0-374c-43ba-8ffc-3578a01054a6",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "Index",
             "url": "{{url_jwt}}",
             "method": "GET",
             "sortNum": 30000,
-            "created": "2024-03-03T15:58:38.135Z",
-            "modified": "2024-03-10T02:55:36.456Z",
+            "created": "2024-03-21T05:22:03.103Z",
+            "modified": "2024-03-21T05:22:03.103Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -91,19 +136,18 @@
                 }
             ],
             "params": [],
-            "reqType": "get",
             "tests": []
         },
         {
-            "_id": "84ef9e27-6a0a-46d2-9ab2-c928a5057b31",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "_id": "175e9ae4-3724-491d-b969-bba10014e919",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "Emitente",
             "url": "{{url_jwt}}/emitente",
             "method": "GET",
             "sortNum": 40000,
-            "created": "2024-03-03T15:58:38.136Z",
-            "modified": "2024-03-10T02:59:03.667Z",
+            "created": "2024-03-21T05:22:03.104Z",
+            "modified": "2024-03-21T05:22:03.104Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -111,19 +155,18 @@
                 }
             ],
             "params": [],
-            "reqType": "get",
             "tests": []
         },
         {
-            "_id": "f1bba7fa-f6bc-4164-97c2-d6b8c57747f5",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "_id": "48cecd47-99d2-47e5-8451-d77fade5570f",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "9435fb73-4219-4265-8308-f495a4d0d903",
             "name": "Clientes/Index",
             "url": "{{url_api}}/clientes?page=2",
             "method": "GET",
             "sortNum": 50000,
-            "created": "2024-03-03T15:58:38.137Z",
-            "modified": "2024-03-03T15:58:38.137Z",
+            "created": "2024-03-21T05:22:03.105Z",
+            "modified": "2024-03-21T05:22:03.105Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -140,15 +183,15 @@
             "tests": []
         },
         {
-            "_id": "6a476507-8ba8-4f72-a92c-843c84a3166b",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "_id": "84d9e0c1-edbd-4f8e-94c7-6821b46d082c",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "9435fb73-4219-4265-8308-f495a4d0d903",
             "name": "Clientes/Search",
             "url": "{{url_api}}/clientes/?search=6969",
             "method": "GET",
             "sortNum": 52500,
-            "created": "2024-03-03T15:58:38.138Z",
-            "modified": "2024-03-03T15:58:38.138Z",
+            "created": "2024-03-21T05:22:03.106Z",
+            "modified": "2024-03-21T05:22:03.106Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -165,15 +208,15 @@
             "tests": []
         },
         {
-            "_id": "3822355d-ed79-4101-831e-5eb71b1b7ea6",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "_id": "4fb09f1f-369e-4f36-bb57-9bd73f8d1fd2",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "9435fb73-4219-4265-8308-f495a4d0d903",
             "name": "Clientes/ById",
             "url": "{{url_api}}/clientes/1",
             "method": "GET",
             "sortNum": 53750,
-            "created": "2024-03-03T15:58:38.139Z",
-            "modified": "2024-03-03T15:58:38.139Z",
+            "created": "2024-03-21T05:22:03.107Z",
+            "modified": "2024-03-21T05:22:03.107Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -184,15 +227,15 @@
             "tests": []
         },
         {
-            "_id": "8c43c0ae-1bd9-4da0-a1d8-069fceb7aaef",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "_id": "eac95493-19ee-4f1f-af7b-a7aac6cccc51",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "9435fb73-4219-4265-8308-f495a4d0d903",
             "name": "Clientes/Create",
             "url": "{{url_api}}/clientes",
             "method": "POST",
             "sortNum": 55000,
-            "created": "2024-03-03T15:58:38.140Z",
-            "modified": "2024-03-03T15:58:38.140Z",
+            "created": "2024-03-21T05:22:03.108Z",
+            "modified": "2024-03-21T05:22:03.108Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -208,15 +251,15 @@
             "tests": []
         },
         {
-            "_id": "a2463662-a4eb-4874-845f-2924c3358f61",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "_id": "75af661d-2e80-4b63-83ed-8add0b5337f0",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "9435fb73-4219-4265-8308-f495a4d0d903",
             "name": "Clientes/UPDATE",
             "url": "{{url_api}}/clientes/115",
             "method": "PUT",
             "sortNum": 60000,
-            "created": "2024-03-03T15:58:38.141Z",
-            "modified": "2024-03-03T15:58:38.141Z",
+            "created": "2024-03-21T05:22:03.109Z",
+            "modified": "2024-03-21T05:22:03.109Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -232,15 +275,15 @@
             "tests": []
         },
         {
-            "_id": "fb44a503-3e05-4fa0-bf93-5ef68e6f4ec8",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "4f38e801-b49f-4019-bae4-c320f46cc3ed",
+            "_id": "854cfcb2-b210-4461-ba5e-5baf32593332",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "9435fb73-4219-4265-8308-f495a4d0d903",
             "name": "Clientes/Delete",
             "url": "{{url_api}}/clientes/94",
             "method": "DELETE",
             "sortNum": 70000,
-            "created": "2024-03-03T15:58:38.142Z",
-            "modified": "2024-03-03T15:58:38.142Z",
+            "created": "2024-03-21T05:22:03.110Z",
+            "modified": "2024-03-21T05:22:03.110Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -251,15 +294,15 @@
             "tests": []
         },
         {
-            "_id": "d7934a32-709b-45b9-a04e-30a9bda431d8",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "_id": "bff3032c-feb0-497d-bca6-7547575b7400",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "c2cea663-9b18-4cb1-843c-0253ef80b4ca",
             "name": "Get All",
             "url": "{{url_api}}/produtos",
             "method": "GET",
             "sortNum": 80000,
-            "created": "2024-03-03T15:58:38.143Z",
-            "modified": "2024-03-03T15:58:38.143Z",
+            "created": "2024-03-21T05:22:03.111Z",
+            "modified": "2024-03-21T05:22:03.111Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -270,15 +313,15 @@
             "tests": []
         },
         {
-            "_id": "ed6a9dc5-c8b3-44e7-910a-e74245303f55",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "_id": "e7f56bdd-355f-4a97-9afb-5cff3e52725d",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "3942590f-9890-4183-a10b-e3daab2d44e8",
             "name": "Get All",
             "url": "{{url_api}}/servicos",
             "method": "GET",
             "sortNum": 80000,
-            "created": "2024-03-03T15:58:38.144Z",
-            "modified": "2024-03-03T15:58:38.144Z",
+            "created": "2024-03-21T05:22:03.112Z",
+            "modified": "2024-03-21T05:22:03.112Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -289,15 +332,15 @@
             "tests": []
         },
         {
-            "_id": "2b3ffbda-4e48-4820-a4c2-ff38270b584f",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "f2ce7eb9-6bd1-45eb-ae20-b43055fb51b6",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Get All",
-            "url": "{{url_jwt}}/os",
+            "url": "{{url_api}}/os",
             "method": "GET",
             "sortNum": 80000,
-            "created": "2024-03-03T15:58:38.145Z",
-            "modified": "2024-03-10T03:52:10.765Z",
+            "created": "2024-03-21T05:22:03.113Z",
+            "modified": "2024-03-22T06:07:21.990Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -309,34 +352,15 @@
             "tests": []
         },
         {
-            "_id": "a5dcc334-7733-46d3-a2bc-c7ebe5f5505d",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
-            "name": "Get All Copy",
-            "url": "{{url_api}}/os",
-            "method": "GET",
-            "sortNum": 82500,
-            "created": "2024-03-03T15:58:38.146Z",
-            "modified": "2024-03-03T15:58:38.146Z",
-            "headers": [
-                {
-                    "name": "X-API-KEY",
-                    "value": "{{access_token}}"
-                }
-            ],
-            "params": [],
-            "tests": []
-        },
-        {
-            "_id": "71a680df-1c45-4673-a0f4-649869bc163f",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "_id": "ca73d774-083a-456d-9aab-fa9e6595fb32",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "c2cea663-9b18-4cb1-843c-0253ef80b4ca",
             "name": "Get by Id",
             "url": "{{url_api}}/produtos/48",
             "method": "GET",
             "sortNum": 90000,
-            "created": "2024-03-03T15:58:38.147Z",
-            "modified": "2024-03-03T15:58:38.147Z",
+            "created": "2024-03-21T05:22:03.115Z",
+            "modified": "2024-03-21T05:22:03.115Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -347,15 +371,15 @@
             "tests": []
         },
         {
-            "_id": "3de5dd95-0772-4f27-9170-0b663b573f6c",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "_id": "89edb1de-fb4b-4509-ae63-53ff1bacca89",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "3942590f-9890-4183-a10b-e3daab2d44e8",
             "name": "Get by Id",
             "url": "{{url_api}}/servicos/4",
             "method": "GET",
             "sortNum": 90000,
-            "created": "2024-03-03T15:58:38.148Z",
-            "modified": "2024-03-03T15:58:38.148Z",
+            "created": "2024-03-21T05:22:03.116Z",
+            "modified": "2024-03-21T05:22:03.116Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -366,15 +390,15 @@
             "tests": []
         },
         {
-            "_id": "f8f78b3e-0528-4078-932d-a15aa68b8b4d",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "214a08b9-4ee2-453e-b7fe-5bbc6c9e2816",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Get By ID",
             "url": "{{url_api}}/os/19",
             "method": "GET",
             "sortNum": 90000,
-            "created": "2024-03-03T15:58:38.149Z",
-            "modified": "2024-03-03T15:58:38.149Z",
+            "created": "2024-03-21T05:22:03.117Z",
+            "modified": "2024-03-22T06:07:16.084Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -382,18 +406,19 @@
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
-            "_id": "36ba0d19-db27-4fee-ab5c-e5c53e2cf574",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "_id": "71936cbd-37b2-4786-b4c5-0727e624cbb9",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "c2cea663-9b18-4cb1-843c-0253ef80b4ca",
             "name": "Search",
             "url": "{{url_api}}/produtos/?search=telefone",
             "method": "GET",
             "sortNum": 95000,
-            "created": "2024-03-03T15:58:38.150Z",
-            "modified": "2024-03-03T15:58:38.150Z",
+            "created": "2024-03-21T05:22:03.118Z",
+            "modified": "2024-03-21T05:22:03.118Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -410,15 +435,15 @@
             "tests": []
         },
         {
-            "_id": "b2f45d5e-dedb-4147-b59f-56db88fab9d0",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "_id": "f082648f-2be8-491b-9d0c-a9b71089a2ca",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "3942590f-9890-4183-a10b-e3daab2d44e8",
             "name": "Search",
             "url": "{{url_api}}/servicos/?search=teclado",
             "method": "GET",
             "sortNum": 95000,
-            "created": "2024-03-03T15:58:38.151Z",
-            "modified": "2024-03-03T15:58:38.151Z",
+            "created": "2024-03-21T05:22:03.119Z",
+            "modified": "2024-03-21T05:22:03.119Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -435,15 +460,15 @@
             "tests": []
         },
         {
-            "_id": "9c774ff8-280d-47f7-8945-7131d27af1bf",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "ba144b49-8339-4914-a56a-f49ecaafa871",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Add OS",
             "url": "{{url_api}}/os/",
             "method": "POST",
             "sortNum": 95000,
-            "created": "2024-03-03T15:58:38.152Z",
-            "modified": "2024-03-03T15:58:38.152Z",
+            "created": "2024-03-21T05:22:03.120Z",
+            "modified": "2024-03-22T06:07:13.754Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -481,18 +506,19 @@
                 "raw": "{\n  \"dataInicial\": \"\",\n  \"dataFinal\": \"\",\n  \"status\": \"\",\n  \"clientes_id\": \"\",\n  \"usuarios_id\": \"\",\n  \"termoGarantia\": \"\",\n  \"garantias_id\": \"\",\n  \"garantia\": \"\",\n  \"descricaoProduto\": \"\",\n  \"defeito\": \"\",\n  \"observacoes\": \"\",\n  \"laudoTecnico\": \"\"\n}",
                 "form": []
             },
+            "reqType": "post",
             "tests": []
         },
         {
-            "_id": "311490a8-54eb-4ac3-8a96-485e2fa8fee6",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "_id": "fbc336bc-ce71-4dab-aabc-14d2f32fab40",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "c2cea663-9b18-4cb1-843c-0253ef80b4ca",
             "name": "Produtos/Create",
             "url": "{{url_api}}/produtos",
             "method": "POST",
             "sortNum": 100000,
-            "created": "2024-03-03T15:58:38.153Z",
-            "modified": "2024-03-03T15:58:38.153Z",
+            "created": "2024-03-21T05:22:03.121Z",
+            "modified": "2024-03-21T05:22:03.121Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -508,15 +534,15 @@
             "tests": []
         },
         {
-            "_id": "0bd0e2ea-4e47-47d9-a878-6060eba57f3e",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "_id": "f3f57084-1cc5-4324-aa49-ea8fb71ae6f1",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "3942590f-9890-4183-a10b-e3daab2d44e8",
             "name": "Serviços/Create",
             "url": "{{url_api}}/servicos",
             "method": "POST",
             "sortNum": 100000,
-            "created": "2024-03-03T15:58:38.154Z",
-            "modified": "2024-03-03T15:58:38.154Z",
+            "created": "2024-03-21T05:22:03.122Z",
+            "modified": "2024-03-21T05:22:03.122Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -532,15 +558,15 @@
             "tests": []
         },
         {
-            "_id": "498e36b4-b588-4fba-8d11-412078bc163b",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "_id": "8441f4bb-a0c5-4f1b-9d3a-601bd4e48029",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "c2cea663-9b18-4cb1-843c-0253ef80b4ca",
             "name": "Produtos/Update",
             "url": "{{url_api}}/produtos/49",
             "method": "PUT",
             "sortNum": 110000,
-            "created": "2024-03-03T15:58:38.155Z",
-            "modified": "2024-03-03T15:58:38.155Z",
+            "created": "2024-03-21T05:22:03.123Z",
+            "modified": "2024-03-21T05:22:03.123Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -556,15 +582,15 @@
             "tests": []
         },
         {
-            "_id": "1f6397f9-988e-4b22-a2a8-238e3975d25d",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "_id": "60577564-3f40-486f-9e4a-6e1b0662a733",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "3942590f-9890-4183-a10b-e3daab2d44e8",
             "name": "Produtos/Update",
             "url": "{{url_api}}/servicos/4",
             "method": "PUT",
             "sortNum": 110000,
-            "created": "2024-03-03T15:58:38.156Z",
-            "modified": "2024-03-03T15:58:38.156Z",
+            "created": "2024-03-21T05:22:03.124Z",
+            "modified": "2024-03-21T05:22:03.124Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -580,15 +606,15 @@
             "tests": []
         },
         {
-            "_id": "d8c177d2-99ca-4ac6-aee7-767945edac1b",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "23c20e9a-8493-4fe9-8e0a-58d5adbde9a5",
+            "_id": "bdb7d835-25e4-48d8-a57f-9926b63637df",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "c2cea663-9b18-4cb1-843c-0253ef80b4ca",
             "name": "Produtos/Delete",
             "url": "{{url_api}}/produtos/48",
             "method": "DELETE",
             "sortNum": 120000,
-            "created": "2024-03-03T15:58:38.157Z",
-            "modified": "2024-03-03T15:58:38.157Z",
+            "created": "2024-03-21T05:22:03.125Z",
+            "modified": "2024-03-21T05:22:03.125Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -599,15 +625,15 @@
             "tests": []
         },
         {
-            "_id": "297d37a6-a898-49b3-809c-39a7c26b7945",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "b1a51e17-641b-487d-8038-e1131577fecb",
+            "_id": "8c45f970-b80b-438a-98ed-d44eee68cddd",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "3942590f-9890-4183-a10b-e3daab2d44e8",
             "name": "Produtos/Delete",
             "url": "{{url_api}}/servicos/3",
             "method": "DELETE",
             "sortNum": 120000,
-            "created": "2024-03-03T15:58:38.158Z",
-            "modified": "2024-03-03T15:58:38.158Z",
+            "created": "2024-03-21T05:22:03.126Z",
+            "modified": "2024-03-21T05:22:03.126Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -618,15 +644,15 @@
             "tests": []
         },
         {
-            "_id": "d0749bfa-0e9b-4d20-acce-e8efdfcc3d7d",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "1ecbb886-69eb-4e0a-858f-a1737cb47af5",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Delete",
             "url": "{{url_api}}/os/3",
             "method": "DELETE",
             "sortNum": 120000,
-            "created": "2024-03-03T15:58:38.159Z",
-            "modified": "2024-03-03T15:58:38.159Z",
+            "created": "2024-03-21T05:22:03.127Z",
+            "modified": "2024-03-22T06:07:10.814Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -634,18 +660,19 @@
                 }
             ],
             "params": [],
+            "reqType": "del",
             "tests": []
         },
         {
-            "_id": "d873e0d5-20bd-47fb-881c-1c25a19cc118",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "3920a526-5df2-498e-b1ef-a269e5d44226",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Add Produto OS",
             "url": "{{url_api}}/os/19/produtos",
             "method": "POST",
             "sortNum": 130000,
-            "created": "2024-03-03T15:58:38.160Z",
-            "modified": "2024-03-03T15:58:38.160Z",
+            "created": "2024-03-21T05:22:03.128Z",
+            "modified": "2024-03-22T06:07:08.080Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -658,18 +685,19 @@
                 "raw": "{\n  \"idProduto\": \"43\",\n  \"preco\": \"175.00\",\n  \"quantidade\": \"1\"\n}",
                 "form": []
             },
+            "reqType": "post",
             "tests": []
         },
         {
-            "_id": "c12dc925-fa03-4d60-a3b2-3d3d59c2cf6c",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "8894dd69-57ac-4168-ba3e-0e198c473df5",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Update Produto OS",
             "url": "{{url_api}}/os/19/produtos/14",
             "method": "PUT",
             "sortNum": 135000,
-            "created": "2024-03-03T15:58:38.161Z",
-            "modified": "2024-03-03T15:58:38.161Z",
+            "created": "2024-03-21T05:22:03.129Z",
+            "modified": "2024-03-22T06:07:05.438Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -682,18 +710,19 @@
                 "raw": "{\n  \"quantidade\": \"1\",\n  \"preco\": \"175\"\n}",
                 "form": []
             },
+            "reqType": "put",
             "tests": []
         },
         {
-            "_id": "35574b29-8639-4579-b3e7-d07307c28729",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "2f6f4700-e1b8-4b66-9292-29513a06fd20",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Delete Produto OS",
             "url": "{{url_api}}/os/19/produtos/14",
             "method": "DELETE",
             "sortNum": 137500,
-            "created": "2024-03-03T15:58:38.162Z",
-            "modified": "2024-03-03T15:58:38.162Z",
+            "created": "2024-03-21T05:22:03.130Z",
+            "modified": "2024-03-22T06:07:02.788Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -701,18 +730,19 @@
                 }
             ],
             "params": [],
+            "reqType": "del",
             "tests": []
         },
         {
-            "_id": "c467aa23-9894-4413-a6ba-0c112c281fdc",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "e0c778d9-c27b-40a5-89e3-a8f416867ea1",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Add Serviço OS",
             "url": "{{url_api}}/os/19/servicos",
             "method": "POST",
             "sortNum": 140000,
-            "created": "2024-03-03T15:58:38.163Z",
-            "modified": "2024-03-03T15:58:38.163Z",
+            "created": "2024-03-21T05:22:03.131Z",
+            "modified": "2024-03-22T06:07:00.403Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -725,18 +755,19 @@
                 "raw": "{\n  \"idServico\": \"2\",\n  \"preco\": \"550\",\n  \"quantidade\": \"2\"\n}",
                 "form": []
             },
+            "reqType": "post",
             "tests": []
         },
         {
-            "_id": "02457e99-d4a4-48a5-a9f2-88f5e2323320",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "7690f80e-8f9c-40ae-9653-d7a68eca7705",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Update Serviço OS",
             "url": "{{url_api}}/os/19/servicos/10",
             "method": "PUT",
             "sortNum": 150000,
-            "created": "2024-03-03T15:58:38.164Z",
-            "modified": "2024-03-03T15:58:38.164Z",
+            "created": "2024-03-21T05:22:03.132Z",
+            "modified": "2024-03-22T06:06:57.871Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -749,18 +780,19 @@
                 "raw": "{\n  \"quantidade\": \"1\",\n  \"preco\": \"550.00\"\n}",
                 "form": []
             },
+            "reqType": "put",
             "tests": []
         },
         {
-            "_id": "7a26cf99-4428-45e0-a425-d1f5cd7112d3",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "23330ee6-ef26-4257-8c94-86932c367c4c",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Delete Serviço OS",
             "url": "{{url_api}}/os/19/servicos/11",
             "method": "DELETE",
             "sortNum": 160000,
-            "created": "2024-03-03T15:58:38.165Z",
-            "modified": "2024-03-03T15:58:38.165Z",
+            "created": "2024-03-21T05:22:03.133Z",
+            "modified": "2024-03-22T06:06:54.994Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -768,18 +800,19 @@
                 }
             ],
             "params": [],
+            "reqType": "del",
             "tests": []
         },
         {
-            "_id": "5d183f9b-1ab7-46a4-9e33-5335bb51ee9f",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "4412cc0f-c92c-497d-a782-9ba10878e6d5",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Add Anotação",
             "url": "{{url_api}}/os/19/anotacoes",
             "method": "POST",
             "sortNum": 170000,
-            "created": "2024-03-03T15:58:38.166Z",
-            "modified": "2024-03-03T15:58:38.166Z",
+            "created": "2024-03-21T05:22:03.134Z",
+            "modified": "2024-03-22T06:06:52.072Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -792,18 +825,19 @@
                 "raw": "{\n  \"anotacao\": \"Teste de anotação API 2\"\n}",
                 "form": []
             },
+            "reqType": "post",
             "tests": []
         },
         {
-            "_id": "789da6f2-cc20-4be5-b89a-4bd87c40e320",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
-            "containerId": "49248563-3b22-44f8-8fc4-91174c1a2ee0",
+            "_id": "85364028-bdff-406f-8d74-b51fc8de86bf",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Delete Anotação",
             "url": "{{url_api}}/os/19/anotacoes",
             "method": "POST",
             "sortNum": 180000,
-            "created": "2024-03-03T15:58:38.167Z",
-            "modified": "2024-03-03T15:58:38.167Z",
+            "created": "2024-03-21T05:22:03.135Z",
+            "modified": "2024-03-22T06:06:48.320Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -816,18 +850,19 @@
                 "raw": "{\n  \"anotacao\": \"Teste de anotação API 2\"\n}",
                 "form": []
             },
+            "reqType": "post",
             "tests": []
         },
         {
-            "_id": "8a4a6f69-5525-4f04-a112-46c11b3fde30",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "_id": "8f985aee-07e0-4405-8d9d-d8a8f8dcc315",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "Status",
             "url": "{{url_jwt}}/status",
             "method": "GET",
             "sortNum": 190000,
-            "created": "2024-03-03T15:58:38.168Z",
-            "modified": "2024-03-10T02:55:58.102Z",
+            "created": "2024-03-21T05:22:03.136Z",
+            "modified": "2024-03-21T05:22:03.136Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -835,19 +870,18 @@
                 }
             ],
             "params": [],
-            "reqType": "get",
             "tests": []
         },
         {
-            "_id": "40d5603c-ebed-48c5-8eaf-553ca0c15a25",
-            "colId": "f564e05b-dd06-476f-bfbe-356fb3bf91fa",
+            "_id": "1bd88145-9392-4bcf-9a01-3eb1e16d83df",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "Conta",
             "url": "{{url_jwt}}/conta",
             "method": "GET",
             "sortNum": 200000,
-            "created": "2024-03-03T15:58:38.169Z",
-            "modified": "2024-03-10T02:56:02.293Z",
+            "created": "2024-03-21T05:22:03.137Z",
+            "modified": "2024-03-21T05:22:03.137Z",
             "headers": [
                 {
                     "name": "X-API-KEY",
@@ -855,7 +889,6 @@
                 }
             ],
             "params": [],
-            "reqType": "get",
             "tests": []
         }
     ]
