@@ -410,6 +410,7 @@ class OsController extends REST_Controller
     {
         $this->logged_user();
         $_POST = (array) json_decode(trim(file_get_contents('php://input')));
+        $_POST['idOsServico'] = $id;
 
         $this->load->library('form_validation');
 
