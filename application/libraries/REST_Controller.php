@@ -2363,6 +2363,8 @@ abstract class REST_Controller extends CI_Controller {
     {
         $headers = $this->input->request_headers();
 
+        $headers['x-api-key'] = isset($headers['x-api-key']) ? $headers['x-api-key'] : $headers['X-Api-Key'];
+
         if(!isset($headers['x-api-key'])) {
             $this->response([
                 'status'  => false,

@@ -96,7 +96,7 @@ class OsController extends REST_Controller
             ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
-        $_POST = json_decode(file_get_contents("php://input"), true);
+        $_POST = (array) json_decode(file_get_contents("php://input"), true);
 
         $this->load->library('form_validation');
         
@@ -263,7 +263,8 @@ class OsController extends REST_Controller
     {
         $this->logged_user();
 
-        $_POST = json_decode(trim(file_get_contents('php://input')));
+        $_POST = (array) json_decode(trim(file_get_contents('php://input')));
+        $_POST['idOsProduto'] = $id;
         
         $this->load->library('form_validation');
 
@@ -408,7 +409,7 @@ class OsController extends REST_Controller
     public function servicos_post($id)
     {
         $this->logged_user();
-        $_POST = json_decode(trim(file_get_contents('php://input')));
+        $_POST = (array) json_decode(trim(file_get_contents('php://input')));
 
         $this->load->library('form_validation');
 
@@ -519,7 +520,7 @@ class OsController extends REST_Controller
     {
         $this->logged_user();
 
-        $_POST = json_decode(trim(file_get_contents('php://input')));
+        $_POST = (array) json_decode(trim(file_get_contents('php://input')));
 
         $this->load->library('form_validation');
         

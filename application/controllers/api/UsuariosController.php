@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 require(APPPATH.'/libraries/REST_Controller.php');
 
-class UsuarioController extends REST_Controller
+class UsuariosController extends REST_Controller
 {
 
 	/**
@@ -24,77 +24,6 @@ class UsuarioController extends REST_Controller
 		$this->load->model('Mapos_model');
         $this->load->model('usuarios_model');
 	}
-    
-	/**
-	 * login function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function login_post()
-    {
-		$_POST = json_decode(file_get_contents("php://input"), true);
-		
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('email', 'E-mail', 'valid_email|required|trim');
-        $this->form_validation->set_rules('password', 'Senha', 'required|trim');
-		
-		if ($this->form_validation->run() == false) {
-            $this->response([
-                'status'  => false,
-                'message' => strip_tags(validation_errors())
-            ], REST_Controller::HTTP_UNAUTHORIZED);
-        }
-
-        $this->load->model('Mapos_model');
-        $email    = $this->input->post('email');
-        $password = $this->input->post('password');
-        $user     = $this->Mapos_model->check_credentials($email);
-
-        if ($user) {
-            // Verificar se acesso está expirado
-            if ($this->chk_date($user->dataExpiracao)) {
-                $this->response([
-                    'status'  => false,
-                    'message' => 'A conta do usuário está expirada, por favor entre em contato com o administrador do sistema.'
-                ], REST_Controller::HTTP_UNAUTHORIZED);
-            }
-
-            // Verificar credenciais do usuário
-            if (password_verify($password, $user->senha)) {                
-                $this->log_app('Efetuou login no sistema', $user->nome);
-                $permissoes = $this->getInstanceDatabase('permissoes', '*', "idPermissao = ".$user->permissoes_id, 1, true);
-                $permissoes = unserialize($permissoes['permissoes']);
-
-                $token_data = [
-                    'uid'       => $user->idUsuarios,
-                    'email'     => $user->email,
-                    'permissao' => $user->permissoes_id
-                ];
-
-                $result = [
-                    'access_token' => $this->authorization_token->generateToken($token_data),
-                    'permissions'  => [$permissoes]
-                ];
-
-                $this->response([
-                    'status'  => true,
-                    'message' => 'Login realizado com sucesso!',
-                    'result'  => $result,
-                ], REST_Controller::HTTP_OK);
-            }
-            
-            $this->response([
-                'status'  => false,
-                'message' => 'Os dados de acesso estão incorretos!'
-            ], REST_Controller::HTTP_UNAUTHORIZED);
-        }
-        
-        $this->response([
-            'status'  => false,
-            'message' => 'Usuário não encontrado, verifique se suas credenciais estão corretas!'
-        ], REST_Controller::HTTP_UNAUTHORIZED);
-    }
 
     public function index_get($id = '')
     {
@@ -113,11 +42,11 @@ class UsuarioController extends REST_Controller
 
             $oss = $this->usuarios_model->get($perPage, $start);
 
-            if($clientes) {
+            if($oss) {
                 $this->response([
                     'status' => true,
                     'message' => 'Lista de Usuários',
-                    'result' => $clientes
+                    'result' => $oss
                 ], REST_Controller::HTTP_OK);
             }
 
@@ -153,7 +82,7 @@ class UsuarioController extends REST_Controller
             ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
-        $_POST = json_decode(file_get_contents("php://input"), true);
+        $_POST = (array) json_decode(file_get_contents("php://input"), true);
 
         $this->load->library('form_validation');
         
@@ -203,7 +132,7 @@ class UsuarioController extends REST_Controller
             ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
-        $_POST = json_decode(file_get_contents("php://input"), true);
+        $_POST = (array) json_decode(file_get_contents("php://input"), true);
 
         $this->load->library('form_validation');
         
@@ -292,6 +221,77 @@ class UsuarioController extends REST_Controller
             'status' => true,
             'message' => 'Usuário excluído com sucesso!'
         ], REST_Controller::HTTP_OK);
+    }
+    
+	/**
+	 * login function.
+	 * 
+	 * @access public
+	 * @return void
+	 */
+	public function login_post()
+    {
+		$_POST = (array) json_decode(file_get_contents("php://input"), true);
+		
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('email', 'E-mail', 'valid_email|required|trim');
+        $this->form_validation->set_rules('password', 'Senha', 'required|trim');
+		
+		if ($this->form_validation->run() == false) {
+            $this->response([
+                'status'  => false,
+                'message' => strip_tags(validation_errors())
+            ], REST_Controller::HTTP_UNAUTHORIZED);
+        }
+
+        $this->load->model('Mapos_model');
+        $email    = $this->input->post('email');
+        $password = $this->input->post('password');
+        $user     = $this->Mapos_model->check_credentials($email);
+
+        if ($user) {
+            // Verificar se acesso está expirado
+            if ($this->chk_date($user->dataExpiracao)) {
+                $this->response([
+                    'status'  => false,
+                    'message' => 'A conta do usuário está expirada, por favor entre em contato com o administrador do sistema.'
+                ], REST_Controller::HTTP_UNAUTHORIZED);
+            }
+
+            // Verificar credenciais do usuário
+            if (password_verify($password, $user->senha)) {                
+                $this->log_app('Efetuou login no sistema', $user->nome);
+                $permissoes = $this->getInstanceDatabase('permissoes', '*', "idPermissao = ".$user->permissoes_id, 1, true);
+                $permissoes = unserialize($permissoes['permissoes']);
+
+                $token_data = [
+                    'uid'       => $user->idUsuarios,
+                    'email'     => $user->email,
+                    'permissao' => $user->permissoes_id
+                ];
+
+                $result = [
+                    'access_token' => $this->authorization_token->generateToken($token_data),
+                    'permissions'  => [$permissoes]
+                ];
+
+                $this->response([
+                    'status'  => true,
+                    'message' => 'Login realizado com sucesso!',
+                    'result'  => $result,
+                ], REST_Controller::HTTP_OK);
+            }
+            
+            $this->response([
+                'status'  => false,
+                'message' => 'Os dados de acesso estão incorretos!'
+            ], REST_Controller::HTTP_UNAUTHORIZED);
+        }
+        
+        $this->response([
+            'status'  => false,
+            'message' => 'Usuário não encontrado, verifique se suas credenciais estão corretas!'
+        ], REST_Controller::HTTP_UNAUTHORIZED);
     }
 
 	/**
