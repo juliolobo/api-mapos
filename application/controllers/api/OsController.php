@@ -202,20 +202,30 @@ class OsController extends REST_Controller
             ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
-        $_POST = (array) json_decode(file_get_contents("php://input"), true);
+        $os = $this->os_model->getById($id);
 
-        $this->load->library('form_validation');
-        
-        if($this->form_validation->run('os') == false) {
+        if(!$os) {
             $this->response([
                 'status' => false,
-                'message' => validation_errors()
+                'message' => 'Essa OS não existe'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+        
+        if(!isset($_POST['dataInicial']) ||
+           !isset($_POST['dataFinal']) ||
+           !isset($_POST['status']) ||
+           !isset($_POST['clientes_id']) ||
+           !isset($_POST['usuarios_id'])
+        ) {
+            $this->response([
+                'status' => false,
+                'message' => 'Preencha os campos obrigatórios'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
 
-        $dataInicial     = $this->input->post('dataInicial');
-        $dataFinal       = $this->input->post('dataFinal');
-        $termoGarantiaId = $this->input->post('termoGarantia');
+        $dataInicial     = $this->put('dataInicial');
+        $dataFinal       = $this->put('dataFinal');
+        $termoGarantiaId = $this->put('termoGarantia');
 
         try {
             $dataInicial = explode('/', $dataInicial);
@@ -228,7 +238,7 @@ class OsController extends REST_Controller
                 $dataFinal = date('Y/m/d');
             }
 
-            $termoGarantiaId = (!$termoGarantiaId == null || !$termoGarantiaId == '') ? $this->input->post('garantias_id') : null;
+            $termoGarantiaId = (!$termoGarantiaId == null || !$termoGarantiaId == '') ? $this->put('garantias_id') : null;
         } catch (Exception $e) {
             $dataInicial = date('Y/m/d');
             $dataFinal   = date('Y/m/d');
@@ -236,25 +246,23 @@ class OsController extends REST_Controller
 
         $data = [
             'dataInicial'      => $dataInicial,
-            'clientes_id'      => $this->input->post('clientes_id'),
-            'usuarios_id'      => $this->input->post('usuarios_id'),
+            'clientes_id'      => $this->put('clientes_id'),
+            'usuarios_id'      => $this->put('usuarios_id'),
             'dataFinal'        => $dataFinal,
-            'garantia'         => $this->input->post('garantia'),
+            'garantia'         => $this->put('garantia'),
             'garantias_id'     => $termoGarantiaId,
-            'descricaoProduto' => $this->input->post('descricaoProduto'),
-            'defeito'          => $this->input->post('defeito'),
-            'status'           => $this->input->post('status'),
-            'observacoes'      => $this->input->post('observacoes'),
-            'laudoTecnico'     => $this->input->post('laudoTecnico'),
+            'descricaoProduto' => $this->put('descricaoProduto'),
+            'defeito'          => $this->put('defeito'),
+            'status'           => $this->put('status'),
+            'observacoes'      => $this->put('observacoes'),
+            'laudoTecnico'     => $this->put('laudoTecnico'),
             'faturado'         => 0,
         ];
 
-        $os = $this->os_model->getById($id);
-
-        if (strtolower($this->input->post('status')) == "cancelado" && strtolower($os->status) != "cancelado") {
+        if (strtolower($this->put('status')) == "cancelado" && strtolower($os->status) != "cancelado") {
             $this->devolucaoEstoque($id);
         }
-        if (strtolower($os->status) == "cancelado" && strtolower($this->input->post('status')) != "cancelado") {
+        if (strtolower($os->status) == "cancelado" && strtolower($this->put('status')) != "cancelado") {
             $this->debitarEstoque($id);
         }
 
