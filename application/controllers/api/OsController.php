@@ -210,6 +210,8 @@ class OsController extends REST_Controller
                 'message' => 'Essa OS não existe'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
+
+        $_POST = (array) json_decode(file_get_contents("php://input"), true);
         
         if(!isset($_POST['dataInicial']) ||
            !isset($_POST['dataFinal']) ||
