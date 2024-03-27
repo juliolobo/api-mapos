@@ -192,6 +192,121 @@ class OsController extends REST_Controller
         ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
 
+    public function index_put($id)
+    {
+        $this->logged_user();
+        if (!$this->permission->checkPermission($this->logged_user()->level, 'eOs')) {
+            $this->response([
+                'status'  => false,
+                'message' => 'Você não está autorizado a Adicionar OS!'
+            ], REST_Controller::HTTP_UNAUTHORIZED);
+        }
+
+        $_POST = (array) json_decode(file_get_contents("php://input"), true);
+
+        $this->load->library('form_validation');
+        
+        if($this->form_validation->run('os') == false) {
+            $this->response([
+                'status' => false,
+                'message' => validation_errors()
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+
+        $dataInicial     = $this->input->post('dataInicial');
+        $dataFinal       = $this->input->post('dataFinal');
+        $termoGarantiaId = $this->input->post('termoGarantia');
+
+        try {
+            $dataInicial = explode('/', $dataInicial);
+            $dataInicial = $dataInicial[2].'-'.$dataInicial[1].'-'.$dataInicial[0];
+
+            if ($dataFinal) {
+                $dataFinal = explode('/', $dataFinal);
+                $dataFinal = $dataFinal[2].'-'.$dataFinal[1].'-'.$dataFinal[0];
+            } else {
+                $dataFinal = date('Y/m/d');
+            }
+
+            $termoGarantiaId = (!$termoGarantiaId == null || !$termoGarantiaId == '') ? $this->input->post('garantias_id') : null;
+        } catch (Exception $e) {
+            $dataInicial = date('Y/m/d');
+            $dataFinal   = date('Y/m/d');
+        }
+
+        $data = [
+            'dataInicial'      => $dataInicial,
+            'clientes_id'      => $this->input->post('clientes_id'),
+            'usuarios_id'      => $this->input->post('usuarios_id'),
+            'dataFinal'        => $dataFinal,
+            'garantia'         => $this->input->post('garantia'),
+            'garantias_id'     => $termoGarantiaId,
+            'descricaoProduto' => $this->input->post('descricaoProduto'),
+            'defeito'          => $this->input->post('defeito'),
+            'status'           => $this->input->post('status'),
+            'observacoes'      => $this->input->post('observacoes'),
+            'laudoTecnico'     => $this->input->post('laudoTecnico'),
+            'faturado'         => 0,
+        ];
+
+        $os = $this->os_model->getById($id);
+
+        if (strtolower($this->input->post('status')) == "cancelado" && strtolower($os->status) != "cancelado") {
+            $this->devolucaoEstoque($id);
+        }
+        if (strtolower($os->status) == "cancelado" && strtolower($this->input->post('status')) != "cancelado") {
+            $this->debitarEstoque($id);
+        }
+
+        if ($this->os_model->edit('os', $data, 'idOs', $id) == true) {
+            $this->load->model('mapos_model');
+            $this->load->model('usuarios_model');
+
+            $idOs     = $id;
+            $os       = $this->os_model->getById($idOs);
+            $emitente = $this->mapos_model->getEmitente();
+            $tecnico  = $this->usuarios_model->getById($os->usuarios_id);
+            
+            // Verificar configuração de notificação
+            if ($this->getConfig('os_notification') != 'nenhum' && $this->getConfig('email_automatico') == 1) {
+                $remetentes = [];
+                switch ($this->getConfig('os_notification')) {
+                    case 'todos':
+                        array_push($remetentes, $os->email);
+                        array_push($remetentes, $tecnico->email);
+                        array_push($remetentes, $emitente->email);
+                        break;
+                    case 'cliente':
+                        array_push($remetentes, $os->email);
+                        break;
+                    case 'tecnico':
+                        array_push($remetentes, $tecnico->email);
+                        break;
+                    case 'emitente':
+                        array_push($remetentes, $emitente->email);
+                        break;
+                    default:
+                        array_push($remetentes, $os->email);
+                        break;
+                }
+                $this->enviarOsPorEmail($idOs, $remetentes, 'Ordem de Serviço - Criada');
+            }
+
+            $this->log_app('Alterou uma OS. ID: ' . $id);
+            
+            $this->response([
+                'status' => true,
+                'message' => 'OS editada com sucesso!',
+                'result' => $os
+            ], REST_Controller::HTTP_OK);
+        }
+        
+        $this->response([
+            'status' => false,
+            'message' => 'Não foi possível editar a OS.'
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
+    }
+
     public function index_delete($id)
     {
         $this->logged_user();
