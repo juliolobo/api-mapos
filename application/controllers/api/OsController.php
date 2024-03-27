@@ -177,7 +177,7 @@ class OsController extends REST_Controller
                 $this->enviarOsPorEmail($idOs, $remetentes, 'Ordem de Serviço - Criada');
             }
 
-            log_app('Adicionou uma OS. ID: ' . $id);
+            $this->log_app('Adicionou uma OS. ID: ' . $id);
             
             $this->response([
                 'status' => true,

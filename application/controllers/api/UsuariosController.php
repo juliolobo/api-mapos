@@ -134,26 +134,23 @@ class UsuariosController extends REST_Controller
 
         $_POST = (array) json_decode(file_get_contents("php://input"), true);
 
-        $this->load->library('form_validation');
-        
-        $this->form_validation->set_rules('nome', 'Nome', 'trim|required');
-        $this->form_validation->set_rules('rg', 'RG', 'trim|required');
-        $this->form_validation->set_rules('cpf', 'CPF', 'trim|required');
-        $this->form_validation->set_rules('cep', 'CEP', 'trim|required');
-        $this->form_validation->set_rules('rua', 'Rua', 'trim|required');
-        $this->form_validation->set_rules('numero', 'Número', 'trim|required');
-        $this->form_validation->set_rules('bairro', 'Bairro', 'trim|required');
-        $this->form_validation->set_rules('cidade', 'Cidade', 'trim|required');
-        $this->form_validation->set_rules('estado', 'Estado', 'trim|required');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required');
-        $this->form_validation->set_rules('telefone', 'Telefone', 'trim|required');
-        $this->form_validation->set_rules('situacao', 'Situação', 'trim|required');
-        $this->form_validation->set_rules('permissoes_id', 'Permissão', 'trim|required');
-
-        if ($this->form_validation->run() == false) {
+        if (!isset($_POST['nome']) ||
+            !isset($_POST['rg']) ||
+            !isset($_POST['cpf']) ||
+            !isset($_POST['cep']) ||
+            !isset($_POST['rua']) ||
+            !isset($_POST['numero']) ||
+            !isset($_POST['bairro']) ||
+            !isset($_POST['cidade']) ||
+            !isset($_POST['estado']) ||
+            !isset($_POST['email']) ||
+            !isset($_POST['telefone']) ||
+            !isset($_POST['situacao']) ||
+            !isset($_POST['permissoes_id'])
+        ) {
             $this->response([
                 'status' => false,
-                'message' => validation_errors()
+                'message' => 'Preencha todos campos'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
         
@@ -189,7 +186,7 @@ class UsuariosController extends REST_Controller
         }
         
         if ($this->usuarios_model->edit('usuarios', $data, 'idUsuarios', $id) == true) {
-            log_app('Alterou um usuário. ID: ' . $id);
+            $this->log_app('Alterou um usuário. ID: ' . $id);
             $this->response([
                 'status'  => true,
                 'message' => 'Cliente editado com sucesso!',
@@ -215,7 +212,7 @@ class UsuariosController extends REST_Controller
 
         $this->usuarios_model->delete('usuarios', 'idUsuarios', $id);
 
-        log_app('Removeu um usuário. ID: ' . $id);
+        $this->log_app('Removeu um usuário. ID: ' . $id);
 
         $this->response([
             'status' => true,
