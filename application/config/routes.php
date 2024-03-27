@@ -66,6 +66,7 @@ $route['api/os/(:num)/servicos']        = 'api/OsController/servicos/$1';
 $route['api/os/(:num)/servicos/(:num)'] = 'api/OsController/servicos/$1/$2';
 $route['api/os/(:num)/anotacoes']       = 'api/OsController/anotacoes/$1';
 $route['api/os/(:num)/anexos']          = 'api/OsController/anexos/$1';
+$route['api/os/(:num)/anexos/(:num)']   = 'api/OsController/anexos/$1/$2';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

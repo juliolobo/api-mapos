@@ -579,6 +579,34 @@ class OsController extends REST_Controller
         ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
 
+    public function anexos_delete($id, $idAnexo)
+    {
+        $this->logged_user();
+        if ($idAnexo != null && is_numeric($idAnexo)) {
+            $this->db->where('idAnexos', $idAnexo);
+            $file = $this->db->get('anexos', 1)->row();
+            unlink($file->path . DIRECTORY_SEPARATOR . $file->anexo);
+
+            if ($file->thumb != null) {
+                unlink($file->path . DIRECTORY_SEPARATOR . 'thumbs' . DIRECTORY_SEPARATOR . $file->thumb);
+            }
+
+            if ($this->os_model->delete('anexos', 'idAnexos', $idAnexo) == true) {
+                $this->log_app('Removeu anexo de uma OS. ID (OS): '.$id);
+            
+                $this->response([
+                    'status'  => true,
+                    'message' => 'Anexo excluído com sucesso!'
+                ], REST_Controller::HTTP_OK);
+            }
+        }
+        
+        $this->response([
+            'status'  => false,
+            'message' => 'Erro ao tentar excluir anexo.'
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
+    }
+
     private function calcTotal($id)
     {  
         $ordem    = $this->os_model->getById($id);
