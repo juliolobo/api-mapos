@@ -71,18 +71,18 @@ class OsController extends REST_Controller
             ], REST_Controller::HTTP_OK);
         }
 
-        $oss            = $this->os_model->getById($id);
-        $oss->produtos  = $this->os_model->getProdutos($id);
-        $oss->servicos  = $this->os_model->getServicos($id);
-        $oss->anexos    = $this->os_model->getAnexos($id);
-        $oss->anotacoes = $this->os_model->getAnotacoes($id);
-        $oss->calcTotal = $this->calcTotal($id);
-        unset($oss->senha);
+        $os            = $this->os_model->getById($id);
+        $os->produtos  = $this->os_model->getProdutos($id);
+        $os->servicos  = $this->os_model->getServicos($id);
+        $os->anexos    = $this->os_model->getAnexos($id);
+        $os->anotacoes = $this->os_model->getAnotacoes($id);
+        $os->calcTotal = $this->calcTotal($id);
+        unset($os->senha);
         
         $this->response([
             'status' => true,
             'message' => 'Detalhes da OS',
-            'result' => $oss
+            'result' => $os
         ], REST_Controller::HTTP_OK);
     }
 
