@@ -206,7 +206,7 @@ class UsuariosController extends REST_Controller
     public function index_delete($id)
     {
         $this->logged_user();
-        if (!$this->permission->checkPermission($this->logged_user()->level, 'cUsuario')) {
+        if (!$this->permission->checkPermission($this->logged_user()->level, 'cUsuario') || $this->logged_user()->usuario->idUsuarios == $id) {
             $this->response([
                 'status' => false,
                 'message' => 'Você não está autorizado a Excluir Usuários!'
