@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "7b14e561-7243-4c0e-a526-b862558f9408",
+        "_postman_id": "fc6964b6-c9c3-4d9d-9c51-a04e0ad9daf2",
         "name": "Api Mapos JWT",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -277,7 +277,7 @@
                     }
                 },
                 {
-                    "name": "Produtos/Update",
+                    "name": "Serviços/Update",
                     "request": {
                         "method": "PUT",
                         "url": {
@@ -308,7 +308,7 @@
                     }
                 },
                 {
-                    "name": "Produtos/Delete",
+                    "name": "Serviços/Delete",
                     "request": {
                         "method": "DELETE",
                         "url": {
@@ -824,13 +824,14 @@
                 {
                     "name": "Delete Anotação",
                     "request": {
-                        "method": "POST",
+                        "method": "DELETE",
                         "url": {
-                            "raw": "{{url_api}}/os/19/anotacoes",
+                            "raw": "{{url_api}}/os/19/anexos/3",
                             "path": [
                                 "os",
                                 "19",
-                                "anotacoes"
+                                "anexos",
+                                "3"
                             ],
                             "host": [
                                 "{{url_api}}"
@@ -841,16 +842,31 @@
                                 "key": "x-api-key",
                                 "value": "{{authorization}}"
                             }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"anotacao\": \"Teste de anotação API 2\"\n}"
-                        }
+                        ]
+                    }
+                },
+                {
+                    "name": "Delete Anexo",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url_api}}/os/19/anotacoes/11",
+                            "path": [
+                                "os",
+                                "19",
+                                "anotacoes",
+                                "11"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "x-api-key",
+                                "value": "{{authorization}}"
+                            }
+                        ]
                     }
                 }
             ]
@@ -888,6 +904,89 @@
                             "path": [
                                 "usuarios",
                                 "1"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "x-api-key",
+                                "value": "{{authorization}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Usuários/Create",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url_api}}/usuarios",
+                            "path": [
+                                "usuarios"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "x-api-key",
+                                "value": "{{authorization}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"nome\": \"Nome teste\",\n  \"rg\": \"123456789\",\n  \"cpf\": \"246.932.160-38\",\n  \"cep\": \"26554110\",\n  \"rua\": \"Sei lá qual\",\n  \"numero\": \"777\",\n  \"bairro\": \"Não tem\",\n  \"cidade\": \"Nenhuma\",\n  \"estado\": \"Sólido\",\n  \"email\": \"emailteste@teste.com\",\n  \"senha\": \"123456\",\n  \"telefone\": \"21964218520\",\n  \"celular\": \"21964218520\",\n  \"dataExpiracao\": \"2030-12-31\",\n  \"situacao\": \"1\",\n  \"permissoes_id\": \"1\",\n  \"dataCadastro\": \"2024-03-26\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Usuários/Update",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url_api}}/usuarios/4",
+                            "path": [
+                                "usuarios",
+                                "4"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "x-api-key",
+                                "value": "{{authorization}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"nome\": \"Nometeste\",\n  \"rg\": \"123456789\",\n  \"cpf\": \"246.932.160-38\",\n  \"cep\": \"26554110\",\n  \"rua\": \"Sei lá qual 2\",\n  \"numero\": \"777\",\n  \"bairro\": \"Não tem\",\n  \"cidade\": \"Nenhuma\",\n  \"estado\": \"Sólido\",\n  \"email\": \"emailteste@teste.com\",\n  \"senha\": \"123456\",\n  \"telefone\": \"21964218520\",\n  \"celular\": \"21964218520\",\n  \"dataExpiracao\": \"2030-12-31\",\n  \"situacao\": \"1\",\n  \"permissoes_id\": \"1\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Usuários/Delete",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url_api}}/usuarios/4",
+                            "path": [
+                                "usuarios",
+                                "4"
                             ],
                             "host": [
                                 "{{url_api}}"
@@ -1016,6 +1115,34 @@
                     "raw": "{{url_api}}/reGenToken",
                     "path": [
                         "reGenToken"
+                    ],
+                    "host": [
+                        "{{url_api}}"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "x-api-key",
+                        "value": "{{authorization}}"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Audit",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{url_api}}/audit/?page=1",
+                    "query": [
+                        {
+                            "key": "page",
+                            "value": "1"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "audit"
                     ],
                     "host": [
                         "{{url_api}}"

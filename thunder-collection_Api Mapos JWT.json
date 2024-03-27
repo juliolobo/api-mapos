@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Api Mapos JWT",
-    "dateExported": "2024-03-22T16:51:15.594Z",
+    "dateExported": "2024-03-27T03:52:16.880Z",
     "version": "1.1",
     "folders": [
         {
@@ -581,7 +581,7 @@
             "_id": "60577564-3f40-486f-9e4a-6e1b0662a733",
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "3942590f-9890-4183-a10b-e3daab2d44e8",
-            "name": "Produtos/Update",
+            "name": "Serviços/Update",
             "url": "{{url_api}}/servicos/4",
             "method": "PUT",
             "sortNum": 110000,
@@ -599,6 +599,31 @@
                 "raw": "{\n  \"nome\": \"Troca de teclado\",\n  \"descricao\": \"Troca de teclado de notebook\",\n  \"preco\": \"152.00\"\n}",
                 "form": []
             },
+            "tests": []
+        },
+        {
+            "_id": "79152f2e-ddb6-4c45-87aa-daee777a24c9",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "",
+            "name": "Audit",
+            "url": "{{url_api}}/audit/?page=1",
+            "method": "GET",
+            "sortNum": 115000,
+            "created": "2024-03-27T01:01:13.580Z",
+            "modified": "2024-03-27T01:04:07.767Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                }
+            ],
             "tests": []
         },
         {
@@ -624,7 +649,7 @@
             "_id": "8c45f970-b80b-438a-98ed-d44eee68cddd",
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "3942590f-9890-4183-a10b-e3daab2d44e8",
-            "name": "Produtos/Delete",
+            "name": "Serviços/Delete",
             "url": "{{url_api}}/servicos/3",
             "method": "DELETE",
             "sortNum": 120000,
@@ -821,11 +846,11 @@
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Delete Anotação",
-            "url": "{{url_api}}/os/19/anotacoes",
-            "method": "POST",
+            "url": "{{url_api}}/os/19/anexos/3",
+            "method": "DELETE",
             "sortNum": 180000,
             "created": "2024-03-21T05:22:03.135Z",
-            "modified": "2024-03-22T16:46:23.688Z",
+            "modified": "2024-03-27T00:46:06.257Z",
             "headers": [
                 {
                     "name": "x-api-key",
@@ -833,11 +858,6 @@
                 }
             ],
             "params": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"anotacao\": \"Teste de anotação API 2\"\n}",
-                "form": []
-            },
             "tests": []
         },
         {
@@ -860,6 +880,25 @@
             "tests": []
         },
         {
+            "_id": "eaae7dee-14a0-443a-99c5-c4e44c78c352",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
+            "name": "Delete Anexo",
+            "url": "{{url_api}}/os/19/anotacoes/11",
+            "method": "DELETE",
+            "sortNum": 190000,
+            "created": "2024-03-27T00:45:45.962Z",
+            "modified": "2024-03-27T00:45:45.962Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
             "_id": "1bd88145-9392-4bcf-9a01-3eb1e16d83df",
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
@@ -869,6 +908,73 @@
             "sortNum": 200000,
             "created": "2024-03-21T05:22:03.137Z",
             "modified": "2024-03-22T16:45:18.011Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "bcec3872-9a58-4753-82bf-c90bdc5ad132",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "283bf432-5030-4362-8913-99dab6e1b13f",
+            "name": "Usuários/Create",
+            "url": "{{url_api}}/usuarios",
+            "method": "POST",
+            "sortNum": 210000,
+            "created": "2024-03-27T01:08:36.635Z",
+            "modified": "2024-03-27T01:21:36.176Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Nome teste\",\n  \"rg\": \"123456789\",\n  \"cpf\": \"246.932.160-38\",\n  \"cep\": \"26554110\",\n  \"rua\": \"Sei lá qual\",\n  \"numero\": \"777\",\n  \"bairro\": \"Não tem\",\n  \"cidade\": \"Nenhuma\",\n  \"estado\": \"Sólido\",\n  \"email\": \"emailteste@teste.com\",\n  \"senha\": \"123456\",\n  \"telefone\": \"21964218520\",\n  \"celular\": \"21964218520\",\n  \"dataExpiracao\": \"2030-12-31\",\n  \"situacao\": \"1\",\n  \"permissoes_id\": \"1\",\n  \"dataCadastro\": \"2024-03-26\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a514f474-3139-4c60-8c28-8b899d17f0da",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "283bf432-5030-4362-8913-99dab6e1b13f",
+            "name": "Usuários/Update",
+            "url": "{{url_api}}/usuarios/4",
+            "method": "PUT",
+            "sortNum": 220000,
+            "created": "2024-03-27T01:17:16.728Z",
+            "modified": "2024-03-27T02:30:19.969Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Nometeste\",\n  \"rg\": \"123456789\",\n  \"cpf\": \"246.932.160-38\",\n  \"cep\": \"26554110\",\n  \"rua\": \"Sei lá qual 2\",\n  \"numero\": \"777\",\n  \"bairro\": \"Não tem\",\n  \"cidade\": \"Nenhuma\",\n  \"estado\": \"Sólido\",\n  \"email\": \"emailteste@teste.com\",\n  \"senha\": \"123456\",\n  \"telefone\": \"21964218520\",\n  \"celular\": \"21964218520\",\n  \"dataExpiracao\": \"2030-12-31\",\n  \"situacao\": \"1\",\n  \"permissoes_id\": \"1\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "45c18e74-18fb-46cf-9a7a-4a2bae12b5b8",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "283bf432-5030-4362-8913-99dab6e1b13f",
+            "name": "Usuários/Delete",
+            "url": "{{url_api}}/usuarios/4",
+            "method": "DELETE",
+            "sortNum": 230000,
+            "created": "2024-03-27T03:51:20.219Z",
+            "modified": "2024-03-27T03:51:56.507Z",
             "headers": [
                 {
                     "name": "x-api-key",
