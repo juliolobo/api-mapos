@@ -66,4 +66,28 @@ class ApiController extends REST_Controller
             'result'  => $result
         ], REST_Controller::HTTP_OK);
     }
+
+    public function audit_get()
+    {
+        $this->logged_user();
+        
+        if (!$this->permission->checkPermission($this->logged_user()->level, 'cAuditoria')) {
+            $this->response([
+                'status' => false,
+                'message' => 'Você não está autorizado a Visualizar Auditoria'
+            ], REST_Controller::HTTP_UNAUTHORIZED);
+        }
+        
+        $perPage  = $this->input->get('perPage') ?: 20;
+        $page     = $this->input->get('page') ?: 0;
+        $start    = $page ? ($perPage * $page) : 0;
+
+        $logs = $this->Audit_model->get('logs', '*', '', $perPage, $start);
+        
+        $this->response([
+            'status' => true,
+            'message' => 'Listando Logs',
+            'result' => $logs
+        ], REST_Controller::HTTP_OK);
+    }
 }
