@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "fc6964b6-c9c3-4d9d-9c51-a04e0ad9daf2",
+        "_postman_id": "136ef535-2eaa-49ed-86be-ed5ef250a329",
         "name": "Api Mapos JWT",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -867,6 +867,92 @@
                                 "value": "{{authorization}}"
                             }
                         ]
+                    }
+                },
+                {
+                    "name": "OS/Update",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url_api}}/os/12015",
+                            "query": [
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "from",
+                                    "value": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "to",
+                                    "value": "",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "os",
+                                "12015"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "x-api-key",
+                                "value": "{{authorization}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"dataInicial\": \"\",\n  \"dataFinal\": \"\",\n  \"status\": \"teste\",\n  \"clientes_id\": \"\",\n  \"usuarios_id\": \"\",\n  \"termoGarantia\": \"\",\n  \"garantias_id\": \"\",\n  \"garantia\": \"\",\n  \"descricaoProduto\": \"\",\n  \"defeito\": \"\",\n  \"observacoes\": \"\",\n  \"laudoTecnico\": \"\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Desconto/Post",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url_api}}/os/19/desconto",
+                            "path": [
+                                "os",
+                                "19",
+                                "desconto"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "x-api-key",
+                                "value": "{{authorization}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"tipo_desconto\": \"porcento\",\n  \"desconto\": 10,\n  \"valor_desconto\": 508.50\n}"
+                        }
                     }
                 }
             ]

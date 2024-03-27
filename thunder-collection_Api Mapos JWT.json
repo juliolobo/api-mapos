@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Api Mapos JWT",
-    "dateExported": "2024-03-27T03:52:16.880Z",
+    "dateExported": "2024-03-27T21:01:12.896Z",
     "version": "1.1",
     "folders": [
         {
@@ -554,6 +554,55 @@
             "tests": []
         },
         {
+            "_id": "8cd5549b-fb77-469b-9a19-79a505c4fba5",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
+            "name": "OS/Update",
+            "url": "{{url_api}}/os/12015",
+            "method": "PUT",
+            "sortNum": 107500,
+            "created": "2024-03-27T19:37:22.588Z",
+            "modified": "2024-03-27T19:55:45.588Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [
+                {
+                    "name": "search",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "status",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "from",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "to",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"dataInicial\": \"\",\n  \"dataFinal\": \"\",\n  \"status\": \"teste\",\n  \"clientes_id\": \"\",\n  \"usuarios_id\": \"\",\n  \"termoGarantia\": \"\",\n  \"garantias_id\": \"\",\n  \"garantia\": \"\",\n  \"descricaoProduto\": \"\",\n  \"defeito\": \"\",\n  \"observacoes\": \"\",\n  \"laudoTecnico\": \"\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
             "_id": "8441f4bb-a0c5-4f1b-9d3a-601bd4e48029",
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "c2cea663-9b18-4cb1-843c-0253ef80b4ca",
@@ -982,6 +1031,30 @@
                 }
             ],
             "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0573c644-ad74-4ab9-ae27-ebfd3333da25",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
+            "name": "Desconto/Post",
+            "url": "{{url_api}}/os/19/desconto",
+            "method": "GET",
+            "sortNum": 240000,
+            "created": "2024-03-27T20:58:59.048Z",
+            "modified": "2024-03-27T21:01:04.171Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tipo_desconto\": \"porcento\",\n  \"desconto\": 10,\n  \"valor_desconto\": 508.50\n}",
+                "form": []
+            },
             "tests": []
         }
     ]

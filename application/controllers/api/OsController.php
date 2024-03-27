@@ -383,6 +383,44 @@ class OsController extends REST_Controller
             'message' => 'Não foi possível excluir a OS Avise ao Administrador.'
         ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
+
+    public function desconto_post($id)
+    {
+        if ($this->input->post('desconto') == "" || $this->input->post('resultado')) {
+            $this->response([
+                'status' => false,
+                'message' => 'Campos Desconto e Valor com desconto obrigatórios'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+
+        $data = [
+            'tipo_desconto' => $this->input->post('tipoDesconto') ?: 'real',
+            'desconto' => $this->input->post('desconto'),
+            'valor_desconto' => $this->input->post('resultado')
+        ];
+
+        $editavel = $this->os_model->isEditable($id);
+
+        if (!$editavel) {
+            $this->response([
+                'status'  => false,
+                'message' => 'Desconto não pode ser adiciona. Os não ja Faturada/Cancelada'
+            ], REST_Controller::HTTP_UNAUTHORIZED);
+        }
+
+        if ($this->os_model->edit('os', $data, 'idOs', $id) == true) {
+            $this->log_app('Adicionou um desconto na OS. ID: ' . $id);
+            $this->response([
+                'status'  => true,
+                'message' => 'Desconto adicionado com sucesso!'
+            ], REST_Controller::HTTP_OK);
+        }
+        
+        $this->response([
+            'status'  => false,
+            'message' => 'Ocorreu um erro ao tentar adicionar desconto à OS.'
+        ], REST_Controller::HTTP_INTERNAL_ERROR);
+    }
     
     public function produtos_post($id)
     {
