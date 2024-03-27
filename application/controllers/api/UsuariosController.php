@@ -125,11 +125,14 @@ class UsuariosController extends REST_Controller
     public function index_put($id)
     {
         $this->logged_user();
-        if (!$this->permission->checkPermission($this->logged_user()->level, 'cUsuario')) {
-            $this->response([
-                'status' => false,
-                'message' => 'Você não está autorizado a Editar Usuários!'
-            ], REST_Controller::HTTP_UNAUTHORIZED);
+        
+        if ($this->logged_user()->usuario->idUsuarios != $id) {
+            if (!$this->permission->checkPermission($this->logged_user()->level, 'cUsuario')) {
+                $this->response([
+                    'status' => false,
+                    'message' => 'Você não está autorizado a Editar Usuários!'
+                ], REST_Controller::HTTP_UNAUTHORIZED);
+            }
         }
 
         $_POST = (array) json_decode(file_get_contents("php://input"), true);
