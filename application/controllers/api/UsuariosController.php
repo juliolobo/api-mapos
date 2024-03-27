@@ -36,17 +36,24 @@ class UsuariosController extends REST_Controller
         }
 
         if(!$id) {
-            $perPage  = $this->input->get('perPage') ?: 20;
-            $page     = $this->input->get('page') ?: 0;
-            $start    = $page ? ($perPage * $page) : 0;
+            $search   = trim($this->input->get('search'));
 
-            $oss = $this->usuarios_model->get($perPage, $start);
+            if($search) {
+                $this->load->model('os_model');
+                $usuarios = $this->os_model->autoCompleteUsuario($search);
+            } else {
+                $perPage  = $this->input->get('perPage') ?: 20;
+                $page     = $this->input->get('page') ?: 0;
+                $start    = $page ? ($perPage * $page) : 0;
 
-            if($oss) {
+                $usuarios = $this->usuarios_model->get($perPage, $start);
+            }
+
+            if($usuarios) {
                 $this->response([
                     'status' => true,
                     'message' => 'Lista de Usuários',
-                    'result' => $oss
+                    'result' => $usuarios
                 ], REST_Controller::HTTP_OK);
             }
 
