@@ -81,7 +81,8 @@ class ApiController extends REST_Controller
         $perPage  = $this->input->get('perPage') ?: 20;
         $page     = $this->input->get('page') ?: 0;
         $start    = $page ? ($perPage * $page) : 0;
-
+        
+        $this->load->model('Audit_model');
         $logs = $this->Audit_model->get('logs', '*', '', $perPage, $start);
         
         $this->response([
