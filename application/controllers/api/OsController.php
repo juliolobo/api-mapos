@@ -585,19 +585,22 @@ class OsController extends REST_Controller
         if ($idAnexo != null && is_numeric($idAnexo)) {
             $this->db->where('idAnexos', $idAnexo);
             $file = $this->db->get('anexos', 1)->row();
-            unlink($file->path . DIRECTORY_SEPARATOR . $file->anexo);
 
-            if ($file->thumb != null) {
-                unlink($file->path . DIRECTORY_SEPARATOR . 'thumbs' . DIRECTORY_SEPARATOR . $file->thumb);
-            }
+            if($file->os_id == $id) {
+                unlink($file->path . DIRECTORY_SEPARATOR . $file->anexo);
 
-            if ($this->os_model->delete('anexos', 'idAnexos', $idAnexo) == true) {
-                $this->log_app('Removeu anexo de uma OS. ID (OS): '.$id);
-            
-                $this->response([
-                    'status'  => true,
-                    'message' => 'Anexo excluído com sucesso!'
-                ], REST_Controller::HTTP_OK);
+                if ($file->thumb != null) {
+                    unlink($file->path . DIRECTORY_SEPARATOR . 'thumbs' . DIRECTORY_SEPARATOR . $file->thumb);
+                }
+
+                if ($this->os_model->delete('anexos', 'idAnexos', $idAnexo) == true) {
+                    $this->log_app('Removeu anexo de uma OS. ID (OS): '.$id);
+                
+                    $this->response([
+                        'status'  => true,
+                        'message' => 'Anexo excluído com sucesso!'
+                    ], REST_Controller::HTTP_OK);
+                }
             }
         }
         
