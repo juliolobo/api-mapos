@@ -386,7 +386,7 @@ class OsController extends REST_Controller
 
     public function desconto_post($id)
     {
-        if ($this->input->post('desconto') == "" || $this->input->post('resultado')) {
+        if ($this->input->post('desconto') == "" || $this->input->post('valor_desconto')) {
             $this->response([
                 'status' => false,
                 'message' => 'Campos Desconto e Valor com desconto obrigatórios'
