@@ -25,4 +25,21 @@ class Api_model extends CI_Model {
         $this->db->limit(1);
         return $this->db->get('usuarios')->row();
     }
+
+    public function searchUsuario($search)
+    {
+        $this->db->select('*');
+        $this->db->limit(5);
+        $this->db->like('nome', $search);
+        $this->db->where('situacao', 1);
+        $query = $this->db->get('usuarios');
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $usuarios[$row->idUsuarios]['label'] = $row->nome.' | Telefone: '.$row->telefone;
+                $usuarios[$row->idUsuarios]['idUsuarios']    = $row->idUsuarios;
+            }
+
+            return (object) $usuarios;
+        }
+    }
 }

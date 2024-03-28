@@ -39,8 +39,8 @@ class UsuariosController extends REST_Controller
             $search   = trim($this->input->get('search'));
 
             if($search) {
-                $this->load->model('os_model');
-                $usuarios = $this->os_model->autoCompleteUsuario($search);
+                $this->load->model('api_model');
+                $usuarios = $this->api_model->searchUsuario($search);
             } else {
                 $perPage  = $this->input->get('perPage') ?: 20;
                 $page     = $this->input->get('page') ?: 0;
@@ -56,12 +56,6 @@ class UsuariosController extends REST_Controller
                     'result' => $usuarios
                 ], REST_Controller::HTTP_OK);
             }
-
-            $this->response([
-                'status' => false,
-                'message' => 'Nenhum usuário localizado',
-                'result' => null
-            ], REST_Controller::HTTP_OK);
         }
 
         if($id && is_numeric($id)) {
@@ -74,8 +68,7 @@ class UsuariosController extends REST_Controller
 
         $this->response([
             'status' => false,
-            'message' => 'Nenhum usuário localizado.',
-            'result' => null,
+            'message' => 'Nenhum usuário localizado.'
         ], REST_Controller::HTTP_OK);
     }
     
