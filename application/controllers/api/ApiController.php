@@ -42,16 +42,6 @@ class ApiController extends REST_Controller
         ], REST_Controller::HTTP_OK);
     }
 
-    public function status_get()
-    {
-        $user = $this->logged_user();
-
-        $this->response([
-            'status'  => $user->status ? true : false,
-            'message' => $user->status ? 'API UP e Usuário logado!' : 'API UP e Usuário deslogado!'
-        ], REST_Controller::HTTP_OK);
-    }
-
     public function emitente_get()
     {
         $this->logged_user();
