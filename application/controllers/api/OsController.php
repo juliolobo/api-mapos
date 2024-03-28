@@ -863,6 +863,19 @@ class OsController extends REST_Controller
         return true;
     }
 
+    private function devolucaoEstoque($id)
+    {
+        if ($produtos = $this->os_model->getProdutos($id)) {
+            $this->load->model('produtos_model');
+            if ($this->data['configuration']['control_estoque']) {
+                foreach ($produtos as $p) {
+                    $this->produtos_model->updateEstoque($p->produtos_id, $p->quantidade, '+');
+                    log_info('ESTOQUE: Produto id ' . $p->produtos_id . ' voltou ao estoque. Quantidade: ' . $p->quantidade . '. Motivo: Cancelamento/Exclusão');
+                }
+            }
+        }
+    }
+
     private function debitarEstoque($id)
     {
         if ($produtos = $this->os_model->getProdutos($id)) {
