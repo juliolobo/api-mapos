@@ -820,4 +820,46 @@ class OsController extends REST_Controller
             $this->produtos_model->updateEstoque($produtosId, $quantidade, $operacao);
         }
     }
+
+    private function enviarOsPorEmail($idOs, $remetentes, $assunto)
+    {
+        $dados = [];
+
+        $this->load->model('mapos_model');
+        $dados['result'] = $this->os_model->getById($idOs);
+        if (!isset($dados['result']->email)) {
+            return false;
+        }
+
+        $dados['produtos'] = $this->os_model->getProdutos($idOs);
+        $dados['servicos'] = $this->os_model->getServicos($idOs);
+        $dados['emitente'] = $this->mapos_model->getEmitente();
+        $emitente = $dados['emitente'];
+        if (!isset($emitente->email)) {
+            return false;
+        }
+
+        $html = $this->load->view('os/emails/os', $dados, true);
+
+        $this->load->model('email_model');
+
+        $remetentes = array_unique($remetentes);
+        foreach ($remetentes as $remetente) {
+            if ($remetente) {
+                $headers = ['From' => $emitente->email, 'Subject' => $assunto, 'Return-Path' => ''];
+                $email = [
+                    'to' => $remetente,
+                    'message' => $html,
+                    'status' => 'pending',
+                    'date' => date('Y-m-d H:i:s'),
+                    'headers' => serialize($headers),
+                ];
+                $this->email_model->add('email_queue', $email);
+            } else {
+                $this->log_app('Email não adicionado a Lista de envio de e-mails. Verifique se o remetente esta cadastrado. OS ID: ' . $idOs);
+            }
+        }
+
+        return true;
+    }
 }
