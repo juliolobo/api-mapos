@@ -125,6 +125,13 @@ class UsuariosController extends REST_Controller
     public function index_put($id)
     {
         $this->logged_user();
+
+        if(!$id) {
+            $this->response([
+                'status' => false,
+                'message' => 'Informe o ID do Usuário!'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
         
         if ($this->logged_user()->usuario->idUsuarios != $id) {
             if (!$this->permission->checkPermission($this->logged_user()->level, 'cUsuario')) {
@@ -211,6 +218,13 @@ class UsuariosController extends REST_Controller
                 'status' => false,
                 'message' => 'Você não está autorizado a Excluir Usuários!'
             ], REST_Controller::HTTP_UNAUTHORIZED);
+        }
+
+        if(!$id) {
+            $this->response([
+                'status' => false,
+                'message' => 'Informe o ID do Usuário!'
+            ], REST_Controller::HTTP_BAD_REQUEST);
         }
 
         $this->usuarios_model->delete('usuarios', 'idUsuarios', $id);
@@ -336,7 +350,7 @@ class UsuariosController extends REST_Controller
         
         $this->response([
             'status'  => false,
-            'message' => 'O e-mail é necessário para regenerar o token!'
+            'message' => 'O x-api-key expirado é necessário para gerar um novo x-api-key!'
         ], REST_Controller::HTTP_OK);
     }
 

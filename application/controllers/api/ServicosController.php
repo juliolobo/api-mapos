@@ -113,6 +113,13 @@ class ServicosController extends REST_Controller
             ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
+        if(!$id) {
+            $this->response([
+                'status' => false,
+                'message' => 'Informe o ID do Serviço!'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+
         $inputData = json_decode(trim(file_get_contents('php://input')));
 
         if(!isset($inputData->nome) || !isset($inputData->preco)) {

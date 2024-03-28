@@ -489,6 +489,13 @@ class OsController extends REST_Controller
     public function produtos_put($id, $idProdutos_os)
     {
         $this->logged_user();
+        if(!$id || !$idProdutos_os) {
+            $this->response([
+                'status' => false,
+                'message' => 'Informe a OS e o Produto'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+
         $inputData = json_decode(trim(file_get_contents('php://input')));
         
         $ddAntigo = $this->Api_model->getRowById('produtos_os', 'idProdutos_os', $idProdutos_os);
@@ -509,7 +516,7 @@ class OsController extends REST_Controller
                 $this->produtoEstoque($ddAntigo->produtos_id, $diferenca, $operacao);
             }
 
-            $this->log_app("Atualizou a quantidade do produto id <b>{$ddAntigo->produtos_id}</b> na OS id <b>{$id}</b> para <b>{$inputData->quantidade}</b>");
+            $this->log_app("Atualizou a quantidade do produto id <b>{$ddAntigo->produtos_id}</b> na OS id <b>{$id}</b> de <b>{$ddAntigo->quantidade}</b> para <b>{$inputData->quantidade}</b>");
 
             $data['idProdutos_os'] = $idProdutos_os;
 
@@ -625,6 +632,12 @@ class OsController extends REST_Controller
     public function servicos_put($id, $idServicos_os)
     {
         $this->logged_user();
+        if(!$id || !$idServicos_os) {
+            $this->response([
+                'status' => false,
+                'message' => 'Informe a OS e o Serviço'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
         $inputData = json_decode(trim(file_get_contents('php://input')));
 
         $ddAntigo = $this->Api_model->getRowById('servicos_os', 'idServicos_os', $idServicos_os);

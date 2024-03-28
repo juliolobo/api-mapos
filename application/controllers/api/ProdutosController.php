@@ -111,11 +111,19 @@ class ProdutosController extends REST_Controller
     public function index_put($id)
     {
         $this->logged_user();
+
         if (!$this->permission->checkPermission($this->logged_user()->level, 'eProduto')) {
             $this->response([
                 'status' => false,
                 'message' => 'Você não está autorizado a Editar Produtos!'
             ], REST_Controller::HTTP_UNAUTHORIZED);
+        }
+        
+        if(!$id) {
+            $this->response([
+                'status' => false,
+                'message' => 'Informe o ID do produto!'
+            ], REST_Controller::HTTP_BAD_REQUEST);
         }
 
         $inputData = json_decode(trim(file_get_contents('php://input')));
