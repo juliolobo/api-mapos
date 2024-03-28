@@ -148,19 +148,19 @@ class ClientesController extends REST_Controller
 
         $data = [
             'nomeCliente' => $inputData->nomeCliente,
-            'contato' => $inputData->contato,
-            'documento' => $inputData->documento,
-            'telefone' => $inputData->telefone,
-            'celular' => $inputData->celular,
-            'email' => $inputData->email,
-            'rua' => $inputData->rua,
-            'numero' => $inputData->numero,
+            'contato'     => $inputData->contato,
+            'documento'   => $inputData->documento,
+            'telefone'    => $inputData->telefone,
+            'celular'     => $inputData->celular,
+            'email'       => $inputData->email,
+            'rua'         => $inputData->rua,
+            'numero'      => $inputData->numero,
             'complemento' => $inputData->complemento,
-            'bairro' => $inputData->bairro,
-            'cidade' => $inputData->cidade,
-            'estado' => $inputData->estado,
-            'cep' => $inputData->cep,
-            'fornecedor' => $inputData->fornecedor == true ? 1 : 0
+            'bairro'      => $inputData->bairro,
+            'cidade'      => $inputData->cidade,
+            'estado'      => $inputData->estado,
+            'cep'         => $inputData->cep,
+            'fornecedor'  => $inputData->fornecedor == true ? 1 : 0
         ];
 
         if($this->put('senha')) {
