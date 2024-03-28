@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "136ef535-2eaa-49ed-86be-ed5ef250a329",
+        "_postman_id": "bab996c3-138e-45f9-8700-0de664907f14",
         "name": "Api Mapos JWT",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -1073,6 +1073,34 @@
                             "path": [
                                 "usuarios",
                                 "4"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "x-api-key",
+                                "value": "{{authorization}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Usuarios/Search",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url_api}}/usuarios?search=lobo5",
+                            "query": [
+                                {
+                                    "key": "search",
+                                    "value": "lobo5"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "usuarios"
                             ],
                             "host": [
                                 "{{url_api}}"

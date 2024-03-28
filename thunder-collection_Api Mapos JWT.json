@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Api Mapos JWT",
-    "dateExported": "2024-03-27T21:01:12.896Z",
+    "dateExported": "2024-03-28T00:19:14.627Z",
     "version": "1.1",
     "folders": [
         {
@@ -108,7 +108,7 @@
             "method": "GET",
             "sortNum": 20000,
             "created": "2024-03-22T06:11:25.786Z",
-            "modified": "2024-03-22T16:45:32.449Z",
+            "modified": "2024-03-27T23:50:54.880Z",
             "headers": [
                 {
                     "name": "x-api-key",
@@ -670,6 +670,31 @@
                 {
                     "name": "page",
                     "value": "1",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "6b59e1c2-d340-4b66-b8d6-b791e6cd31f5",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "283bf432-5030-4362-8913-99dab6e1b13f",
+            "name": "Usuarios/Search",
+            "url": "{{url_api}}/usuarios?search=lobo5",
+            "method": "GET",
+            "sortNum": 115000,
+            "created": "2024-03-27T23:50:15.388Z",
+            "modified": "2024-03-28T00:17:34.210Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [
+                {
+                    "name": "search",
+                    "value": "lobo5",
                     "isPath": false
                 }
             ],
