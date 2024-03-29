@@ -413,7 +413,7 @@ class OsController extends REST_Controller
             $this->response([
                 'status'  => true,
                 'message' => 'Desconto adicionado com sucesso!'
-            ], REST_Controller::HTTP_OK);
+            ], REST_Controller::HTTP_CREATED);
         }
         
         $this->response([
@@ -477,7 +477,7 @@ class OsController extends REST_Controller
                 'status'  => true,
                 'message' => 'Produto adicinado com sucesso!',
                 'result'  => $result
-            ], REST_Controller::HTTP_OK);
+            ], REST_Controller::HTTP_CREATED);
         }
         
         $this->response([
@@ -620,7 +620,7 @@ class OsController extends REST_Controller
                 'status'  => true,
                 'message' => 'Serviço adicinado com sucesso!',
                 'result'  => $result
-            ], REST_Controller::HTTP_OK);
+            ], REST_Controller::HTTP_CREATED);
         }
         
         $this->response([
@@ -728,7 +728,7 @@ class OsController extends REST_Controller
                 'status'  => true,
                 'message' => 'Serviço adicinado com sucesso!',
                 'result'  => $result
-            ], REST_Controller::HTTP_OK);
+            ], REST_Controller::HTTP_CREATED);
         }
         
         $this->response([
@@ -782,16 +782,6 @@ class OsController extends REST_Controller
         ];
 
         $this->upload->initialize($upload_conf);
-
-        foreach ($_FILES['userfile'] as $key => $val) {
-            $i = 1;
-            foreach ($val as $v) {
-                $field_name = "file_" . $i;
-                $_FILES[$field_name][$key] = $v;
-                $i++;
-            }
-        }
-        unset($_FILES['userfile']);
 
         $error = [];
         $success = [];
@@ -852,7 +842,7 @@ class OsController extends REST_Controller
             'status'  => true,
             'message' => 'Arquivo anexado com sucesso!',
             'result'  => ['url' => $url, 'anexo' => $new_file_name, 'thumb' => 'thumb_'.$new_file_name]
-        ], REST_Controller::HTTP_OK);
+        ], REST_Controller::HTTP_CREATED);
     }
 
     public function anexos_delete($id, $idAnexo)
