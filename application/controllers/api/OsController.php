@@ -755,6 +755,106 @@ class OsController extends REST_Controller
         ], REST_Controller::HTTP_INTERNAL_ERROR);
     }
 
+    public function anexos_post($id)
+    {
+        $this->load->library('upload');
+        $this->load->library('image_lib');
+
+        $directory = FCPATH . 'assets' . DIRECTORY_SEPARATOR . 'anexos' . DIRECTORY_SEPARATOR . date('m-Y') . DIRECTORY_SEPARATOR . 'OS-' . $id;
+
+        // If it exist, check if it's a directory
+        if (!is_dir($directory . DIRECTORY_SEPARATOR . 'thumbs')) {
+            // make directory for images and thumbs
+            try {
+                mkdir($directory . DIRECTORY_SEPARATOR . 'thumbs', 0755, true);
+            } catch (Exception $e) {
+                $this->response([
+                    'status'  => false,
+                    'message' => 'Não foi anexar o arquivo.'
+                ], REST_Controller::HTTP_INTERNAL_ERROR);
+            }
+        }
+
+        $upload_conf = [
+            'upload_path' => $directory,
+            'allowed_types' => 'jpg|png|gif|jpeg|JPG|PNG|GIF|JPEG|pdf|PDF|cdr|CDR|docx|DOCX|txt', // formatos permitidos para anexos de os
+            'max_size' => 0,
+        ];
+
+        $this->upload->initialize($upload_conf);
+
+        foreach ($_FILES['userfile'] as $key => $val) {
+            $i = 1;
+            foreach ($val as $v) {
+                $field_name = "file_" . $i;
+                $_FILES[$field_name][$key] = $v;
+                $i++;
+            }
+        }
+        unset($_FILES['userfile']);
+
+        $error = [];
+        $success = [];
+
+        foreach ($_FILES as $field_name => $file) {
+            if (!$this->upload->do_upload($field_name)) {
+                $error['upload'][] = $this->upload->display_errors();
+            } else {
+                $upload_data = $this->upload->data();
+        
+                // Gera um nome de arquivo aleatório mantendo a extensão original
+                $new_file_name = uniqid() . '.' . pathinfo($upload_data['file_name'], PATHINFO_EXTENSION);
+                $new_file_path = $upload_data['file_path'] . $new_file_name;
+                $url = base_url('assets' . DIRECTORY_SEPARATOR . 'anexos' . DIRECTORY_SEPARATOR . date('m-Y') . DIRECTORY_SEPARATOR . 'OS-' . $id);
+        
+                rename($upload_data['full_path'], $new_file_path);
+        
+                if ($upload_data['is_image'] == 1) {
+                    $resize_conf = [
+                        'source_image' => $new_file_path,
+                        'new_image' => $upload_data['file_path'] . 'thumbs' . DIRECTORY_SEPARATOR . 'thumb_' . $new_file_name,
+                        'width' => 200,
+                        'height' => 125,
+                    ];
+        
+                    $this->image_lib->initialize($resize_conf);
+        
+                    if (!$this->image_lib->resize()) {
+                        $error['resize'][] = $this->image_lib->display_errors();
+                    } else {
+                        $success[] = $upload_data;
+                        $result = $this->os_model->anexar($id, $new_file_name, $url, 'thumb_' . $new_file_name, $directory);
+                        if (!$result) {
+                            $error['db'][] = 'Erro ao inserir no banco de dados.';
+                        }
+                    }
+                } else {
+                    $success[] = $upload_data;
+        
+                    $result = $this->os_model->anexar($id, $new_file_name, $url, '', $directory);
+                    if (!$result) {
+                        $error['db'][] = 'Erro ao inserir no banco de dados.';
+                    }
+                }
+            }
+        }
+        
+        if (count($error) > 0) {
+            $this->response([
+                'status'  => false,
+                'message' => 'Ocorreu um erro ao processar o arquivo.',
+                'result'  => $error
+            ], REST_Controller::HTTP_INTERNAL_ERROR);
+        }
+        
+        $this->log_app('Adicionou anexo(s) a uma OS. ID (OS): ' . $id);
+        $this->response([
+            'status'  => true,
+            'message' => 'Arquivo anexado com sucesso!',
+            'result'  => ['url' => $url, 'anexo' => $new_file_name, 'thumb' => 'thumb_'.$new_file_name]
+        ], REST_Controller::HTTP_OK);
+    }
+
     public function anexos_delete($id, $idAnexo)
     {
         $this->logged_user();
