@@ -60,4 +60,4 @@ $route['api/os/(:num)/desconto']         = 'api/OsController/desconto/$1';
 ```
 
 ### Contribuidores
-[![Contribuidores](https://contrib.rocks/image?repo=Fesantt/MAPOS-OS-APP-FLUTTER)](https://github.com/Fesantt/MAPOS-OS-APP-FLUTTER/graphs/contributors)
+[![Contribuidores](https://contrib.rocks/image?repo=juliolobo/api-mapos)](https://github.com/juliolobo/api-mapos/graphs/contributors)
