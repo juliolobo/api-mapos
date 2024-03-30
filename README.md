@@ -61,3 +61,7 @@ $route['api/os/(:num)/desconto']         = 'api/OsController/desconto/$1';
 
 ### Contribuidores
 [![Contribuidores](https://contrib.rocks/image?repo=juliolobo/api-mapos)](https://github.com/juliolobo/api-mapos/graphs/contributors)
+
+## Autor
+| [<img src="https://avatars.githubusercontent.com/juliolobo?s=115"><br><sub>Julio Lobo</sub>](https://github.com/juliolobo) |
+| :---: |
