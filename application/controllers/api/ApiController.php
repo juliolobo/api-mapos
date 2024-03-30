@@ -8,7 +8,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 require(APPPATH.'/libraries/REST_Controller.php');
 
-// class UsuarioController extends REST_Controller
 class ApiController extends REST_Controller
 {
     public function __construct()
