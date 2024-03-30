@@ -10,13 +10,6 @@ require(APPPATH.'/libraries/REST_Controller.php');
 
 class UsuariosController extends REST_Controller
 {
-
-	/**
-	 * __construct function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
 	public function __construct()
     {
 		parent::__construct();
