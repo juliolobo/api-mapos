@@ -5,7 +5,5 @@ Para utilizar a API no [MapOS](https://github.com/RamonSilva20/mapos) baixe o .z
 Vá ao arquivo `application/config/jwt.php`
 e altere a variável `$config['jwt_key']`.
 
-## Autores
-
-- [@Julio Lobo](https://github.com/juliolobo)
-- [@Felipe Santt](https://github.com/Fesantt)
+### Contribuidores
+[![Contribuidores](https://contrib.rocks/image?repo=Fesantt/MAPOS-OS-APP-FLUTTER)](https://github.com/Fesantt/MAPOS-OS-APP-FLUTTER/graphs/contributors)
