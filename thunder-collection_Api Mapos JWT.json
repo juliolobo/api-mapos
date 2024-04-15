@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Api Mapos JWT",
-    "dateExported": "2024-03-28T00:19:14.627Z",
+    "dateExported": "2024-04-15T00:01:33.275Z",
     "version": "1.1",
     "folders": [
         {
@@ -558,11 +558,11 @@
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "OS/Update",
-            "url": "{{url_api}}/os/12015",
+            "url": "{{url_api}}/os/19",
             "method": "PUT",
             "sortNum": 107500,
             "created": "2024-03-27T19:37:22.588Z",
-            "modified": "2024-03-27T19:55:45.588Z",
+            "modified": "2024-03-28T13:33:10.190Z",
             "headers": [
                 {
                     "name": "x-api-key",
@@ -597,7 +597,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"dataInicial\": \"\",\n  \"dataFinal\": \"\",\n  \"status\": \"teste\",\n  \"clientes_id\": \"\",\n  \"usuarios_id\": \"\",\n  \"termoGarantia\": \"\",\n  \"garantias_id\": \"\",\n  \"garantia\": \"\",\n  \"descricaoProduto\": \"\",\n  \"defeito\": \"\",\n  \"observacoes\": \"\",\n  \"laudoTecnico\": \"\"\n}",
+                "raw": "{\n  \"dataInicial\": \"2024-02-23\",\n  \"dataFinal\": \"2024-02-29\",\n  \"status\": \"Aprovado\",\n  \"clientes_id\": \"1\",\n  \"usuarios_id\": \"1\",\n  \"termoGarantia\": \"\",\n  \"garantias_id\": \"\",\n  \"garantia\": \"\",\n  \"descricaoProduto\": \"<p>Teste de descrição produto</p>\",\n  \"defeito\": \"Lentidão braba\",\n  \"observacoes\": \"Faltando uma tecla\",\n  \"laudoTecnico\": \"Problema de junta\"\n}",
                 "form": []
             },
             "tests": []
@@ -1016,6 +1016,25 @@
             "tests": []
         },
         {
+            "_id": "fb612ff6-43c8-4176-b298-e984dd43f76a",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "",
+            "name": "Calendario",
+            "url": "{{url_api}}/calendario",
+            "method": "GET",
+            "sortNum": 210000,
+            "created": "2024-04-14T17:29:40.661Z",
+            "modified": "2024-04-14T17:30:02.888Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
             "_id": "a514f474-3139-4c60-8c28-8b899d17f0da",
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "283bf432-5030-4362-8913-99dab6e1b13f",
@@ -1064,10 +1083,10 @@
             "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
             "name": "Desconto/Post",
             "url": "{{url_api}}/os/19/desconto",
-            "method": "GET",
+            "method": "POST",
             "sortNum": 240000,
             "created": "2024-03-27T20:58:59.048Z",
-            "modified": "2024-03-27T21:01:04.171Z",
+            "modified": "2024-03-28T19:54:01.532Z",
             "headers": [
                 {
                     "name": "x-api-key",
@@ -1079,6 +1098,36 @@
                 "type": "json",
                 "raw": "{\n  \"tipo_desconto\": \"porcento\",\n  \"desconto\": 10,\n  \"valor_desconto\": 508.50\n}",
                 "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "16aa5aea-30fe-4b75-a399-9eeef7b27e7d",
+            "colId": "04cff221-ab63-4579-be95-35456ce38af9",
+            "containerId": "b51e1954-2d30-42dc-95f2-954818e6206a",
+            "name": "Anexos/Post",
+            "url": "{{url_api}}/os/19/anexos",
+            "method": "POST",
+            "sortNum": 250000,
+            "created": "2024-03-29T05:54:29.891Z",
+            "modified": "2024-03-29T05:56:44.399Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{authorization}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "userfile",
+                        "value": "i:\\xampp\\htdocs\\clientes\\AutoCRM\\assets\\img\\logo-one.png"
+                    }
+                ]
             },
             "tests": []
         }

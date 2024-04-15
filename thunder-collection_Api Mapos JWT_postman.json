@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "bab996c3-138e-45f9-8700-0de664907f14",
+        "_postman_id": "44eb161e-9edd-4f92-96f0-af1b236b2516",
         "name": "Api Mapos JWT",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -874,7 +874,7 @@
                     "request": {
                         "method": "PUT",
                         "url": {
-                            "raw": "{{url_api}}/os/12015",
+                            "raw": "{{url_api}}/os/19",
                             "query": [
                                 {
                                     "key": "search",
@@ -900,7 +900,7 @@
                             "variable": [],
                             "path": [
                                 "os",
-                                "12015"
+                                "19"
                             ],
                             "host": [
                                 "{{url_api}}"
@@ -919,14 +919,14 @@
                                     "language": "json"
                                 }
                             },
-                            "raw": "{\n  \"dataInicial\": \"\",\n  \"dataFinal\": \"\",\n  \"status\": \"teste\",\n  \"clientes_id\": \"\",\n  \"usuarios_id\": \"\",\n  \"termoGarantia\": \"\",\n  \"garantias_id\": \"\",\n  \"garantia\": \"\",\n  \"descricaoProduto\": \"\",\n  \"defeito\": \"\",\n  \"observacoes\": \"\",\n  \"laudoTecnico\": \"\"\n}"
+                            "raw": "{\n  \"dataInicial\": \"2024-02-23\",\n  \"dataFinal\": \"2024-02-29\",\n  \"status\": \"Aprovado\",\n  \"clientes_id\": \"1\",\n  \"usuarios_id\": \"1\",\n  \"termoGarantia\": \"\",\n  \"garantias_id\": \"\",\n  \"garantia\": \"\",\n  \"descricaoProduto\": \"<p>Teste de descrição produto</p>\",\n  \"defeito\": \"Lentidão braba\",\n  \"observacoes\": \"Faltando uma tecla\",\n  \"laudoTecnico\": \"Problema de junta\"\n}"
                         }
                     }
                 },
                 {
                     "name": "Desconto/Post",
                     "request": {
-                        "method": "GET",
+                        "method": "POST",
                         "url": {
                             "raw": "{{url_api}}/os/19/desconto",
                             "path": [
@@ -952,6 +952,39 @@
                                 }
                             },
                             "raw": "{\n  \"tipo_desconto\": \"porcento\",\n  \"desconto\": 10,\n  \"valor_desconto\": 508.50\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Anexos/Post",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url_api}}/os/19/anexos",
+                            "path": [
+                                "os",
+                                "19",
+                                "anexos"
+                            ],
+                            "host": [
+                                "{{url_api}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "x-api-key",
+                                "value": "{{authorization}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "userfile",
+                                    "src": "i:\\xampp\\htdocs\\clientes\\AutoCRM\\assets\\img\\logo-one.png",
+                                    "type": "file"
+                                }
+                            ]
                         }
                     }
                 }
@@ -1257,6 +1290,27 @@
                     "variable": [],
                     "path": [
                         "audit"
+                    ],
+                    "host": [
+                        "{{url_api}}"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "x-api-key",
+                        "value": "{{authorization}}"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Calendario",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{url_api}}/calendario",
+                    "path": [
+                        "calendario"
                     ],
                     "host": [
                         "{{url_api}}"
