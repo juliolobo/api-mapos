@@ -51,9 +51,9 @@ class Authorization_Token
         /**
          * Load Config Items Values 
          */
-        $this->token_key        = $this->CI->config->item('jwt_key');
-        $this->token_algorithm  = $this->CI->config->item('jwt_algorithm');
-        $this->token_header  = $this->CI->config->item('token_header');
+        $this->token_key          = $this->CI->config->item('jwt_key');
+        $this->token_algorithm    = $this->CI->config->item('jwt_algorithm');
+        $this->token_header       = $this->CI->config->item('token_header');
         $this->token_expire_time  = $this->CI->config->item('token_expire_time');
     }
 
@@ -83,7 +83,7 @@ class Authorization_Token
      * Validate Token with Header
      * @return : user informations
      */
-    public function validateToken()
+    public function validateToken($token)
     {
         /**
          * Request All Headers
@@ -102,7 +102,7 @@ class Authorization_Token
                  * Token Decode
                  */
                 try {
-                    $token_decode = JWT::decode($token_data['token'], $this->token_key, array($this->token_algorithm));
+                    $token_decode = JWT::decode($token, $this->token_key, array($this->token_algorithm));
                 }
                 catch(Exception $e) {
                     return ['status' => FALSE, 'message' => $e->getMessage()];
@@ -156,8 +156,9 @@ class Authorization_Token
     {
         if(!empty($headers) AND is_array($headers)) {
             foreach ($headers as $header_name => $header_value) {
-                if (strtolower(trim($header_name)) == strtolower(trim($this->token_header)))
+                if (strtolower(trim($header_name)) == strtolower(trim($this->token_header))){
                     return ['status' => TRUE, 'token' => $header_value];
+                }
             }
         }
         return ['status' => FALSE, 'message' => 'Token is not defined.'];

@@ -59,16 +59,71 @@ class ApiController extends REST_Controller
         $start = $this->input->get('start') ?: date("Y-m-01");
         $end = $this->input->get('end') ?: date("Y-m-t");
 
-        $result = $this->mapos_model->calendario(
-            $start,
-            $end,
-            $status
-        );
+        $allOs = $this->mapos_model->calendario($start, $end, $status);
+        
+        $events = array_map(function ($os) {
+            switch ($os->status) {
+                case 'Aberto':
+                    $cor = '#00cd00';
+                    break;
+                case 'Negociação':
+                    $cor = '#AEB404';
+                    break;
+                case 'Em Andamento':
+                    $cor = '#436eee';
+                    break;
+                case 'Orçamento':
+                    $cor = '#CDB380';
+                    break;
+                case 'Cancelado':
+                    $cor = '#CD0000';
+                    break;
+                case 'Finalizado':
+                    $cor = '#256';
+                    break;
+                case 'Faturado':
+                    $cor = '#B266FF';
+                    break;
+                case 'Aguardando Peças':
+                    $cor = '#FF7F00';
+                    break;
+                default:
+                    $cor = '#E0E4CC';
+                    break;
+            }
+            return [
+                'title' => "OS: {$os->idOs}, Cliente: {$os->nomeCliente}",
+                'start' => $os->dataFinal,
+                'end' => $os->dataFinal,
+                'color' => $cor,
+                'extendedProps' => [
+                    'id' => $os->idOs,
+                    'cliente' => '<b>Cliente:</b> ' . $os->nomeCliente,
+                    'dataInicial' => '<b>Data Inicial:</b> ' . date('d/m/Y', strtotime($os->dataInicial)),
+                    'dataFinal' => '<b>Data Final:</b> ' . date('d/m/Y', strtotime($os->dataFinal)),
+                    'garantia' => '<b>Garantia:</b> ' . $os->garantia . ' dias',
+                    'status' => '<b>Status da OS:</b> ' . $os->status,
+                    'description' => '<b>Descrição/Produto:</b> ' . strip_tags(html_entity_decode($os->descricaoProduto)),
+                    'defeito' => '<b>Defeito:</b> ' . strip_tags(html_entity_decode($os->defeito)),
+                    'observacoes' => '<b>Observações:</b> ' . strip_tags(html_entity_decode($os->observacoes)),
+                    'total' => '<b>Valor Total:</b> R$ ' . number_format($os->totalProdutos + $os->totalServicos, 2, ',', '.'),
+                    'desconto' => '<b>Desconto: </b>R$ ' . number_format($this->desconto(floatval($os->valorTotal), floatval($os->desconto), strval($os->tipo_desconto)), 2, ',', '.'),
+                    'valorFaturado' => '<b>Valor Faturado:</b> ' . ($os->faturado ? 'R$ '. number_format($os->valorTotal - $this->desconto(floatval($os->valorTotal), floatval($os->desconto), strval($os->tipo_desconto)), 2, ',', '.') : "PENDENTE"),
+                    'editar' => $this->os_model->isEditable($os->idOs),
+                ]
+            ];
+        }, $allOs);
+        
+        $result = [
+            'start' => $start,
+            'end'   => $end,
+            'allOs' => $allOs
+        ];
 
         $this->response([
             'status'  => true,
             'message' => 'OSs do período.',
-            'result'  => [$result, $start, $end]
+            'result'  => $result
         ], REST_Controller::HTTP_OK);
     }
 
@@ -111,5 +166,12 @@ class ApiController extends REST_Controller
             'message' => 'Listando Logs',
             'result'  => $logs
         ], REST_Controller::HTTP_OK);
+    }
+
+    private function desconto(float $valorTotal, float $desconto, string $tipoDesconto)
+    {
+        return $tipoDesconto === 'porcento'
+            ? $valorTotal * ($desconto / 100)
+            : $desconto;
     }
 }
