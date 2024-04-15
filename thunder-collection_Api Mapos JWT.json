@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Api Mapos JWT",
-    "dateExported": "2024-04-15T00:01:33.275Z",
+    "dateExported": "2024-04-15T01:41:38.092Z",
     "version": "1.1",
     "folders": [
         {
@@ -73,8 +73,8 @@
             "modified": "2024-03-22T16:45:27.745Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -89,11 +89,11 @@
             "method": "GET",
             "sortNum": 20000,
             "created": "2024-03-21T05:22:03.138Z",
-            "modified": "2024-03-22T16:44:56.948Z",
+            "modified": "2024-04-15T01:40:48.180Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -111,8 +111,8 @@
             "modified": "2024-03-27T23:50:54.880Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -127,11 +127,11 @@
             "method": "GET",
             "sortNum": 30000,
             "created": "2024-03-21T05:22:03.103Z",
-            "modified": "2024-03-22T16:45:01.861Z",
+            "modified": "2024-04-15T01:40:45.522Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -146,11 +146,11 @@
             "method": "GET",
             "sortNum": 40000,
             "created": "2024-03-21T05:22:03.104Z",
-            "modified": "2024-03-22T16:45:05.547Z",
+            "modified": "2024-04-15T01:40:42.526Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -168,8 +168,8 @@
             "modified": "2024-03-22T16:47:43.580Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [
@@ -193,8 +193,8 @@
             "modified": "2024-03-22T16:47:47.244Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [
@@ -218,8 +218,8 @@
             "modified": "2024-03-22T16:47:50.902Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -237,8 +237,8 @@
             "modified": "2024-03-22T16:48:34.173Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -261,8 +261,8 @@
             "modified": "2024-03-22T16:48:37.306Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -285,8 +285,8 @@
             "modified": "2024-03-22T16:48:40.662Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -304,8 +304,8 @@
             "modified": "2024-03-22T16:46:34.841Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -323,8 +323,8 @@
             "modified": "2024-03-22T16:47:02.615Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -342,8 +342,8 @@
             "modified": "2024-03-22T16:45:41.740Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -361,8 +361,8 @@
             "modified": "2024-03-22T16:46:38.484Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -380,8 +380,8 @@
             "modified": "2024-03-22T16:47:07.241Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -399,8 +399,8 @@
             "modified": "2024-03-22T16:45:45.029Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -418,8 +418,8 @@
             "modified": "2024-03-22T16:46:41.865Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [
@@ -443,8 +443,8 @@
             "modified": "2024-03-22T16:47:10.311Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [
@@ -468,8 +468,8 @@
             "modified": "2024-03-22T16:45:48.286Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [
@@ -517,8 +517,8 @@
             "modified": "2024-03-22T16:46:45.574Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -541,8 +541,8 @@
             "modified": "2024-03-22T16:47:13.791Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -565,8 +565,8 @@
             "modified": "2024-03-28T13:33:10.190Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [
@@ -614,8 +614,8 @@
             "modified": "2024-03-22T16:46:49.664Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -638,8 +638,8 @@
             "modified": "2024-03-22T16:47:17.915Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -659,11 +659,11 @@
             "method": "GET",
             "sortNum": 115000,
             "created": "2024-03-27T01:01:13.580Z",
-            "modified": "2024-03-27T01:04:07.767Z",
+            "modified": "2024-04-15T01:40:39.436Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [
@@ -687,8 +687,8 @@
             "modified": "2024-03-28T00:17:34.210Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [
@@ -712,8 +712,8 @@
             "modified": "2024-03-22T16:46:53.325Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -731,8 +731,8 @@
             "modified": "2024-03-22T16:47:22.016Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -750,8 +750,8 @@
             "modified": "2024-03-22T16:45:51.957Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -769,8 +769,8 @@
             "modified": "2024-03-22T16:45:55.588Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -793,8 +793,8 @@
             "modified": "2024-03-22T16:45:59.590Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -817,8 +817,8 @@
             "modified": "2024-03-22T16:46:05.141Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -836,8 +836,8 @@
             "modified": "2024-03-22T16:46:09.138Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -860,8 +860,8 @@
             "modified": "2024-03-22T16:46:12.649Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -884,8 +884,8 @@
             "modified": "2024-03-22T16:46:16.098Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -903,8 +903,8 @@
             "modified": "2024-03-22T16:46:19.552Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -927,8 +927,8 @@
             "modified": "2024-03-27T00:46:06.257Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -943,11 +943,11 @@
             "method": "GET",
             "sortNum": 190000,
             "created": "2024-03-21T05:22:03.136Z",
-            "modified": "2024-03-22T16:45:10.082Z",
+            "modified": "2024-04-15T01:39:57.711Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -965,8 +965,8 @@
             "modified": "2024-03-27T00:45:45.962Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -981,11 +981,11 @@
             "method": "GET",
             "sortNum": 200000,
             "created": "2024-03-21T05:22:03.137Z",
-            "modified": "2024-03-22T16:45:18.011Z",
+            "modified": "2024-04-15T01:39:48.158Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -1003,8 +1003,8 @@
             "modified": "2024-03-27T01:21:36.176Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -1020,18 +1020,24 @@
             "colId": "04cff221-ab63-4579-be95-35456ce38af9",
             "containerId": "",
             "name": "Calendario",
-            "url": "{{url_api}}/calendario",
+            "url": "{{url_api}}/calendario?start=2024-01-01",
             "method": "GET",
             "sortNum": 210000,
             "created": "2024-04-14T17:29:40.661Z",
-            "modified": "2024-04-14T17:30:02.888Z",
+            "modified": "2024-04-15T01:40:30.380Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
-            "params": [],
+            "params": [
+                {
+                    "name": "start",
+                    "value": "2024-01-01",
+                    "isPath": false
+                }
+            ],
             "tests": []
         },
         {
@@ -1046,8 +1052,8 @@
             "modified": "2024-03-27T02:30:19.969Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -1067,11 +1073,11 @@
             "method": "DELETE",
             "sortNum": 230000,
             "created": "2024-03-27T03:51:20.219Z",
-            "modified": "2024-03-27T03:51:56.507Z",
+            "modified": "2024-04-15T01:41:17.704Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -1089,8 +1095,8 @@
             "modified": "2024-03-28T19:54:01.532Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
@@ -1113,8 +1119,8 @@
             "modified": "2024-03-29T05:56:44.399Z",
             "headers": [
                 {
-                    "name": "x-api-key",
-                    "value": "{{authorization}}"
+                    "name": "Authorization",
+                    "value": "Bearer {{authorization}}"
                 }
             ],
             "params": [],
