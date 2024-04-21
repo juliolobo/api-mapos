@@ -114,6 +114,10 @@ class UsuariosController extends REST_Controller
         ];
 
         if ($this->usuarios_model->add('usuarios', $data) == true) {
+
+            $this->load->model('api_model');
+            $data = $this->api_model->lastRow('usuarios', 'idUsuarios');
+            
             $this->response([
                 'status'  => true,
                 'message' => 'Usuário adicionado com sucesso!',
