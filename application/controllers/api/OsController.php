@@ -904,7 +904,7 @@ class OsController extends REST_Controller
         }
 
         if($totalProdutos != 0 || $totalServicos != 0 ){
-            return $ordem->valor_desconto != 0 ? $ordem->valor_desconto : ($totalProdutos + $totalServicos);
+            return number_format(($ordem->valor_desconto != 0 ? $ordem->valor_desconto : ($totalProdutos + $totalServicos)), 2, '.');
         }
         
         return 0;
