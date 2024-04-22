@@ -409,7 +409,9 @@ class OsController extends REST_Controller
             'valor_desconto' => $this->input->post('resultado')
         ];
 
-        $editavel = $this->os_model->isEditable($id);
+        $editavel = $this->isEditable($id);
+
+        dd($editavel);
 
         if (!$editavel) {
             $this->response([
@@ -1028,5 +1030,20 @@ class OsController extends REST_Controller
         $textoFinal = strip_tags($textoFinal);
 
         return $textoFinal;
+    }
+
+    public function isEditable($id = null)
+    {
+        if (!$this->permission->checkPermission($this->logged_user()->level, 'eOs')) {
+            return false;
+        }
+        
+        if ($os = $this->os_model->getById($id)) {
+            $osT = (int)($os->status === "Faturado" || $os->status === "Cancelado" || $os->faturado == 1);
+            if ($osT) {
+                return $this->getConfig('control_editos') == '1';
+            }
+        }
+        return true;
     }
 }
