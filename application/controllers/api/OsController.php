@@ -406,7 +406,7 @@ class OsController extends REST_Controller
         $data = [
             'tipo_desconto' => $this->input->post('tipoDesconto') ?: 'real',
             'desconto' => $this->input->post('desconto'),
-            'valor_desconto' => $this->input->post('resultado')
+            'valor_desconto' => $this->input->post('valor_desconto')
         ];
 
         $editavel = $this->isEditable($id);
