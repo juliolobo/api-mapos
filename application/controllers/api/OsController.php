@@ -394,6 +394,8 @@ class OsController extends REST_Controller
 
     public function desconto_post($id)
     {
+        $_POST = (array) json_decode(file_get_contents("php://input"), true);
+
         if ($this->input->post('desconto') == "" || $this->input->post('valor_desconto')) {
             $this->response([
                 'status' => false,
