@@ -396,7 +396,7 @@ class OsController extends REST_Controller
     {
         $_POST = (array) json_decode(file_get_contents("php://input"), true);
 
-        if ($this->input->post('desconto') == "" || $this->input->post('valor_desconto')) {
+        if (empty($this->input->post('desconto')) || empty($this->input->post('valor_desconto'))) {
             $this->response([
                 'status' => false,
                 'message' => 'Campos Desconto e Valor com desconto obrigatórios'
