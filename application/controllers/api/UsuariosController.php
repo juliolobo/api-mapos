@@ -211,7 +211,7 @@ class UsuariosController extends REST_Controller
         $this->response([
             'status' => false,
             'message' => 'Não foi possível editar o Usuário.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function index_delete($id)

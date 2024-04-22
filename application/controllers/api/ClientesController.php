@@ -124,7 +124,7 @@ class ClientesController extends REST_Controller
         $this->response([
             'status' => false,
             'message' => 'Não foi possível adicionar o Cliente.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function index_put($id)
@@ -138,8 +138,10 @@ class ClientesController extends REST_Controller
         }
 
         $inputData = json_decode(trim(file_get_contents('php://input')));
+
+        $verificCpfCnpj = isset($inputData->documento) ? verific_cpf_cnpj($inputData->documento) : true;
         
-        if(isset($inputData->documento) && !verific_cpf_cnpj($inputData->documento)) {
+        if(!empty($inputData->documento) && !verific_cpf_cnpj($inputData->documento)) {
             $this->response([
                 'status' => false,
                 'message' => 'CPF/CNPJ inválido. Verifique o número do documento e tente novamente.'
@@ -178,7 +180,7 @@ class ClientesController extends REST_Controller
         $this->response([
             'status' => false,
             'message' => 'Não foi possível editar o Cliente.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function index_delete($id)
@@ -219,6 +221,6 @@ class ClientesController extends REST_Controller
         $this->response([
             'status' => false,
             'message' => 'Não foi possível excluir o Cliente.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
