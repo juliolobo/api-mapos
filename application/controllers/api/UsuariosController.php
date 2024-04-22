@@ -361,7 +361,7 @@ class UsuariosController extends REST_Controller
     public function conta_get()
     {
         $usuarioLogado = $this->logged_user();
-        $usuarioLogado->usuario->url_image_user = base_url().'assets/userImage/'.$usuarioLogado->usuario->url_image_user;
+        $usuarioLogado->usuario->url_image_user = !is_null($usuarioLogado->usuario->url_image_user) ? base_url().'assets/userImage/'.$usuarioLogado->usuario->url_image_user : null;
         unset($usuarioLogado->usuario->senha);
 
         $this->response([
