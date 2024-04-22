@@ -6,28 +6,7 @@ Vá ao arquivo `application/config/jwt.php`
 e altere a variável `$config['jwt_key']`.
 É necessário alterar o arquivo [`config.php`](https://github.com/RamonSilva20/mapos/blob/a6ae21e0e64aa2407005ab246d1c6efa445f68dc/application/config/config.php#L449) do mapos, alterando a variável `$config['csrf_exclude_uris']` alterando para 
 ```php
-$config['csrf_exclude_uris'] = [
-  "os.*+",
-  "servicos.*+",
-  "produtos.*+",
-  "clientes.*+",
-  "vendas.*+",
-  "garantias.*+",
-  "arquivos.*+",
-  "lancamentos.*+",
-  "cobrancas.*+",
-  "configurar.*+",
-  "relatorios.*+",
-  "mapos.*+",
-  "configurar.*+",
-  "usuarios.*+",
-  "financeiro.*+",
-  "email.*+",
-  "permissoes.*+",
-  "auditoria.*+",
-  "tools.*+",
-  "api.*+"
-];
+$config['csrf_exclude_uris'] = ["api.*+"];
 ```
 Altere também o arquivo [`routes.php`](https://github.com/RamonSilva20/mapos/blob/a6ae21e0e64aa2407005ab246d1c6efa445f68dc/application/config/routes.php#L46) adicionado as rotas da API 
 ```php
