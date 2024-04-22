@@ -411,8 +411,6 @@ class OsController extends REST_Controller
 
         $editavel = $this->isEditable($id);
 
-        dd($editavel);
-
         if (!$editavel) {
             $this->response([
                 'status'  => false,
