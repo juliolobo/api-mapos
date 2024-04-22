@@ -197,7 +197,7 @@ class OsController extends REST_Controller
         $this->response([
             'status' => false,
             'message' => 'Não foi possível adicionar a OS. Avise ao Administrador.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function index_put($id)
@@ -322,7 +322,7 @@ class OsController extends REST_Controller
         $this->response([
             'status' => false,
             'message' => 'Não foi possível editar a OS.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function index_delete($id)
@@ -389,7 +389,7 @@ class OsController extends REST_Controller
         $this->response([
             'status' => false,
             'message' => 'Não foi possível excluir a OS Avise ao Administrador.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function desconto_post($id)
@@ -427,7 +427,7 @@ class OsController extends REST_Controller
         $this->response([
             'status'  => false,
             'message' => 'Ocorreu um erro ao tentar adicionar desconto à OS.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
     
     public function produtos_post($id)
@@ -491,7 +491,7 @@ class OsController extends REST_Controller
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível adicionar o Produto. Avise ao Administrador.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
     
     public function produtos_put($id, $idProdutos_os)
@@ -538,7 +538,7 @@ class OsController extends REST_Controller
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível editar o Produto da OS. Avise ao Administrador.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function produtos_delete($id, $idProdutos_os)
@@ -581,7 +581,7 @@ class OsController extends REST_Controller
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível excluir o Produto da OS. Avise ao Administrador.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function servicos_post($id)
@@ -634,7 +634,7 @@ class OsController extends REST_Controller
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível adicionar o Serviço. Avise ao Administrador.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
     
     public function servicos_put($id, $idServicos_os)
@@ -673,7 +673,7 @@ class OsController extends REST_Controller
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível editar o Serviço da OS. Avise ao Administrador.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function servicos_delete($id, $idServicos_os)
@@ -698,7 +698,7 @@ class OsController extends REST_Controller
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível excluir o Serviço da OS. Avise ao Administrador.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function anotacoes_post($id)
@@ -734,7 +734,7 @@ class OsController extends REST_Controller
 
             $this->response([
                 'status'  => true,
-                'message' => 'Serviço adicinado com sucesso!',
+                'message' => 'Anotação adicinada com sucesso!',
                 'result'  => $result
             ], REST_Controller::HTTP_CREATED);
         }
@@ -742,7 +742,7 @@ class OsController extends REST_Controller
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível adicionar Anotação. Avise ao Administrador.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function anotacoes_delete($id, $idAnotacao)
@@ -760,7 +760,7 @@ class OsController extends REST_Controller
         $this->response([
             'status'  => false,
             'message' => 'Não foi possível excluir a Anotação. Avise ao Administrador.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function anexos_post($id)
@@ -779,7 +779,7 @@ class OsController extends REST_Controller
                 $this->response([
                     'status'  => false,
                     'message' => 'Não foi anexar o arquivo.'
-                ], REST_Controller::HTTP_INTERNAL_ERROR);
+                ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
             }
         }
 
@@ -842,14 +842,23 @@ class OsController extends REST_Controller
                 'status'  => false,
                 'message' => 'Ocorreu um erro ao processar o arquivo.',
                 'result'  => $error
-            ], REST_Controller::HTTP_INTERNAL_ERROR);
+            ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
         }
+
+        $anexo = $this->Api_model->lastRow('anexos', 'idAnexos');
+
+        $retorno = [
+            'idAnexos' => $anexo->idAnexos,
+            'url' => $url,
+            'anexo' => $new_file_name,
+            'thumb' => 'thumb_'.$new_file_name
+        ];
         
         $this->log_app('Adicionou anexo(s) a uma OS. ID (OS): ' . $id);
         $this->response([
             'status'  => true,
             'message' => 'Arquivo anexado com sucesso!',
-            'result'  => ['url' => $url, 'anexo' => $new_file_name, 'thumb' => 'thumb_'.$new_file_name]
+            'result'  => $retorno
         ], REST_Controller::HTTP_CREATED);
     }
 
@@ -881,7 +890,7 @@ class OsController extends REST_Controller
         $this->response([
             'status'  => false,
             'message' => 'Erro ao tentar excluir anexo.'
-        ], REST_Controller::HTTP_INTERNAL_ERROR);
+        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     private function calcTotal($id)
